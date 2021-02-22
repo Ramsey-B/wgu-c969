@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Data.Repositories;
+using CustomerManagement.Logging;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,9 @@ namespace CustomerManagement
         public Form1(ISqlOrm sqlOrm)
         {
             InitializeComponent();
+            var logger = new Logger();
+            logger.LogMessage("First Log Message");
 
-            var trans = Translator.Translate("test.sub");
-            Translator.SetLanguage(Languages.Spanish);
-            trans = Translator.Translate("test");
             var cr = new AddressRepository(sqlOrm);
 
             try

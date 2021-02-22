@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Data.Util;
+using CustomerManagement.Translations;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,8 @@ namespace CustomerManagement
         {
             services
                 .AddScoped<Form1>()
-                .AddScoped<ISqlOrm>(c => new SqlOrm("server=wgudb.ucertify.com;user id=U07Uzf;password=53689134933;database=U07Uzf;persistsecurityinfo=True"));
+                .AddScoped<ISqlOrm>(c => new SqlOrm("server=wgudb.ucertify.com;user id=U07Uzf;password=53689134933;database=U07Uzf;persistsecurityinfo=True"))
+                .AddScoped<Translator>();
         }
     }
 }

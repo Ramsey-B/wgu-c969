@@ -4,7 +4,7 @@ using System.IO;
 
 namespace CustomerManagement.Translations
 {
-    public static class Translator
+    public class Translator
     {
         private static readonly Dictionary<Languages, string> pathToTranslation = new Dictionary<Languages, string>()
         {
@@ -12,14 +12,14 @@ namespace CustomerManagement.Translations
             { Languages.Spanish, Directory.GetCurrentDirectory() + "\\Translations\\spanish.json" }
         };
 
-        private static JObject translation = GetTranslation(Languages.English); // Defaults to english
+        private JObject translation = GetTranslation(Languages.English); // Defaults to english
 
-        public static void SetLanguage(Languages language)
+        public void SetLanguage(Languages language)
         {
             translation = GetTranslation(language);
         }
 
-        public static string Translate(string key)
+        public string Translate(string key)
         {
             // Allows the key to use dot notation
             var segments = key.Split('.');
