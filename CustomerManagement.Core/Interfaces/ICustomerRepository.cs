@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CustomerManagement.Core.Models;
 
 namespace CustomerManagement.Core.Interfaces
@@ -9,5 +10,6 @@ namespace CustomerManagement.Core.Interfaces
         Task<int> UpdateAsync(Customer customer);
         Task<int> DeleteAsync(int id);
         Task<Customer> GetAsync(int id);
+        Task<List<Customer>> GetAllAsync();
     }
 }

@@ -19,7 +19,7 @@ namespace CustomerManagement.Translations
             translation = GetTranslation(language);
         }
 
-        public string Translate(string key)
+        public string Translate(string key, object args = null)
         {
             // Allows the key to use dot notation
             var segments = key.Split('.');
@@ -28,13 +28,29 @@ namespace CustomerManagement.Translations
             {
                 translationToken = translationToken[segments[i]];
             }
-            return translationToken.ToString();
+
+            return AddArgs(translationToken, args);
         }
 
         private static JObject GetTranslation(Languages language)
         {
             var json = File.ReadAllText(pathToTranslation[language]);
             return JObject.Parse(json);
+        }
+
+        private string AddArgs(JToken token, object args)
+        {
+            var translation = token.ToString();
+
+            if (args != null)
+            {
+                foreach (var property in args.GetType().GetProperties())
+                {
+                    translation = translation.Replace("{" + property.Name + "}", property.GetValue(args).ToString());
+                }
+            }
+
+            return translation;
         }
     }
 

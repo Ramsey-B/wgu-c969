@@ -6,7 +6,7 @@ namespace CustomerManagement.Core.Models
 {
     public abstract class EntityBase
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime LastUpdate { get; set; }

@@ -56,7 +56,7 @@ namespace CustomerManagement.Data.Util
 
         public async Task<int> CreateEntityAsync(string tableName, string sql, EntityBase entity, object parameters)
         {
-            if (entity.Id != null) return (int)entity.Id;
+            if (entity.Id != 0) return (int)entity.Id;
 
             // Appends the Last inserted id mysql func so that the Id is returned instead of the row count. 
             sql = sql.EndsWith(";") ? sql : sql + ";";

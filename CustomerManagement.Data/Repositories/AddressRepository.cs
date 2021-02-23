@@ -68,6 +68,7 @@ namespace CustomerManagement.Data.Repositories
             {
                 rowsChanged += await _sqlOrm.ExecuteAsync(UpdateSql.City, new
                 {
+                    address.City.Id,
                     address.City.Name,
                     CountryId = address.City.Country.Id,
                     LastUpdate = DateTime.UtcNow,
@@ -79,6 +80,7 @@ namespace CustomerManagement.Data.Repositories
             {
                 rowsChanged += await _sqlOrm.ExecuteAsync(UpdateSql.Address, new
                 {
+                    address.Id,
                     address.Address1,
                     address.Address2,
                     CityId = address.City.Id,

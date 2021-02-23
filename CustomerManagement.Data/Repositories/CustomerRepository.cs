@@ -2,6 +2,7 @@
 using CustomerManagement.Core.Models;
 using CustomerManagement.Data.Sql;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.Data.Repositories
@@ -42,6 +43,7 @@ namespace CustomerManagement.Data.Repositories
             {
                 rowCount = await _sqlOrm.ExecuteAsync(UpdateSql.Customer, new
                 {
+                    customer.Id,
                     customer.Name,
                     AddressId = customer.Address.Id,
                     customer.Active,
@@ -63,6 +65,12 @@ namespace CustomerManagement.Data.Repositories
             var customer = await _sqlOrm.QueryAsync<Customer>(SelectSql.Customer, "customer", id);
             customer.Address = await _addressRepository.GetAsync(customer.AddressId);
             return customer;
+        }
+
+        public async Task<List<Customer>> GetAllAsync()
+        {
+            var customers = await _sqlOrm.QueryListAsync<Customer>(SelectSql.Customer);
+            return customers;
         }
     }
 }

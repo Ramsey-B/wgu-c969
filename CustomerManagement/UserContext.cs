@@ -1,12 +1,7 @@
 ﻿using CustomerManagement.Core.Models;
 using CustomerManagement.Forms;
 using CustomerManagement.Translations;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement
@@ -14,6 +9,7 @@ namespace CustomerManagement
     public class UserContext
     {
         private Login _login;
+        private User _currentUser;
 
         public UserContext(Login login)
         {
@@ -24,7 +20,6 @@ namespace CustomerManagement
                 _currentUser = _login.User;
             };
         }
-        private User _currentUser;
 
         public User CurrentUser
         {

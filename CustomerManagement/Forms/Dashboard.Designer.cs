@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.viewCustomersBtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // viewCustomersBtn
+            // 
+            this.viewCustomersBtn.Location = new System.Drawing.Point(133, 50);
+            this.viewCustomersBtn.Name = "viewCustomersBtn";
+            this.viewCustomersBtn.Size = new System.Drawing.Size(181, 43);
+            this.viewCustomersBtn.TabIndex = 0;
+            this.viewCustomersBtn.Text = "View Customers";
+            this.viewCustomersBtn.UseVisualStyleBackColor = true;
+            this.viewCustomersBtn.Click += new System.EventHandler(this.viewCustomersBtn_Click);
+            // 
+            // Dashboard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1638, 835);
+            this.Controls.Add(this.viewCustomersBtn);
+            this.Name = "Dashboard";
             this.Text = "Dashboard";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button viewCustomersBtn;
     }
 }

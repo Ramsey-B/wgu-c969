@@ -1,16 +1,8 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.Data.Repositories;
 using CustomerManagement.Logging;
 using CustomerManagement.Translations;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
@@ -33,18 +25,22 @@ namespace CustomerManagement.Forms
         private async void loginBtn_Click(object sender, EventArgs e)
         {
             hideErrors(); // resets the error messages
+            var isValid = true;
             if (string.IsNullOrWhiteSpace(username.Text))
             {
                 usernameError.Visible = true;
                 usernameError.Text = _translator.Translate("login.usernameError");
+                isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(password.Text))
             {
                 passwordError.Visible = true;
                 passwordError.Text = _translator.Translate("login.passwordError");
-                return; // return here to allow for the username and password check but don't submit the login
+                isValid = false;
             }
+
+            if (!isValid) return; // stop execution is inputs are invalid
 
             var user = await _userRepository.LoginAsync(new User() { Name = username.Text, Password = password.Text });
 

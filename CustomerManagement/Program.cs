@@ -2,6 +2,7 @@
 using CustomerManagement.Data.Repositories;
 using CustomerManagement.Data.Util;
 using CustomerManagement.Forms;
+using CustomerManagement.Forms.Customers;
 using CustomerManagement.Logging;
 using CustomerManagement.Translations;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,8 +31,8 @@ namespace CustomerManagement
 
             using(var serviceProvider = services.BuildServiceProvider())
             {
-                var login = serviceProvider.GetRequiredService<Dashboard>();
-                Application.Run(login);
+                var dashboard = serviceProvider.GetRequiredService<Dashboard>();
+                Application.Run(dashboard);
             }
         }
 
@@ -46,6 +47,7 @@ namespace CustomerManagement
                 .AddSingleton<UserContext>()
                 .AddScoped<Translator>()
                 .AddScoped<Dashboard>()
+                .AddScoped<ViewCustomers>()
                 .AddScoped<Login>();
         }
     }

@@ -3,5 +3,22 @@
     "usernameError": "* Please enter a Username",
     "passwordError": "* Please enter a Password",
     "loginError": "* Username or Password was invalid. Please try again."
-  }
+  },
+  "customer": {
+    "editCustomer": "Edit Customer",
+    "addCustomer": "Add Customer",
+    "name": "Name",
+    "address1": "Address 1",
+    "address2": "Address 2",
+    "postalCode": "Postal Code",
+    "phone": "Phone",
+    "city": "City",
+    "country": "Country",
+    "active": "Active",
+    "noneSelected": "No customer selected",
+    "confirmDelete": "Are you sure you want to delete '{Name}'"
+  },
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "unexpectedError":  "An Unexpected Error Occured. Please try again."
 }
