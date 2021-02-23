@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Address" xml:space="preserve">
-    <value>SELECT addressId AS Id, address AS Address1, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy FROM address</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>SELECT cityId AS Id, city AS Name, countryId, createDate, createdBy, lastUpdate, lastUpdateBy FROM city</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>SELECT countryId AS Id, country AS Name, createDate, createdBy, lastUpdate, lastUpdateBy FROM country</value>
-  </data>
-  <data name="Customer" xml:space="preserve">
-    <value>SELECT customerId AS Id, customerName AS Name, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy FROM customer</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>SELECT userId AS Id, userName AS Name, active, createDate, createdBy, lastUpdate, lastUpdateBy FROM user WHERE userName = @Name AND password = @Password</value>
-  </data>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

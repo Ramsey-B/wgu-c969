@@ -97,7 +97,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT userId AS Id, userName AS Name, active, createDate, createdBy, lastUpdate, lastUpdateBy user WHERE userName = @Name &amp;&amp; password = @Password.
+        ///   Looks up a localized string similar to SELECT userId AS Id, userName AS Name, active, createDate, createdBy, lastUpdate, lastUpdateBy FROM user WHERE userName = @Name AND password = @Password.
         /// </summary>
         internal static string User {
             get {

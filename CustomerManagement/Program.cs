@@ -1,5 +1,8 @@
 ﻿using CustomerManagement.Core.Interfaces;
+using CustomerManagement.Data.Repositories;
 using CustomerManagement.Data.Util;
+using CustomerManagement.Forms;
+using CustomerManagement.Logging;
 using CustomerManagement.Translations;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -27,17 +30,23 @@ namespace CustomerManagement
 
             using(var serviceProvider = services.BuildServiceProvider())
             {
-                var form1 = serviceProvider.GetRequiredService<Form1>();
-                Application.Run(form1);
+                var login = serviceProvider.GetRequiredService<Dashboard>();
+                Application.Run(login);
             }
         }
 
         private static void ConfigureServices(ServiceCollection services)
         {
             services
-                .AddScoped<Form1>()
                 .AddScoped<ISqlOrm>(c => new SqlOrm("server=wgudb.ucertify.com;user id=U07Uzf;password=53689134933;database=U07Uzf;persistsecurityinfo=True"))
-                .AddScoped<Translator>();
+                .AddScoped<IAddressRepository, AddressRepository>()
+                .AddScoped<ICustomerRepository, CustomerRepository>()
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<Logger>()
+                .AddSingleton<UserContext>()
+                .AddScoped<Translator>()
+                .AddScoped<Dashboard>()
+                .AddScoped<Login>();
         }
     }
 }

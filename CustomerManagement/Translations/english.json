@@ -1,5 +1,7 @@
 {
-  "test": {
-    "sub": "english"
+  "login": {
+    "usernameError": "* Please enter a Username",
+    "passwordError": "* Please enter a Password",
+    "loginError": "* Username or Password was invalid. Please try again."
   }
 }

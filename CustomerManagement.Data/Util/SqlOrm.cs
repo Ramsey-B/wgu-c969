@@ -60,7 +60,8 @@ namespace CustomerManagement.Data.Util
 
             // Appends the Last inserted id mysql func so that the Id is returned instead of the row count. 
             sql = sql.EndsWith(";") ? sql : sql + ";";
-            return await ExecuteAsync(sql + "SELECT LAST_INSERT_ID();", parameters);
+            sql += " SELECT LAST_INSERT_ID();";
+            return await QueryAsync<int>(sql, parameters);
         }
 
         public async Task<int> DeleteAsync(int id, string tableName)

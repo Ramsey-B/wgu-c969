@@ -2,7 +2,6 @@
 using CustomerManagement.Core.Models;
 using CustomerManagement.Data.Sql;
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +20,10 @@ namespace CustomerManagement.Data.Repositories
         {
             user.Password = HashPassword(user.Password);
             var result = await _sqlOrm.QueryAsync<User>(SelectSql.User, user);
-            result.Password = null; // ensures the password is never returned.
+            if (result != null)
+            {
+                result.Password = null; // ensures the password is never returned.
+            }
             return result;
         }
 

@@ -19,18 +19,23 @@ namespace CustomerManagement
 {
     public partial class Form1 : Form
     {
-        public Form1(ISqlOrm sqlOrm)
+        public Form1(IUserRepository userRepository)
         {
             InitializeComponent();
             var logger = new Logger();
-            logger.LogMessage("First Log Message");
 
-            var cr = new AddressRepository(sqlOrm);
 
             try
             {
-                //var test = sqlConnection.QueryAsync<object>("SELECT LAST_INSERT_ID();").Result;
-                var test = cr.GetAsync(1).Result;
+                var user = new User()
+                {
+                    Name = "test",
+                    Password = "sgegs",
+                    Active = 1,
+                    CreatedBy = "Ramsey",
+                    LastUpdateBy = "Ramsey"
+                };
+                var test = userRepository.LoginAsync(user).Result;
             }
             catch (Exception ex)
             {

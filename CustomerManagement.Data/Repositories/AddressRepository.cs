@@ -44,7 +44,7 @@ namespace CustomerManagement.Data.Repositories
             {
                 newAddress.Address1,
                 newAddress.Address2,
-                City = cityId,
+                CityId = cityId,
                 newAddress.PostalCode,
                 newAddress.Phone,
                 CreateDate = DateTime.UtcNow,
