@@ -48,6 +48,7 @@
             this.submitBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.errorText = new System.Windows.Forms.Label();
+            this.pageTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameInput
@@ -215,11 +216,22 @@
             this.errorText.Text = "* An error occured";
             this.errorText.Visible = false;
             // 
+            // pageTitle
+            // 
+            this.pageTitle.AutoSize = true;
+            this.pageTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pageTitle.Location = new System.Drawing.Point(266, 27);
+            this.pageTitle.Name = "pageTitle";
+            this.pageTitle.Size = new System.Drawing.Size(260, 37);
+            this.pageTitle.TabIndex = 20;
+            this.pageTitle.Text = "Create Customer";
+            // 
             // ModifyCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 636);
+            this.Controls.Add(this.pageTitle);
             this.Controls.Add(this.errorText);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.submitBtn);
@@ -266,5 +278,6 @@
         private System.Windows.Forms.Button submitBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Label errorText;
+        private System.Windows.Forms.Label pageTitle;
     }
 }

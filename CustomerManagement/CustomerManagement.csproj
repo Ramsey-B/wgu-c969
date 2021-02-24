@@ -113,17 +113,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Customers\ModifyCustomers.cs">
+    <Compile Include="Forms\Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customers\ModifyCustomers.Designer.cs">
+    <Compile Include="Forms\Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModifyAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModifyAppointment.Designer.cs">
+      <DependentUpon>ModifyAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModifyCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModifyCustomers.Designer.cs">
       <DependentUpon>ModifyCustomers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Customers\ViewCustomers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Customers\ViewCustomers.Designer.cs">
-      <DependentUpon>ViewCustomers.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dashboard.cs">
       <SubType>Form</SubType>
@@ -141,12 +147,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translations\Translator.cs" />
-    <Compile Include="UserContext.cs" />
-    <EmbeddedResource Include="Forms\Customers\ModifyCustomers.resx">
-      <DependentUpon>ModifyCustomers.cs</DependentUpon>
+    <Compile Include="Context.cs" />
+    <EmbeddedResource Include="Forms\Appointments.resx">
+      <DependentUpon>Appointments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customers\ViewCustomers.resx">
-      <DependentUpon>ViewCustomers.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ModifyAppointment.resx">
+      <DependentUpon>ModifyAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModifyCustomers.resx">
+      <DependentUpon>ModifyCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>

@@ -70,6 +70,15 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO user (customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@CustomerId, @UserId, @Title, @Description, @Location, @Contact, @Type, @Url, @Start, @End, @CreatedBy, @LastUpdate, @LastUpdateBy);.
+        /// </summary>
+        internal static string Appointment {
+            get {
+                return ResourceManager.GetString("Appointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@Name, @CountryId, @CreateDate, @CreatedBy, @LastUpdate, @LastUpdateBy);.
         /// </summary>
         internal static string City {

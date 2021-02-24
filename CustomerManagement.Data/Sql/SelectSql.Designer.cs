@@ -70,6 +70,15 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT appointment AS Id. customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId;.
+        /// </summary>
+        internal static string Appointment {
+            get {
+                return ResourceManager.GetString("Appointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT cityId AS Id, city AS Name, countryId, createDate, createdBy, lastUpdate, lastUpdateBy FROM city.
         /// </summary>
         internal static string City {

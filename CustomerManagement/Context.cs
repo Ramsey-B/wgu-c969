@@ -1,19 +1,23 @@
 ﻿using CustomerManagement.Core.Models;
 using CustomerManagement.Forms;
 using CustomerManagement.Translations;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Globalization;
 using System.Windows.Forms;
 
 namespace CustomerManagement
 {
-    public class UserContext
+    public class Context
     {
-        private Login _login;
+        private readonly Login _login;
+        private readonly IServiceProvider _servicePorvider;
         private User _currentUser;
 
-        public UserContext(Login login)
+        public Context(Login login, IServiceProvider serviceProvider)
         {
             _login = login;
+            _servicePorvider = serviceProvider;
 
             _login.FormClosed += (object sender, FormClosedEventArgs e) =>
             {
@@ -28,6 +32,11 @@ namespace CustomerManagement
         }
 
         public Languages CurrentLanguage => GetCurrentLanguage();
+
+        public T GetService<T>()
+        {
+            return _servicePorvider.GetRequiredService<T>();
+        }
 
         private Languages GetCurrentLanguage()
         {

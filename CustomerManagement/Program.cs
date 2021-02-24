@@ -43,11 +43,11 @@ namespace CustomerManagement
                 .AddScoped<IAddressRepository, AddressRepository>()
                 .AddScoped<ICustomerRepository, CustomerRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IAppointmentRepository, AppointmentRepository>()
                 .AddScoped<Logger>()
-                .AddSingleton<UserContext>()
+                .AddSingleton<Context>()
                 .AddScoped<Translator>()
                 .AddScoped<Dashboard>()
-                .AddScoped<ViewCustomers>()
                 .AddScoped<Login>();
         }
     }

@@ -70,6 +70,15 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UPDATE customer SET customerId = @CustomerId, userId = @UserId, title = @Title, description = @Description, location = @Location, contact = @Contact, type = @Type, url = @Url, start = @Start, end = @End, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE appointmentId = @Id;.
+        /// </summary>
+        internal static string Appointment {
+            get {
+                return ResourceManager.GetString("Appointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UPDATE city SET city = @Name, countryId = @CountryId, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE cityId = @Id;.
         /// </summary>
         internal static string City {
