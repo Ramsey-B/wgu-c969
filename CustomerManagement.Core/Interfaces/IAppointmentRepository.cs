@@ -11,6 +11,5 @@ namespace CustomerManagement.Core.Interfaces
         Task<List<Appointment>> GetByCustomerIdAsync(int userId, int customerId);
         Task<int> CreateAsync(Appointment appointment);
         Task<int> UpdateAsync(Appointment appointment);
-        Task<bool> AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end);
     }
 }

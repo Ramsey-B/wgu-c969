@@ -28,9 +28,9 @@ namespace CustomerManagement.Data.Repositories
         {
             newAddress.City.Country.CreateDate = DateTime.UtcNow;
             newAddress.City.Country.LastUpdate = DateTime.UtcNow;
-            var countryId = await _sqlOrm.CreateEntityAsync("country", CreateSql.Country, newAddress.City.Country, newAddress.City.Country);
+            var countryId = await _sqlOrm.CreateEntityAsync(CreateSql.Country, newAddress.City.Country);
 
-            var cityId = await _sqlOrm.CreateEntityAsync("city", CreateSql.City, newAddress.City, new 
+            var cityId = await _sqlOrm.CreateEntityAsync(CreateSql.City, new 
             {
                 newAddress.City.Name,
                 CountryId = countryId,
@@ -40,7 +40,7 @@ namespace CustomerManagement.Data.Repositories
                 newAddress.City.LastUpdateBy
             });
 
-            return await _sqlOrm.CreateEntityAsync("address", CreateSql.Address, newAddress, new
+            return await _sqlOrm.CreateEntityAsync(CreateSql.Address, new
             {
                 newAddress.Address1,
                 newAddress.Address2,

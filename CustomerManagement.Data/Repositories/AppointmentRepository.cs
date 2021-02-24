@@ -24,26 +24,44 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<int> CreateAsync(Appointment appointment)
         {
-            return await _sqlOrm.CreateEntityAsync("appointment", CreateSql.Appointment, appointment, appointment);
+            appointment.CreateDate = DateTime.UtcNow;
+            appointment.LastUpdate = DateTime.UtcNow;
+            await AppointmentValidation(appointment);
+            return await _sqlOrm.CreateEntityAsync(CreateSql.Appointment, appointment);
         }
 
         public async Task<int> UpdateAsync(Appointment appointment)
         {
             appointment.LastUpdate = DateTime.UtcNow;
+            await AppointmentValidation(appointment);
             return await _sqlOrm.ExecuteAsync(UpdateSql.Appointment, appointment);
         }
 
         /// <summary>
         /// Validates the appointment timeslot
         /// </summary>
-        public async Task<bool> AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end)
+        private async Task AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end)
         {
             var result = await _sqlOrm.QueryAsync<Appointment>(SelectSql.AppointmentTimeCheck, new { UserId = userId, Start = start, End = end });
-            if (result == null)
+            if (result != null)
             {
                 throw new OverlappingAppointmentException(result.Start, result.End);
             }
-            return true;
+        }
+
+        private async Task AppointmentValidation(Appointment appointment)
+        {
+            await AppointmentTimeCheckAsync(appointment.UserId, appointment.Start, appointment.End);
+
+            if (string.IsNullOrWhiteSpace(appointment.Title))
+            {
+                throw new InvalidEntityException("title");
+            }
+
+            if (string.IsNullOrWhiteSpace(appointment.Type))
+            {
+                throw new InvalidEntityException("type");
+            }
         }
     }
 }

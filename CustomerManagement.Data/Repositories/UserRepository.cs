@@ -35,7 +35,7 @@ namespace CustomerManagement.Data.Repositories
             user.CreateDate = DateTime.UtcNow;
             user.LastUpdate = DateTime.UtcNow;
 
-            return await _sqlOrm.CreateEntityAsync("user", CreateSql.User, user, user);
+            return await _sqlOrm.CreateEntityAsync(CreateSql.User, user);
         }
 
         /// <summary>

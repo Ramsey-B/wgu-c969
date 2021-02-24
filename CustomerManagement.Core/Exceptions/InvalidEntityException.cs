@@ -4,11 +4,11 @@ using System.Text;
 
 namespace CustomerManagement.Core.Exceptions
 {
-    public class InvalidCustomerException : Exception
+    public class InvalidEntityException : Exception
     {
         public string PropertyName { get; set; }
 
-        public InvalidCustomerException(string propName)
+        public InvalidEntityException(string propName)
         {
             PropertyName = propName;
         }

@@ -47,7 +47,6 @@ namespace CustomerManagement.Forms
         {
             _modifyAppointment.Customer = Customer;
             _modifyAppointment.Appointment = null;
-            _modifyAppointment.Refresh();
             _modifyAppointment.Show();
         }
 

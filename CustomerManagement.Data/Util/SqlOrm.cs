@@ -54,10 +54,8 @@ namespace CustomerManagement.Data.Util
             return await QueryAsync<T>(sqlStatement + $" WHERE {tableName + "Id"} = @Id;", new { Id = id });
         }
 
-        public async Task<int> CreateEntityAsync(string tableName, string sql, EntityBase entity, object parameters)
+        public async Task<int> CreateEntityAsync(string sql, object parameters)
         {
-            if (entity.Id != 0) return (int)entity.Id;
-
             // Appends the Last inserted id mysql func so that the Id is returned instead of the row count. 
             sql = sql.EndsWith(";") ? sql : sql + ";";
             sql += " SELECT LAST_INSERT_ID();";

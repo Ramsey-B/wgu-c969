@@ -45,6 +45,7 @@
     "end": "End",
     "overlappingAppointmentError": "* An appointment already exists from {Start} to {End}",
     "outOfHoursError": "* Appointment time must be between {Open} and {Close}",
-    "noneSelected": "No appointment selected."
+    "noneSelected": "No appointment selected.",
+    "requiredFieldError": "Field '{PropertyName}' is required."
   }
 }

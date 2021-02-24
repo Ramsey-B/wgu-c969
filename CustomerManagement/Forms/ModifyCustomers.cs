@@ -161,7 +161,7 @@ namespace CustomerManagement.Forms.Customers
 
                 Close();
             }
-            catch (InvalidCustomerException ex)
+            catch (InvalidEntityException ex)
             {
                 errorText.Visible = true;
                 errorText.Text = _translator.Translate($"customer.{ex.PropertyName}Error");

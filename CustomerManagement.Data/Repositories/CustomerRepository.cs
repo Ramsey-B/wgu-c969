@@ -25,7 +25,7 @@ namespace CustomerManagement.Data.Repositories
             ValidateCustomerInputs(customer);
             var addressId = await _addressRepository.CreateAsync(customer.Address);
 
-            var customerId = await _sqlOrm.CreateEntityAsync("customer", CreateSql.Customer, customer, new
+            var customerId = await _sqlOrm.CreateEntityAsync(CreateSql.Customer, new
             {
                 customer.Name,
                 AddressId = addressId,
@@ -82,32 +82,32 @@ namespace CustomerManagement.Data.Repositories
         {
             if (string.IsNullOrWhiteSpace(customer.Name) || !Regex.Match(customer.Name, "^[\\sA-z'-]*$").Success)
             {
-                throw new InvalidCustomerException("name");
+                throw new InvalidEntityException("name");
             }
 
             if (string.IsNullOrWhiteSpace(customer.Address.PostalCode) || !customer.Address.PostalCode.All(char.IsDigit))
             {
-                throw new InvalidCustomerException("postalCode");
+                throw new InvalidEntityException("postalCode");
             }
 
             if (string.IsNullOrWhiteSpace(customer.Address.Address1))
             {
-                throw new InvalidCustomerException("address1");
+                throw new InvalidEntityException("address1");
             }
 
             if (string.IsNullOrWhiteSpace(customer.Address.Phone) || !customer.Address.Phone.All(char.IsDigit))
             {
-                throw new InvalidCustomerException("phone");
+                throw new InvalidEntityException("phone");
             }
 
             if (string.IsNullOrWhiteSpace(customer.Address.City.Name) || !Regex.Match(customer.Address.City.Name, "^[\\sA-z'-]*$").Success)
             {
-                throw new InvalidCustomerException("city");
+                throw new InvalidEntityException("city");
             }
 
             if (string.IsNullOrWhiteSpace(customer.Address.City.Country.Name) || !Regex.Match(customer.Address.City.Country.Name, "^[\\sA-z'-]*$").Success)
             {
-                throw new InvalidCustomerException("country");
+                throw new InvalidEntityException("country");
             }
         }
     }

@@ -103,7 +103,6 @@ namespace CustomerManagement.Forms.Customers
                 return;
             }
             _appointments.Customer = customer;
-            _appointments.Refresh();
             _appointments.Show();
         }
     }

@@ -56,7 +56,7 @@
             // 
             this.titleInput.Location = new System.Drawing.Point(257, 102);
             this.titleInput.Name = "titleInput";
-            this.titleInput.Size = new System.Drawing.Size(242, 31);
+            this.titleInput.Size = new System.Drawing.Size(282, 31);
             this.titleInput.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -69,51 +69,53 @@
             // 
             this.descriptionInput.Location = new System.Drawing.Point(257, 153);
             this.descriptionInput.Name = "descriptionInput";
-            this.descriptionInput.Size = new System.Drawing.Size(242, 31);
+            this.descriptionInput.Size = new System.Drawing.Size(282, 31);
             this.descriptionInput.TabIndex = 2;
             // 
             // locationInput
             // 
             this.locationInput.Location = new System.Drawing.Point(257, 204);
             this.locationInput.Name = "locationInput";
-            this.locationInput.Size = new System.Drawing.Size(242, 31);
+            this.locationInput.Size = new System.Drawing.Size(282, 31);
             this.locationInput.TabIndex = 3;
             // 
             // contactInput
             // 
             this.contactInput.Location = new System.Drawing.Point(257, 255);
             this.contactInput.Name = "contactInput";
-            this.contactInput.Size = new System.Drawing.Size(242, 31);
+            this.contactInput.Size = new System.Drawing.Size(282, 31);
             this.contactInput.TabIndex = 4;
             // 
             // typeInput
             // 
             this.typeInput.Location = new System.Drawing.Point(257, 304);
             this.typeInput.Name = "typeInput";
-            this.typeInput.Size = new System.Drawing.Size(242, 31);
+            this.typeInput.Size = new System.Drawing.Size(282, 31);
             this.typeInput.TabIndex = 5;
             // 
             // urlInput
             // 
             this.urlInput.Location = new System.Drawing.Point(257, 354);
             this.urlInput.Name = "urlInput";
-            this.urlInput.Size = new System.Drawing.Size(242, 31);
+            this.urlInput.Size = new System.Drawing.Size(282, 31);
             this.urlInput.TabIndex = 6;
             // 
             // startInput
             // 
             this.startInput.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.startInput.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startInput.Location = new System.Drawing.Point(257, 412);
             this.startInput.Name = "startInput";
-            this.startInput.Size = new System.Drawing.Size(355, 31);
+            this.startInput.Size = new System.Drawing.Size(282, 31);
             this.startInput.TabIndex = 7;
             // 
             // endInput
             // 
             this.endInput.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.endInput.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endInput.Location = new System.Drawing.Point(257, 461);
             this.endInput.Name = "endInput";
-            this.endInput.Size = new System.Drawing.Size(355, 31);
+            this.endInput.Size = new System.Drawing.Size(282, 31);
             this.endInput.TabIndex = 8;
             // 
             // titleLabel

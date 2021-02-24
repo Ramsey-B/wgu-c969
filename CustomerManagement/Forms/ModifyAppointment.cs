@@ -80,12 +80,12 @@ namespace CustomerManagement.Forms
         private void ValidateBusinessHours()
         {
             var businessStart = DateTime.Today.ToLocalTime().AddHours(8);
-            var businessEnd = DateTime.Now.ToLocalTime().AddHours(17);
+            var businessEnd = DateTime.Today.ToLocalTime().AddHours(17);
 
             if (
-                    startInput.Value.ToLocalTime() < businessStart || // before open
-                    endInput.Value.ToLocalTime() > businessEnd || // after close
-                    startInput.Value.ToLocalTime() <= endInput.Value // start is after end
+                    startInput.Value < businessStart || // before open
+                    endInput.Value > businessEnd || // after close
+                    startInput.Value >= endInput.Value // start is after end
                 )
             {
                 throw new OutOfHoursException(businessStart, businessEnd);
@@ -97,13 +97,18 @@ namespace CustomerManagement.Forms
             try
             {
                 ValidateBusinessHours();
-                await _appointmentRepository.AppointmentTimeCheckAsync(_context.CurrentUser.Id, appointment.Start, appointment.End);
                 await callback(appointment);
+                Hide();
             }
             catch (OutOfHoursException ex)
             {
                 errorLabel.Visible = true;
                 errorLabel.Text = _translator.Translate("appointment.outOfHoursError", new { ex.Open, ex.Close });
+            }
+            catch (InvalidEntityException ex)
+            {
+                errorLabel.Visible = true;
+                errorLabel.Text = _translator.Translate("appointment.requiredFieldError", new { ex.PropertyName });
             }
             catch (OverlappingAppointmentException ex)
             {
@@ -112,7 +117,7 @@ namespace CustomerManagement.Forms
                 var end = ex.End.ToLocalTime();
                 errorLabel.Text = _translator.Translate("appointment.overlappingAppointmentError", new { Start = start, End = end });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorLabel.Visible = true;
                 errorLabel.Text = _translator.Translate("unexpectedError");
@@ -135,7 +140,7 @@ namespace CustomerManagement.Forms
                     Type = typeInput.Text,
                     Url = urlInput.Text,
                     Start = startInput.Value.ToUniversalTime(),
-                    End = startInput.Value.ToUniversalTime(),
+                    End = endInput.Value.ToUniversalTime(),
                     CreatedBy = _context.CurrentUser.Name,
                     LastUpdateBy = _context.CurrentUser.Name
                 };
@@ -155,7 +160,7 @@ namespace CustomerManagement.Forms
                     Type = typeInput.Text,
                     Url = urlInput.Text,
                     Start = startInput.Value.ToUniversalTime(),
-                    End = startInput.Value.ToUniversalTime(),
+                    End = endInput.Value.ToUniversalTime(),
                     LastUpdateBy = _context.CurrentUser.Name
                 };
 
