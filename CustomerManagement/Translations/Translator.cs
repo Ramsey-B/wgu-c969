@@ -40,7 +40,7 @@ namespace CustomerManagement.Translations
 
         private string AddArgs(JToken token, object args)
         {
-            var translation = token.ToString();
+            var translation = token?.ToString() ?? "";
 
             if (args != null)
             {

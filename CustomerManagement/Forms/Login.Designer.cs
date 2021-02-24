@@ -34,11 +34,12 @@
             this.password = new System.Windows.Forms.TextBox();
             this.loginBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.usernameLabel = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameError = new System.Windows.Forms.Label();
             this.passwordError = new System.Windows.Forms.Label();
             this.loginError = new System.Windows.Forms.Label();
+            this.pageHeader = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // username
@@ -86,23 +87,23 @@
             this.cancelBtn.UseVisualStyleBackColor = false;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // label1
+            // usernameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(171, 201);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 25);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Username";
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(171, 201);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(110, 25);
+            this.usernameLabel.TabIndex = 5;
+            this.usernameLabel.Text = "Username";
             // 
-            // label2
+            // passwordLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 294);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Password";
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(171, 294);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(106, 25);
+            this.passwordLabel.TabIndex = 6;
+            this.passwordLabel.Text = "Password";
             // 
             // usernameError
             // 
@@ -137,16 +138,27 @@
             this.loginError.Text = "* Login attempt failed. Please try again.";
             this.loginError.Visible = false;
             // 
+            // pageHeader
+            // 
+            this.pageHeader.AutoSize = true;
+            this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pageHeader.Location = new System.Drawing.Point(327, 107);
+            this.pageHeader.Name = "pageHeader";
+            this.pageHeader.Size = new System.Drawing.Size(257, 31);
+            this.pageHeader.TabIndex = 10;
+            this.pageHeader.Text = "Please login below";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 608);
+            this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.loginError);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.usernameError);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.passwordLabel);
+            this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.password);
@@ -165,10 +177,11 @@
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Button cancelBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label usernameError;
         private System.Windows.Forms.Label passwordError;
         private System.Windows.Forms.Label loginError;
+        private System.Windows.Forms.Label pageHeader;
     }
 }

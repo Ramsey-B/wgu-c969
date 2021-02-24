@@ -4,7 +4,13 @@ using System.Text;
 
 namespace CustomerManagement.Core.Exceptions
 {
-    class InvalidLoginException
+    public class InvalidLoginException : Exception
     {
+        public string Username { get; set; }
+
+        public InvalidLoginException(string username)
+        {
+            Username = username;
+        }
     }
 }

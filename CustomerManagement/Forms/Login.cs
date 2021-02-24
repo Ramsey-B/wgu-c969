@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Core.Interfaces;
+﻿using CustomerManagement.Core.Exceptions;
+using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Logging;
 using CustomerManagement.Translations;
@@ -20,6 +21,10 @@ namespace CustomerManagement.Forms
             _logger = logger;
             _translator = translator;
             _userRepository = userRepository;
+            Shown += (object sender, EventArgs e) =>
+            {
+                TranslatePage();
+            };
         }
 
         private async void loginBtn_Click(object sender, EventArgs e)
@@ -42,18 +47,35 @@ namespace CustomerManagement.Forms
 
             if (!isValid) return; // stop execution is inputs are invalid
 
-            var user = await _userRepository.LoginAsync(new User() { Name = username.Text, Password = password.Text });
-
-            if (user == null)
+            try
             {
+                var user = await _userRepository.LoginAsync(new User() { Name = username.Text, Password = password.Text });
+
+                _logger.LogMessage($"User with username ({user.Name}) and id ({user.Id}) successfully logged in.");
+                User = user;
+                Close();
+            }
+            catch (InvalidLoginException ex)
+            {
+                _logger.LogMessage($"Failed login attempt with Username {ex.Username}");
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("login.loginError");
-                return;
             }
+            catch (Exception)
+            {
+                loginError.Visible = true;
+                loginError.Text = _translator.Translate("unexpectedError");
+            }
+        }
 
-            _logger.LogMessage($"User with username ({user.Name}) and id ({user.Id}) successfully logged in.");
-            User = user;
-            Close();
+        private void TranslatePage()
+        {
+            Name = _translator.Translate("login.pageTitle");
+            Text = _translator.Translate("login.pageTitle");
+            usernameLabel.Text = _translator.Translate("login.username");
+            passwordLabel.Text = _translator.Translate("login.password");
+            cancelBtn.Text = _translator.Translate("cancel");
+            loginBtn.Text = _translator.Translate("login.login");
         }
 
         private void hideErrors()
@@ -65,7 +87,7 @@ namespace CustomerManagement.Forms
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit(); // stop the app if the user wont log in.
         }
     }
 }

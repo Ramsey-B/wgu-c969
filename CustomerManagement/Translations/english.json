@@ -2,7 +2,11 @@
   "login": {
     "usernameError": "* Please enter a Username",
     "passwordError": "* Please enter a Password",
-    "loginError": "* Username or Password was invalid. Please try again."
+    "loginError": "* Username or Password was invalid. Please try again.",
+    "pageTitle": "Login",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login"
   },
   "customer": {
     "editCustomer": "Edit Customer",

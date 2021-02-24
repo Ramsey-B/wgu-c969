@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Core.Interfaces;
+﻿using CustomerManagement.Core.Exceptions;
+using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Data.Sql;
 using System;
@@ -20,10 +21,11 @@ namespace CustomerManagement.Data.Repositories
         {
             user.Password = HashPassword(user.Password);
             var result = await _sqlOrm.QueryAsync<User>(SelectSql.User, user);
-            if (result != null)
+            if (result == null)
             {
-                result.Password = null; // ensures the password is never returned.
+                throw new InvalidLoginException(user.Name);
             }
+            result.Password = null; // ensures the password is never returned.
             return result;
         }
 

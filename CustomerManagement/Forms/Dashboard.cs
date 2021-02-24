@@ -14,6 +14,7 @@ namespace CustomerManagement.Forms.Customers
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
         private BindingList<Customer> customers;
+        private User _currentUser;
 
         public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository)
         {
@@ -23,9 +24,13 @@ namespace CustomerManagement.Forms.Customers
             _translator = translator;
             Shown += async (object sender, EventArgs e) =>
             {
+                _currentUser = context.CurrentUser; // Triggers auth
                 await getCustomers();
-                customersTable.Columns["AddressId"].Visible = false;
-                customersTable.Columns["Address"].Visible = false;
+                if (customersTable.Columns.Count > 0)
+                {
+                    customersTable.Columns["AddressId"].Visible = false;
+                    customersTable.Columns["Address"].Visible = false;
+                }
             };
         }
 
@@ -40,7 +45,7 @@ namespace CustomerManagement.Forms.Customers
 
         private void addBtn_Click(object s, System.EventArgs e)
         {
-            var modifyCustomer = new ModifyCustomer(_context.CurrentUser, _translator, _customerRepository);
+            var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository);
             modifyCustomer.FormClosed += async (object sender, FormClosedEventArgs ev) =>
             {
                 await getCustomers();
@@ -57,7 +62,7 @@ namespace CustomerManagement.Forms.Customers
                 return;
             }
 
-            var modifyCustomer = new ModifyCustomer(_context.CurrentUser, _translator, _customerRepository, customer.Id);
+            var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository, customer.Id);
             modifyCustomer.FormClosed += async (object sender, FormClosedEventArgs ev) =>
             {
                 await getCustomers();
