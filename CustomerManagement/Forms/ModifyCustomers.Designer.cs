@@ -187,7 +187,7 @@
             this.submitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.submitBtn.Location = new System.Drawing.Point(407, 562);
             this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(95, 38);
+            this.submitBtn.Size = new System.Drawing.Size(95, 46);
             this.submitBtn.TabIndex = 17;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = false;
@@ -199,7 +199,7 @@
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cancelBtn.Location = new System.Drawing.Point(263, 562);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(95, 38);
+            this.cancelBtn.Size = new System.Drawing.Size(95, 46);
             this.cancelBtn.TabIndex = 18;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;

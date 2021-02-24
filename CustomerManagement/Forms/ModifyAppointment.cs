@@ -1,6 +1,8 @@
-﻿using CustomerManagement.Core.Interfaces;
+﻿using CustomerManagement.Core.Exceptions;
+using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Translations;
+using Org.BouncyCastle.Asn1.X509.Qualified;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +33,7 @@ namespace CustomerManagement.Forms
             Shown += (object sender, EventArgs e) =>
             {
                 TranslatePage();
+                Init();
             };
         }
 
@@ -57,6 +60,112 @@ namespace CustomerManagement.Forms
             endLabel.Text = _translator.Translate("appointment.end");
             cancelBtn.Text = _translator.Translate("cancel");
             submitBtn.Text = _translator.Translate("submit");
+        }
+
+        private void Init()
+        {
+            if (Appointment != null)
+            {
+                titleInput.Text = Appointment.Title;
+                descriptionInput.Text = Appointment.Description;
+                locationInput.Text = Appointment.Location;
+                contactInput.Text = Appointment.Contact;
+                typeInput.Text = Appointment.Type;
+                urlInput.Text = Appointment.Url;
+                startInput.Value = Appointment.Start.ToLocalTime();
+                endInput.Value = Appointment.End.ToLocalTime();
+            }
+        }
+
+        private void ValidateBusinessHours()
+        {
+            var businessStart = DateTime.Today.ToLocalTime().AddHours(8);
+            var businessEnd = DateTime.Now.ToLocalTime().AddHours(17);
+
+            if (
+                    startInput.Value.ToLocalTime() < businessStart || // before open
+                    endInput.Value.ToLocalTime() > businessEnd || // after close
+                    startInput.Value.ToLocalTime() <= endInput.Value // start is after end
+                )
+            {
+                throw new OutOfHoursException(businessStart, businessEnd);
+            }
+        }
+
+        private async Task SubmitAsync(Appointment appointment, Func<Appointment, Task<int>> callback)
+        {
+            try
+            {
+                ValidateBusinessHours();
+                await _appointmentRepository.AppointmentTimeCheckAsync(_context.CurrentUser.Id, appointment.Start, appointment.End);
+                await callback(appointment);
+            }
+            catch (OutOfHoursException ex)
+            {
+                errorLabel.Visible = true;
+                errorLabel.Text = _translator.Translate("appointment.outOfHoursError", new { ex.Open, ex.Close });
+            }
+            catch (OverlappingAppointmentException ex)
+            {
+                errorLabel.Visible = true;
+                var start = ex.Start.ToLocalTime();
+                var end = ex.End.ToLocalTime();
+                errorLabel.Text = _translator.Translate("appointment.overlappingAppointmentError", new { Start = start, End = end });
+            }
+            catch (Exception)
+            {
+                errorLabel.Visible = true;
+                errorLabel.Text = _translator.Translate("unexpectedError");
+            }
+        }
+
+        private async void submitBtn_Click(object sender, EventArgs e)
+        {
+            errorLabel.Visible = false;
+            if (Appointment == null)
+            {
+                var newAppt = new Appointment
+                {
+                    CustomerId = Customer.Id,
+                    UserId = _context.CurrentUser.Id,
+                    Title = titleInput.Text,
+                    Description = descriptionInput.Text,
+                    Location = locationInput.Text,
+                    Contact = contactInput.Text,
+                    Type = typeInput.Text,
+                    Url = urlInput.Text,
+                    Start = startInput.Value.ToUniversalTime(),
+                    End = startInput.Value.ToUniversalTime(),
+                    CreatedBy = _context.CurrentUser.Name,
+                    LastUpdateBy = _context.CurrentUser.Name
+                };
+
+                await SubmitAsync(newAppt, _appointmentRepository.CreateAsync);
+            }
+            else
+            {
+                var newAppt = new Appointment
+                {
+                    CustomerId = Customer.Id,
+                    UserId = _context.CurrentUser.Id,
+                    Title = titleInput.Text,
+                    Description = descriptionInput.Text,
+                    Location = locationInput.Text,
+                    Contact = contactInput.Text,
+                    Type = typeInput.Text,
+                    Url = urlInput.Text,
+                    Start = startInput.Value.ToUniversalTime(),
+                    End = startInput.Value.ToUniversalTime(),
+                    LastUpdateBy = _context.CurrentUser.Name
+                };
+
+                await SubmitAsync(newAppt, _appointmentRepository.UpdateAsync);
+            }
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Hide(); // Call hide because we don't want to dispose of the form.
         }
     }
 }

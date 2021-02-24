@@ -19,8 +19,8 @@
     "city": "City",
     "country": "Country",
     "active": "Active",
-    "noneSelected": "No customer selected",
-    "confirmDelete": "Are you sure you want to delete '{Name}'",
+    "noneSelected": "No customer selected.",
+    "confirmDelete": "Are you sure you want to delete '{Name}'.",
     "nameError": "* Name is required and must only contain letters, dashes, spaces, or apostrophes.",
     "postalCodeError": "* Postal Code is required and must only contain numbers.",
     "address1Error": "* Address 1 is required.",
@@ -42,6 +42,9 @@
     "type": "Type",
     "url": "Url",
     "start": "Start",
-    "end": "End"
+    "end": "End",
+    "overlappingAppointmentError": "* An appointment already exists from {Start} to {End}",
+    "outOfHoursError": "* Appointment time must be between {Open} and {Close}",
+    "noneSelected": "No appointment selected."
   }
 }

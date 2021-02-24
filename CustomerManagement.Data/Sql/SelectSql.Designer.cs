@@ -70,11 +70,20 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT appointment AS Id. customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId;.
+        ///   Looks up a localized string similar to SELECT appointmentId AS Id, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId;.
         /// </summary>
         internal static string Appointment {
             get {
                 return ResourceManager.GetString("Appointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @UserID AND ((start BETWEEN @Start AND @End) OR (end BETWEEN @Start AND @End));.
+        /// </summary>
+        internal static string AppointmentTimeCheck {
+            get {
+                return ResourceManager.GetString("AppointmentTimeCheck", resourceCulture);
             }
         }
         

@@ -121,7 +121,10 @@
     <value>SELECT addressId AS Id, address AS Address1, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy FROM address</value>
   </data>
   <data name="Appointment" xml:space="preserve">
-    <value>SELECT appointment AS Id. customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId;</value>
+    <value>SELECT appointmentId AS Id, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId;</value>
+  </data>
+  <data name="AppointmentTimeCheck" xml:space="preserve">
+    <value>SELECT start, end FROM appointment WHERE userId = @UserID AND ((start BETWEEN @Start AND @End) OR (end BETWEEN @Start AND @End));</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>SELECT cityId AS Id, city AS Name, countryId, createDate, createdBy, lastUpdate, lastUpdateBy FROM city</value>

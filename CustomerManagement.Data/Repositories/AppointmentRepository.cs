@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Core.Interfaces;
+﻿using CustomerManagement.Core.Exceptions;
+using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Data.Sql;
 using System;
@@ -30,6 +31,19 @@ namespace CustomerManagement.Data.Repositories
         {
             appointment.LastUpdate = DateTime.UtcNow;
             return await _sqlOrm.ExecuteAsync(UpdateSql.Appointment, appointment);
+        }
+
+        /// <summary>
+        /// Validates the appointment timeslot
+        /// </summary>
+        public async Task<bool> AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end)
+        {
+            var result = await _sqlOrm.QueryAsync<Appointment>(SelectSql.AppointmentTimeCheck, new { UserId = userId, Start = start, End = end });
+            if (result == null)
+            {
+                throw new OverlappingAppointmentException(result.Start, result.End);
+            }
+            return true;
         }
     }
 }

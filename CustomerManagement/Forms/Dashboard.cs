@@ -14,17 +14,19 @@ namespace CustomerManagement.Forms.Customers
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
         private BindingList<Customer> customers;
-        private User _currentUser;
+        private readonly User _currentUser;
+        private readonly Appointments _appointments;
 
-        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository)
+        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, Appointments appointments)
         {
             InitializeComponent();
             _context = context;
             _customerRepository = customerRepository;
             _translator = translator;
+            _currentUser = context.CurrentUser; // Triggers auth
+            _appointments = appointments;
             Shown += async (object sender, EventArgs e) =>
             {
-                _currentUser = context.CurrentUser; // Triggers auth
                 await getCustomers();
                 if (customersTable.Columns.Count > 0)
                 {
@@ -100,7 +102,9 @@ namespace CustomerManagement.Forms.Customers
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
                 return;
             }
-            new Appointments(_context, customer).Show();
+            _appointments.Customer = customer;
+            _appointments.Refresh();
+            _appointments.Show();
         }
     }
 }

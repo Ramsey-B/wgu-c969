@@ -48,6 +48,8 @@ namespace CustomerManagement
                 .AddSingleton<Context>()
                 .AddScoped<Translator>()
                 .AddScoped<Dashboard>()
+                .AddTransient<Appointments>()
+                .AddScoped<ModifyAppointment>()
                 .AddScoped<Login>();
         }
     }

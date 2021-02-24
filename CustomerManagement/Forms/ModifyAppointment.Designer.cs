@@ -102,6 +102,7 @@
             // 
             // startInput
             // 
+            this.startInput.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.startInput.Location = new System.Drawing.Point(257, 412);
             this.startInput.Name = "startInput";
             this.startInput.Size = new System.Drawing.Size(355, 31);
@@ -109,6 +110,7 @@
             // 
             // endInput
             // 
+            this.endInput.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.endInput.Location = new System.Drawing.Point(257, 461);
             this.endInput.Name = "endInput";
             this.endInput.Size = new System.Drawing.Size(355, 31);
@@ -192,9 +194,10 @@
             this.errorLabel.ForeColor = System.Drawing.Color.Red;
             this.errorLabel.Location = new System.Drawing.Point(252, 516);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(398, 50);
+            this.errorLabel.Size = new System.Drawing.Size(199, 25);
             this.errorLabel.TabIndex = 17;
             this.errorLabel.Text = "* An Error Occurred";
+            this.errorLabel.Visible = false;
             // 
             // submitBtn
             // 
@@ -206,6 +209,7 @@
             this.submitBtn.TabIndex = 18;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // cancelBtn
             // 
@@ -217,6 +221,7 @@
             this.cancelBtn.TabIndex = 19;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // pageTitle
             // 

@@ -4,7 +4,15 @@ using System.Text;
 
 namespace CustomerManagement.Core.Exceptions
 {
-    class OutOfHoursException
+    public class OutOfHoursException : Exception
     {
+        public DateTime Open { get; set; }
+        public DateTime Close { get; set; }
+
+        public OutOfHoursException(DateTime open, DateTime close)
+        {
+            Open = open;
+            Close = close;
+        }
     }
 }
