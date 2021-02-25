@@ -15,16 +15,16 @@ namespace CustomerManagement.Forms.Customers
         private readonly Translator _translator;
         private BindingList<Customer> customers;
         private readonly User _currentUser;
-        private readonly Appointments _appointments;
+        private readonly IAppointmentRepository _appointmentRepository;
 
-        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, Appointments appointments)
+        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, IAppointmentRepository appointmentRepository)
         {
             InitializeComponent();
             _context = context;
             _customerRepository = customerRepository;
             _translator = translator;
             _currentUser = context.CurrentUser; // Triggers auth
-            _appointments = appointments;
+            _appointmentRepository = appointmentRepository;
             Shown += async (object sender, EventArgs e) =>
             {
                 await getCustomers();
@@ -39,6 +39,11 @@ namespace CustomerManagement.Forms.Customers
         private async Task getCustomers()
         {
             var results = await _customerRepository.GetAllAsync();
+            results.ForEach(customer =>
+            {
+                customer.LastUpdate = customer.LastUpdate.ToLocalTime();
+                customer.CreateDate = customer.CreateDate.ToLocalTime();
+            });
             customers = new BindingList<Customer>(results);
             var customersBinding = new BindingSource();
             customersBinding.DataSource = customers;
@@ -102,8 +107,14 @@ namespace CustomerManagement.Forms.Customers
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
                 return;
             }
-            _appointments.Customer = customer;
-            _appointments.Show();
+            var appointments = new Appointments(_context, _translator, _appointmentRepository, customer);
+            appointments.Show();
+        }
+
+        private void calendarBtn_Click(object sender, EventArgs e)
+        {
+            var appointments = new Appointments(_context, _translator, _appointmentRepository);
+            appointments.Show();
         }
     }
 }

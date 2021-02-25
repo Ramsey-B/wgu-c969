@@ -20,26 +20,23 @@ namespace CustomerManagement.Forms
         private readonly Translator _translator;
         private readonly Context _context;
         private readonly IAppointmentRepository _appointmentRepository;
-
-        public Customer Customer { get; set; }
-        public Appointment Appointment { get; set; }
-        public ModifyAppointment(Translator translator, Context context, IAppointmentRepository appointmentRepository)
+        private Customer _customer;
+        private readonly Appointment _appointment;
+        public ModifyAppointment(Context context, Appointment appointment = null, Customer customer = null)
         {
-            _translator = translator;
+            _translator = context.GetService<Translator>();
             _context = context;
-            _appointmentRepository = appointmentRepository;
+            _appointmentRepository = context.GetService<IAppointmentRepository>();
+            _appointment = appointment;
+            _customer = customer;
             InitializeComponent();
-
-            Shown += (object sender, EventArgs e) =>
-            {
-                TranslatePage();
-                Init();
-            };
+            TranslatePage();
+            Init();
         }
 
         private void TranslatePage()
         {
-            if (Appointment == null)
+            if (_appointment == null)
             {
                 Name = _translator.Translate("appointment.addAppointment");
                 Text = _translator.Translate("appointment.addAppointment");
@@ -49,8 +46,15 @@ namespace CustomerManagement.Forms
                 Name = _translator.Translate("appointment.editAppointment");
                 Text = _translator.Translate("appointment.editAppointment");
             }
-            pageTitle.Text = _translator.Translate("appointment.modifyTitle", new { Customer.Name });
-            titleLabel.Text = _translator.Translate("appointment.title");
+
+            if (_customer == null)
+            {
+                pageTitle.Text = _translator.Translate("appointment.modifyTitleNoCustomer");
+            }
+            else
+            {
+                pageTitle.Text = _translator.Translate("appointment.modifyTitle", new { _customer.Name });
+            }
             descriptionLabel.Text = _translator.Translate("appointment.description");
             locationLabel.Text = _translator.Translate("appointment.location");
             contactLabel.Text = _translator.Translate("appointment.contact");
@@ -64,16 +68,16 @@ namespace CustomerManagement.Forms
 
         private void Init()
         {
-            if (Appointment != null)
+            if (_appointment != null)
             {
-                titleInput.Text = Appointment.Title;
-                descriptionInput.Text = Appointment.Description;
-                locationInput.Text = Appointment.Location;
-                contactInput.Text = Appointment.Contact;
-                typeInput.Text = Appointment.Type;
-                urlInput.Text = Appointment.Url;
-                startInput.Value = Appointment.Start.ToLocalTime();
-                endInput.Value = Appointment.End.ToLocalTime();
+                titleInput.Text = _appointment.Title;
+                descriptionInput.Text = _appointment.Description;
+                locationInput.Text = _appointment.Location;
+                contactInput.Text = _appointment.Contact;
+                typeInput.Text = _appointment.Type;
+                urlInput.Text = _appointment.Url;
+                startInput.Value = _appointment.Start.ToLocalTime();
+                endInput.Value = _appointment.End.ToLocalTime();
             }
         }
 
@@ -98,7 +102,7 @@ namespace CustomerManagement.Forms
             {
                 ValidateBusinessHours();
                 await callback(appointment);
-                Hide();
+                Close();
             }
             catch (OutOfHoursException ex)
             {
@@ -117,7 +121,7 @@ namespace CustomerManagement.Forms
                 var end = ex.End.ToLocalTime();
                 errorLabel.Text = _translator.Translate("appointment.overlappingAppointmentError", new { Start = start, End = end });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 errorLabel.Visible = true;
                 errorLabel.Text = _translator.Translate("unexpectedError");
@@ -127,11 +131,17 @@ namespace CustomerManagement.Forms
         private async void submitBtn_Click(object sender, EventArgs e)
         {
             errorLabel.Visible = false;
-            if (Appointment == null)
+            if (_customer == null)
+            {
+                errorLabel.Text = _translator.Translate("appointments.noCustomerSelected");
+                errorLabel.Visible = true;
+                return;
+            }
+            if (_appointment == null)
             {
                 var newAppt = new Appointment
                 {
-                    CustomerId = Customer.Id,
+                    CustomerId = _customer.Id,
                     UserId = _context.CurrentUser.Id,
                     Title = titleInput.Text,
                     Description = descriptionInput.Text,
@@ -151,7 +161,7 @@ namespace CustomerManagement.Forms
             {
                 var newAppt = new Appointment
                 {
-                    CustomerId = Customer.Id,
+                    CustomerId = _customer.Id,
                     UserId = _context.CurrentUser.Id,
                     Title = titleInput.Text,
                     Description = descriptionInput.Text,
@@ -170,7 +180,20 @@ namespace CustomerManagement.Forms
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Hide(); // Call hide because we don't want to dispose of the form.
+            Close();
+        }
+
+        private void customerSelect_Click(object sender, EventArgs e)
+        {
+            var select = new CustomerSelect(_context);
+            select.ShowDialog();
+            select.FormClosing += (object s, FormClosingEventArgs ec) =>
+            {
+                if (select.Customer != null)
+                {
+                    _customer = select.Customer;
+                }
+            };
         }
     }
 }

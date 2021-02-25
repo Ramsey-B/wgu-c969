@@ -46,6 +46,27 @@
     "overlappingAppointmentError": "* An appointment already exists from {Start} to {End}",
     "outOfHoursError": "* Appointment time must be between {Open} and {Close}",
     "noneSelected": "No appointment selected.",
-    "requiredFieldError": "Field '{PropertyName}' is required."
-  }
+    "requiredFieldError": "Field '{PropertyName}' is required.",
+    "confirmDelete": "Are you sure you want to delete appointment for '{Title}'?",
+    "modifyTitleNoCustomer": "New Appointment"
+  },
+  "appointments": {
+    "pageTitle": "Appointments",
+    "pageHeader": "Appointments for {Name}",
+    "noCustomerSelected": "* Must select a customer."
+  },
+  "calendar": {
+    "pageTitle": "Calendar",
+    "pageHeader": "Calendar for {Name}"
+  },
+  "customerSelect": {
+    "pageTitle": "Customer Select",
+    "pageHeader": "Please Select a Customer"
+  },
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "close": "close",
+  "month": "Month",
+  "week": "Week"
 }

@@ -1,18 +1,24 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace CustomerManagement.Translations
 {
     public class Translator
     {
+        public Translator()
+        {
+            GetDefaultLanguage();
+        }
+
         private static readonly Dictionary<Languages, string> pathToTranslation = new Dictionary<Languages, string>()
         {
             { Languages.English, Directory.GetCurrentDirectory() + "\\Translations\\english.json" },
             { Languages.Spanish, Directory.GetCurrentDirectory() + "\\Translations\\spanish.json" }
         };
 
-        private JObject translation = GetTranslation(Languages.English); // Defaults to english
+        private JObject translation;
 
         public void SetLanguage(Languages language)
         {
@@ -30,6 +36,22 @@ namespace CustomerManagement.Translations
             }
 
             return AddArgs(translationToken, args);
+        }
+
+        private void GetDefaultLanguage()
+        {
+            switch (CultureInfo.CurrentUICulture.LCID)
+            {
+                case 1033:
+                    SetLanguage(Languages.English);
+                    break;
+                case 2058:
+                    SetLanguage(Languages.Spanish);
+                    break;
+                default:
+                    SetLanguage(Languages.English);
+                    break;
+            }
         }
 
         private static JObject GetTranslation(Languages language)

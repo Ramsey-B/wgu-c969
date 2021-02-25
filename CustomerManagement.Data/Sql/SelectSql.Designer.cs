@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT appointmentId AS Id, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId;.
+        ///   Looks up a localized string similar to SELECT appointmentId AS Id, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId.
         /// </summary>
         internal static string Appointment {
             get {

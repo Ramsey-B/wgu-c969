@@ -31,22 +31,9 @@ namespace CustomerManagement
             set { _currentUser = value; }
         }
 
-        public Languages CurrentLanguage => GetCurrentLanguage();
-
         public T GetService<T>()
         {
             return _servicePorvider.GetRequiredService<T>();
-        }
-
-        private Languages GetCurrentLanguage()
-        {
-            switch (CultureInfo.CurrentUICulture.LCID)
-            {
-                case 2058:
-                    return Languages.Spanish;
-                default:
-                    return Languages.English;
-            }
         }
 
         private User Authenticate()

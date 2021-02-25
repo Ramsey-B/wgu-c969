@@ -17,9 +17,19 @@ namespace CustomerManagement.Data.Repositories
             _sqlOrm = sqlOrm;
         }
 
-        public async Task<List<Appointment>> GetByCustomerIdAsync(int userId, int customerId)
+        public async Task<List<Appointment>> GetAllAsync(int userId, int customerId, DateTime? start = null, DateTime? end = null)
         {
-            return await _sqlOrm.QueryListAsync<Appointment>(SelectSql.Appointment, new { UserId = userId, CustomerId = customerId });
+            var sql = SelectSql.Appointment;
+            if (start != null)
+            {
+                sql += $" AND start >= @Start";
+            }
+            if (end != null)
+            {
+                sql += $" AND start <= @End";
+            }
+
+            return await _sqlOrm.QueryListAsync<Appointment>(sql, new { UserId = userId, CustomerId = customerId, Start = start, End = end });
         }
 
         public async Task<int> CreateAsync(Appointment appointment)
@@ -35,6 +45,11 @@ namespace CustomerManagement.Data.Repositories
             appointment.LastUpdate = DateTime.UtcNow;
             await AppointmentValidation(appointment);
             return await _sqlOrm.ExecuteAsync(UpdateSql.Appointment, appointment);
+        }
+
+        public async Task<int> DeleteAsync(int id)
+        {
+            return await _sqlOrm.DeleteAsync(id, "appointment");
         }
 
         /// <summary>

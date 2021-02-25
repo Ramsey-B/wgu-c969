@@ -33,6 +33,7 @@
             this.editBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
             this.appointmentsBtn = new System.Windows.Forms.Button();
+            this.calendarBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,12 +42,15 @@
             this.customersTable.AllowUserToAddRows = false;
             this.customersTable.AllowUserToDeleteRows = false;
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.customersTable.Location = new System.Drawing.Point(73, 131);
+            this.customersTable.Location = new System.Drawing.Point(82, 218);
             this.customersTable.Name = "customersTable";
+            this.customersTable.ReadOnly = true;
             this.customersTable.RowHeadersVisible = false;
             this.customersTable.RowHeadersWidth = 82;
             this.customersTable.RowTemplate.Height = 33;
             this.customersTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.customersTable.ShowEditingIcon = false;
+            this.customersTable.ShowRowErrors = false;
             this.customersTable.Size = new System.Drawing.Size(945, 341);
             this.customersTable.TabIndex = 0;
             // 
@@ -54,9 +58,9 @@
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Red;
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(627, 495);
+            this.deleteBtn.Location = new System.Drawing.Point(629, 591);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(108, 42);
+            this.deleteBtn.Size = new System.Drawing.Size(108, 49);
             this.deleteBtn.TabIndex = 1;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = false;
@@ -66,9 +70,9 @@
             // 
             this.editBtn.BackColor = System.Drawing.Color.Green;
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(769, 495);
+            this.editBtn.Location = new System.Drawing.Point(777, 592);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(108, 41);
+            this.editBtn.Size = new System.Drawing.Size(108, 48);
             this.editBtn.TabIndex = 2;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = false;
@@ -78,9 +82,9 @@
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.addBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addBtn.Location = new System.Drawing.Point(910, 494);
+            this.addBtn.Location = new System.Drawing.Point(919, 590);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(108, 42);
+            this.addBtn.Size = new System.Drawing.Size(108, 50);
             this.addBtn.TabIndex = 3;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
@@ -90,19 +94,32 @@
             // 
             this.appointmentsBtn.BackColor = System.Drawing.Color.Green;
             this.appointmentsBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.appointmentsBtn.Location = new System.Drawing.Point(73, 495);
+            this.appointmentsBtn.Location = new System.Drawing.Point(82, 591);
             this.appointmentsBtn.Name = "appointmentsBtn";
-            this.appointmentsBtn.Size = new System.Drawing.Size(217, 42);
+            this.appointmentsBtn.Size = new System.Drawing.Size(217, 49);
             this.appointmentsBtn.TabIndex = 4;
             this.appointmentsBtn.Text = "View Appointments";
             this.appointmentsBtn.UseVisualStyleBackColor = false;
             this.appointmentsBtn.Click += new System.EventHandler(this.appointmentsBtn_Click);
+            // 
+            // calendarBtn
+            // 
+            this.calendarBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.calendarBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.calendarBtn.Location = new System.Drawing.Point(82, 139);
+            this.calendarBtn.Name = "calendarBtn";
+            this.calendarBtn.Size = new System.Drawing.Size(217, 41);
+            this.calendarBtn.TabIndex = 5;
+            this.calendarBtn.Text = "Calendar";
+            this.calendarBtn.UseVisualStyleBackColor = false;
+            this.calendarBtn.Click += new System.EventHandler(this.calendarBtn_Click);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1338, 707);
+            this.Controls.Add(this.calendarBtn);
             this.Controls.Add(this.appointmentsBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.editBtn);
@@ -122,5 +139,6 @@
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button appointmentsBtn;
+        private System.Windows.Forms.Button calendarBtn;
     }
 }

@@ -61,7 +61,7 @@ namespace CustomerManagement.Forms
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("login.loginError");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("unexpectedError");
