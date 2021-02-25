@@ -33,13 +33,13 @@ namespace CustomerManagement.Data.Util
 
         public async Task<T> QueryAsync<T>(string sqlStatement, object parameters = null) where T : new()
         {
-            var result = await QueryListAsync<T>(sqlStatement, parameters);
+            var result = await QueryListAsync<T>(sqlStatement, parameters) ?? new List<T>();
             return result.FirstOrDefault();
         }
 
         public async Task<List<T>> QueryListAsync<T>(string sqlStatement, object parameters = null) where T : new()
         {
-            return await ExecuteAsync<T>(sqlStatement, parameters);
+            return await ExecuteAsync<T>(sqlStatement, parameters) ?? new List<T>();
         }
 
         public async Task<T> QueryAsync<T>(string sqlStatement, string tableName, int id) where T : new()

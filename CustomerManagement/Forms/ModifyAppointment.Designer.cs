@@ -238,9 +238,9 @@
             // 
             // customerSelect
             // 
-            this.customerSelect.Location = new System.Drawing.Point(257, 97);
+            this.customerSelect.Location = new System.Drawing.Point(257, 90);
             this.customerSelect.Name = "customerSelect";
-            this.customerSelect.Size = new System.Drawing.Size(282, 33);
+            this.customerSelect.Size = new System.Drawing.Size(282, 41);
             this.customerSelect.TabIndex = 21;
             this.customerSelect.Text = "Select Customer";
             this.customerSelect.UseVisualStyleBackColor = true;

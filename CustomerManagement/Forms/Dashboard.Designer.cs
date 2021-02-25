@@ -35,6 +35,8 @@
             this.appointmentsBtn = new System.Windows.Forms.Button();
             this.calendarBtn = new System.Windows.Forms.Button();
             this.pageHeader = new System.Windows.Forms.Label();
+            this.exitBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +47,7 @@
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customersTable.Location = new System.Drawing.Point(82, 218);
             this.customersTable.Name = "customersTable";
+            this.customersTable.ReadOnly = true;
             this.customersTable.RowHeadersVisible = false;
             this.customersTable.RowHeadersWidth = 82;
             this.customersTable.RowTemplate.Height = 33;
@@ -108,7 +111,7 @@
             this.calendarBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.calendarBtn.Location = new System.Drawing.Point(82, 139);
             this.calendarBtn.Name = "calendarBtn";
-            this.calendarBtn.Size = new System.Drawing.Size(217, 41);
+            this.calendarBtn.Size = new System.Drawing.Size(217, 47);
             this.calendarBtn.TabIndex = 5;
             this.calendarBtn.Text = "Calendar";
             this.calendarBtn.UseVisualStyleBackColor = false;
@@ -124,11 +127,35 @@
             this.pageHeader.TabIndex = 6;
             this.pageHeader.Text = "Welcome {Name}!";
             // 
+            // exitBtn
+            // 
+            this.exitBtn.BackColor = System.Drawing.Color.Red;
+            this.exitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.exitBtn.Location = new System.Drawing.Point(919, 1023);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(108, 48);
+            this.exitBtn.TabIndex = 7;
+            this.exitBtn.Text = "Exit";
+            this.exitBtn.UseVisualStyleBackColor = false;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(82, 728);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(302, 45);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Number of Appointments";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1161, 707);
+            this.ClientSize = new System.Drawing.Size(1161, 1115);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.calendarBtn);
             this.Controls.Add(this.appointmentsBtn);
@@ -153,5 +180,7 @@
         private System.Windows.Forms.Button appointmentsBtn;
         private System.Windows.Forms.Button calendarBtn;
         private System.Windows.Forms.Label pageHeader;
+        private System.Windows.Forms.Button exitBtn;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -111,5 +111,15 @@ namespace CustomerManagement.Forms.Customers
             var appointments = new Appointments(_context, _translator, _appointmentRepository);
             appointments.Show();
         }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new AppointmentsReport(_context).ShowDialog();
+        }
     }
 }
