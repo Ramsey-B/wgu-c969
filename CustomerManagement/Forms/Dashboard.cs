@@ -13,7 +13,6 @@ namespace CustomerManagement.Forms.Customers
         private readonly Context _context;
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
-        private BindingList<Customer> customers;
         private readonly User _currentUser;
         private readonly IAppointmentRepository _appointmentRepository;
 
@@ -24,29 +23,34 @@ namespace CustomerManagement.Forms.Customers
             _customerRepository = customerRepository;
             _translator = translator;
             _currentUser = context.CurrentUser; // Triggers auth
+            if (_currentUser == null) Application.Exit();
             _appointmentRepository = appointmentRepository;
             Shown += async (object sender, EventArgs e) =>
             {
                 await getCustomers();
-                if (customersTable.Columns.Count > 0)
-                {
-                    customersTable.Columns["AddressId"].Visible = false;
-                    customersTable.Columns["Address"].Visible = false;
-                }
             };
         }
 
         private async Task getCustomers()
         {
             var results = await _customerRepository.GetAllAsync();
+
+            var displayCustomers = new BindingList<object>();
             results.ForEach(customer =>
             {
-                customer.LastUpdate = customer.LastUpdate.ToLocalTime();
-                customer.CreateDate = customer.CreateDate.ToLocalTime();
+                displayCustomers.Add(new
+                {
+                    customer.Id,
+                    customer.Name,
+                    customer.Active,
+                    CreatedDate = customer.CreateDate.ToLocalTime(),
+                    customer.CreatedBy,
+                    LastUpdated = customer.LastUpdate.ToLocalTime(),
+                    customer.LastUpdateBy
+                });
             });
-            customers = new BindingList<Customer>(results);
             var customersBinding = new BindingSource();
-            customersBinding.DataSource = customers;
+            customersBinding.DataSource = displayCustomers;
             customersTable.DataSource = customersBinding;
         }
 
@@ -62,14 +66,9 @@ namespace CustomerManagement.Forms.Customers
 
         private void editBtn_Click(object s, System.EventArgs e)
         {
-            var customer = customersTable.CurrentRow.DataBoundItem as Customer;
-            if (customer == null)
-            {
-                MessageBox.Show(_translator.Translate("customer.noneSelected"));
-                return;
-            }
+            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
 
-            var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository, customer.Id);
+            var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository, customerId);
             modifyCustomer.FormClosed += async (object sender, FormClosedEventArgs ev) =>
             {
                 await getCustomers();
@@ -79,18 +78,14 @@ namespace CustomerManagement.Forms.Customers
 
         private async void deleteBtn_Click(object sender, System.EventArgs e)
         {
-            var customer = customersTable.CurrentRow.DataBoundItem as Customer;
-            if (customer == null)
-            {
-                MessageBox.Show(_translator.Translate("customer.noneSelected"));
-                return;
-            }
+            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
+            var name = customersTable.CurrentRow.Cells["Name"].Value.ToString();
 
-            var dialogResult = MessageBox.Show(_translator.Translate("customer.confirmDelete", new { customer.Name }), "", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(_translator.Translate("customer.confirmDelete", new { name }), "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) return;
             try
             {
-                await _customerRepository.DeleteAsync(customer.Id);
+                await _customerRepository.DeleteAsync(customerId);
                 await getCustomers();
             }
             catch (System.Exception)

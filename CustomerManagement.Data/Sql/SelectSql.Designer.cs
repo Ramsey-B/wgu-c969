@@ -61,7 +61,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT addressId AS Id, address AS Address1, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy FROM address.
+        ///   Looks up a localized string similar to SELECT * FROM address.
         /// </summary>
         internal static string Address {
             get {
@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT appointmentId AS Id, customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy FROM appointment WHERE userId = @UserId AND customerId = @CustomerId.
+        ///   Looks up a localized string similar to SELECT * FROM appointment WHERE userId = @UserId.
         /// </summary>
         internal static string Appointment {
             get {
@@ -88,7 +88,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT cityId AS Id, city AS Name, countryId, createDate, createdBy, lastUpdate, lastUpdateBy FROM city.
+        ///   Looks up a localized string similar to SELECT * FROM city.
         /// </summary>
         internal static string City {
             get {
@@ -97,7 +97,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT countryId AS Id, country AS Name, createDate, createdBy, lastUpdate, lastUpdateBy FROM country.
+        ///   Looks up a localized string similar to SELECT * FROM country.
         /// </summary>
         internal static string Country {
             get {
@@ -106,7 +106,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT customerId AS Id, customerName AS Name, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy FROM customer.
+        ///   Looks up a localized string similar to SELECT * FROM customer.
         /// </summary>
         internal static string Customer {
             get {
@@ -115,7 +115,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT userId AS Id, userName AS Name, active, createDate, createdBy, lastUpdate, lastUpdateBy FROM user WHERE userName = @Name AND password = @Password.
+        ///   Looks up a localized string similar to SELECT * FROM user WHERE userName = @Name AND password = @Password.
         /// </summary>
         internal static string User {
             get {

@@ -186,12 +186,13 @@ namespace CustomerManagement.Forms
         private void customerSelect_Click(object sender, EventArgs e)
         {
             var select = new CustomerSelect(_context);
-            select.ShowDialog();
+            select.Show();
             select.FormClosing += (object s, FormClosingEventArgs ec) =>
             {
                 if (select.Customer != null)
                 {
                     _customer = select.Customer;
+                    pageTitle.Text = _translator.Translate("appointment.modifyTitle", new { _customer.Name });
                 }
             };
         }

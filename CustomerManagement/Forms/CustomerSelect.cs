@@ -18,6 +18,7 @@ namespace CustomerManagement.Forms
         private readonly Context _context;
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
+        private List<Customer> customers;
 
         public Customer Customer { get; set; }
 
@@ -37,14 +38,15 @@ namespace CustomerManagement.Forms
 
         private async Task Init()
         {
-            var results = await _customerRepository.GetAllAsync();
+            customers = await _customerRepository.GetAllAsync();
 
             var displayCustomers = new BindingList<object>();
-            results.ForEach(customer =>
+            customers.ForEach(customer =>
             {
                 displayCustomers.Add(new
                 {
                     customer.Id,
+                    customer.Name,
                     customer.Active
                 });
             });
@@ -55,13 +57,13 @@ namespace CustomerManagement.Forms
 
         private void selectBtn_Click(object sender, EventArgs e)
         {
-            var customer = customersTable.CurrentRow.DataBoundItem as Customer;
-            if (customer == null)
+            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
+            Customer = customers.Find(c => c.Id == customerId);
+            if (Customer == null)
             {
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
                 return;
             }
-            Customer = customer;
             Close();
         }
 

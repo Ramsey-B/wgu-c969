@@ -34,6 +34,7 @@
             this.addBtn = new System.Windows.Forms.Button();
             this.appointmentsBtn = new System.Windows.Forms.Button();
             this.calendarBtn = new System.Windows.Forms.Button();
+            this.pageHeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +45,6 @@
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customersTable.Location = new System.Drawing.Point(82, 218);
             this.customersTable.Name = "customersTable";
-            this.customersTable.ReadOnly = true;
             this.customersTable.RowHeadersVisible = false;
             this.customersTable.RowHeadersWidth = 82;
             this.customersTable.RowTemplate.Height = 33;
@@ -114,11 +114,22 @@
             this.calendarBtn.UseVisualStyleBackColor = false;
             this.calendarBtn.Click += new System.EventHandler(this.calendarBtn_Click);
             // 
+            // pageHeader
+            // 
+            this.pageHeader.AutoSize = true;
+            this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pageHeader.Location = new System.Drawing.Point(77, 55);
+            this.pageHeader.Name = "pageHeader";
+            this.pageHeader.Size = new System.Drawing.Size(291, 37);
+            this.pageHeader.TabIndex = 6;
+            this.pageHeader.Text = "Welcome {Name}!";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1338, 707);
+            this.ClientSize = new System.Drawing.Size(1161, 707);
+            this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.calendarBtn);
             this.Controls.Add(this.appointmentsBtn);
             this.Controls.Add(this.addBtn);
@@ -129,6 +140,7 @@
             this.Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button appointmentsBtn;
         private System.Windows.Forms.Button calendarBtn;
+        private System.Windows.Forms.Label pageHeader;
     }
 }

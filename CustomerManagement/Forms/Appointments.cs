@@ -46,13 +46,14 @@ namespace CustomerManagement.Forms
                 start = now.AddDays(-(int)now.DayOfWeek);
                 end = start.AddDays(7);
             }
-            var result = await _appointmentRepository.GetAllAsync(_context.CurrentUser.Id, _customer.Id, start, end);
+            var result = await _appointmentRepository.GetAllAsync(_context.CurrentUser.Id, _customer?.Id, start, end);
 
             SetTable(result);
         }
 
         private void SetTable(List<Appointment> appointments)
         {
+            if (appointments == null) return;
             var displayAppt = new BindingList<object>();
             appointments.ForEach(appt =>
             {

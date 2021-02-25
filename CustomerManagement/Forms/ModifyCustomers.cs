@@ -39,7 +39,7 @@ namespace CustomerManagement.Forms.Customers
                 phoneInput.Text = _customer.Address?.Phone;
                 cityInput.Text = _customer.Address?.City?.Name;
                 countryInput.Text = _customer.Address?.City?.Country?.Name;
-                activeCheckbox.Checked = _customer.Active == 1;
+                activeCheckbox.Checked = _customer.Active;
             }
             TranslatePage();
         }
@@ -83,7 +83,7 @@ namespace CustomerManagement.Forms.Customers
                 var newCustomer = new Customer
                 {
                     Name = nameInput.Text,
-                    Active = activeCheckbox.Checked ? 1 : 0,
+                    Active = activeCheckbox.Checked,
                     Address = new Address
                     {
                         Address1 = address1Input.Text,
@@ -116,7 +116,7 @@ namespace CustomerManagement.Forms.Customers
                 {
                     Id = _customer.Id,
                     Name = nameInput.Text,
-                    Active = activeCheckbox.Checked ? 1 : 0,
+                    Active = activeCheckbox.Checked,
                     LastUpdateBy = _currentUser.Name,
                     AddressId = _customer.AddressId,
                     Address = new Address

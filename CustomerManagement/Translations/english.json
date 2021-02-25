@@ -68,5 +68,12 @@
   "delete": "Delete",
   "close": "close",
   "month": "Month",
-  "week": "Week"
+  "week": "Week",
+  "name": "Name",
+  "active": "Active",
+  "createDate": "Created Date",
+  "createdBy": "Created By",
+  "lastUpdate": "Last Updated",
+  "lastUpdateBy": "Last Updated By",
+  "select": "Select"
 }
