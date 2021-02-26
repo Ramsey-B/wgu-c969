@@ -27,11 +27,7 @@ namespace CustomerManagement
         /// </summary>
         public async Task HandleAppointmentReminders()
         {
-            var appointments = await _appointmentRepository.GetAllAsync(DateTime.MinValue, DateTime.MaxValue);
-            for (int i = 0; i < appointments.Count; i++)
-            {
-                appointments[i].Start = DateTime.UtcNow.AddMinutes(i + 15);
-            }
+            var appointments = await _appointmentRepository.GetAllAsync(DateTime.UtcNow.AddMinutes(-1), DateTime.UtcNow.AddDays(1), _context.CurrentUser.Id);
             appointments = appointments.OrderBy(appt => appt.Start).ToList();
 
             foreach (var appt in appointments)
