@@ -50,19 +50,18 @@ namespace CustomerManagement.Translations
 
         private void GetDefaultLanguage()
         {
-            switch (CultureInfo.CurrentUICulture.LCID)
+            switch (CultureInfo.CurrentUICulture.ThreeLetterISOLanguageName)
             {
-                case 1033:
+                case "eng":
                     SetLanguage(Languages.English);
                     break;
-                case 2058:
+                case "spa":
                     SetLanguage(Languages.Spanish);
                     break;
                 default:
                     SetLanguage(Languages.English);
                     break;
             }
-            SetLanguage(Languages.Spanish);
         }
 
         private static JObject GetTranslation(Languages language)
