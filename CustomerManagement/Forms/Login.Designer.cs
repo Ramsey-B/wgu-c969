@@ -67,9 +67,9 @@
             // 
             this.loginBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.loginBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.loginBtn.Location = new System.Drawing.Point(470, 382);
+            this.loginBtn.Location = new System.Drawing.Point(483, 382);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(98, 56);
+            this.loginBtn.Size = new System.Drawing.Size(120, 56);
             this.loginBtn.TabIndex = 3;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
@@ -79,9 +79,9 @@
             // 
             this.cancelBtn.BackColor = System.Drawing.Color.Red;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cancelBtn.Location = new System.Drawing.Point(333, 382);
+            this.cancelBtn.Location = new System.Drawing.Point(316, 382);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(98, 56);
+            this.cancelBtn.Size = new System.Drawing.Size(113, 56);
             this.cancelBtn.TabIndex = 4;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
@@ -90,7 +90,7 @@
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(171, 201);
+            this.usernameLabel.Location = new System.Drawing.Point(55, 198);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(110, 25);
             this.usernameLabel.TabIndex = 5;
@@ -99,7 +99,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(171, 294);
+            this.passwordLabel.Location = new System.Drawing.Point(55, 291);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(106, 25);
             this.passwordLabel.TabIndex = 6;

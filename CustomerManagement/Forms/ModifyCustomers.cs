@@ -59,14 +59,14 @@ namespace CustomerManagement.Forms.Customers
                 pageTitle.Text = _translator.Translate("customer.addCustomer");
             }
 
-            nameLabel.Text = _translator.Translate("customer.name");
+            nameLabel.Text = _translator.Translate("name");
             address1Label.Text = _translator.Translate("customer.address1");
             address2Label.Text = _translator.Translate("customer.address2");
             postalCodeLabel.Text = _translator.Translate("customer.postalCode");
             phoneLabel.Text = _translator.Translate("customer.phone");
             cityLabel.Text = _translator.Translate("customer.city");
             countryLabel.Text = _translator.Translate("customer.country");
-            activeCheckbox.Text = _translator.Translate("customer.active");
+            activeCheckbox.Text = _translator.Translate("active");
             submitBtn.Text = _translator.Translate("submit");
             cancelBtn.Text = _translator.Translate("cancel");
         }

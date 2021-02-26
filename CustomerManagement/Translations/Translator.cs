@@ -62,6 +62,7 @@ namespace CustomerManagement.Translations
                     SetLanguage(Languages.English);
                     break;
             }
+            SetLanguage(Languages.Spanish);
         }
 
         private static JObject GetTranslation(Languages language)

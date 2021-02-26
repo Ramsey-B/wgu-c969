@@ -70,6 +70,7 @@ namespace CustomerManagement.Forms
         {
             Name = _translator.Translate("login.pageTitle");
             Text = _translator.Translate("login.pageTitle");
+            pageHeader.Text = _translator.Translate("login.pageHeader");
             usernameLabel.Text = _translator.Translate("login.username");
             passwordLabel.Text = _translator.Translate("login.password");
             cancelBtn.Text = _translator.Translate("cancel");

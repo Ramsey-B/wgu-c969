@@ -1,3 +1,107 @@
 {
-  "test": "spanish"
+  "active": "Activa",
+  "add": "agregar",
+  "appointment": {
+    "addAppointment": "Agregar cita",
+    "confirmDelete": "Esta seguro de que desea eliminar la cita para '{Title}'?",
+    "contact": "Contacto",
+    "description": "Descripcion",
+    "editAppointment": "Editar cita",
+    "end": "Fin",
+    "location": "Localizacion",
+    "modifyTitle": "Cita para {Name}",
+    "modifyTitleNoCustomer": "Nueva cita",
+    "noneSelected": "No se selecciono ninguna cita.",
+    "outOfHoursError": "* La hora de la cita debe estar entre {Open} y {Close}",
+    "overlappingAppointmentError": "* Ya existe una cita de {Inicio} a {Fin}",
+    "requiredFieldError": "El campo '{PropertyName}' es obligatorio.",
+    "start": "Comienzo",
+    "title": "Titulo",
+    "type": "Escribe",
+    "url": "Url"
+  },
+  "appointments": {
+    "noCustomerSelected": "* Debe seleccionar una cliente.",
+    "pageHeader": "Citas para {Name}",
+    "pageTitle": "Equipo"
+  },
+  "calendar": {
+    "pageHeader": "Calendario de {Name}",
+    "pageTitle": "Calendario"
+  },
+  "cancel": "Cancelar",
+  "close": "Cerrar",
+  "consultantSchedules": "Consultant Schedules",
+  "createDate": "Created Date",
+  "createdBy": "Created By",
+  "customer": {
+    "active": "Active",
+    "addCustomer": "Agregar cliente",
+    "address1": "Direccion 1",
+    "address1Error": "* Se requiere la direccion 1.",
+    "address2": "Direccion 2",
+    "city": "Ciudad",
+    "cityError": "* La ciudad es obligatoria y solo debe contener letras, guiones, espacios o apostrofes.",
+    "confirmDelete": "Esta seguro de que desea eliminar '{Name}'?",
+    "country": "Pais",
+    "countryError": "* El pais es obligatorio y solo debe contener letras, guiones, espacios o apostrofes.",
+    "editCustomer": "Editar cliente",
+    "nameError": "* El nombre es obligatorio y solo debe contener letras, guiones, espacios o apostrofes.",
+    "noneSelected": "Ninguna cliente seleccionada.",
+    "phone": "Telefono",
+    "phoneError": "* El telefono es obligatorio y solo debe contener numeros.",
+    "postalCode": "Codigo postal",
+    "postalCodeError": "* El codigo postal es obligatorio y solo debe contener numeros."
+  },
+  "customerSelect": {
+    "pageHeader": "Por favor seleccione una cliente",
+    "pageTitle": "Seleccion de cliente"
+  },
+  "customersReport": "Informe de clientes",
+  "dashboard": {
+    "appointmentCountReport": "Numero de citas",
+    "calendar": "Ver calendario",
+    "consultantReport": "Horarios de la consultora",
+    "customerReport": "Informe de cliente",
+    "pageHeader": "Bienvenido, {Username}!",
+    "pageTitle": "Tablero",
+    "viewAppointments": "Ver citas"
+  },
+  "delete": "Borrar",
+  "edit": "Editar",
+  "exit": "Salida",
+  "lastUpdate": "Última actualizacion",
+  "lastUpdateBy": "Actualizado por ultima vez por",
+  "login": {
+    "login": "Acceso",
+    "loginError": "* El nombre de usuario o la contrasena no son validos. Intentalo de nuevo.",
+    "pageHeader": "Inicie sesion a continuacion",
+    "pageTitle": "Acceso",
+    "password": "Contrasena",
+    "passwordError": "* Porfavor ingrese una contrasena",
+    "username": "Nombre de usuario",
+    "usernameError": "* Por favor, ingrese un nombre de usuario"
+  },
+  "month": "Mes",
+  "months": {
+    "1": "Enero",
+    "2": "Febrero",
+    "3": "Marzo",
+    "4": "Abril",
+    "5": "Mayo",
+    "6": "Junio",
+    "7": "Julio",
+    "8": "Agosto",
+    "9": "Septiembre",
+    "10": "Octubre",
+    "11": "Noviembre",
+    "12": "Diciembre"
+  },
+  "name": "Nombre",
+  "reminderMessage": "Alerta: Tiene una cita en {Minutes} minutos con {CustomerName} a las {Time}!",
+  "search": "Buscar",
+  "select": "Seleccione",
+  "submit": "Enviar",
+  "unexpectedError": "* Ocurrio un error inesperado. Intentalo de nuevo.",
+  "week": "Semana"
 }
