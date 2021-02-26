@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CustomerManagement.Core.Exceptions
 {
+    /// <summary>
+    /// Exception that indicates an appointment already exists that the requested time.
+    /// </summary>
     public class OverlappingAppointmentException : Exception
     {
         public DateTime Start { get; set; }

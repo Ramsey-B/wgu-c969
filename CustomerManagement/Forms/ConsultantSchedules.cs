@@ -1,15 +1,11 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Translations;
-using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,10 +24,10 @@ namespace CustomerManagement.Forms
             _translator = _context.GetService<Translator>();
             InitializeComponent();
             Translate();
-            Init();
+            GetReport().Wait();
         }
 
-        private async Task Init()
+        private async Task GetReport()
         {
             var now = DateTime.UtcNow;
             DateTime start;
@@ -48,8 +44,9 @@ namespace CustomerManagement.Forms
             }
             var results = await _appointmentRepository.GetAllAsync(start, end, searchTerm: searchBox.Text) ?? new List<Appointment>();
 
-            results = results.OrderBy(appt => appt.Username).ToList();
+            results = results.OrderBy(appt => appt.Username).ToList(); // sorts the results by their username
 
+            // map the results to the table
             var displayAppt = new BindingList<object>();
             results.ForEach(appt =>
             {
@@ -78,19 +75,19 @@ namespace CustomerManagement.Forms
         {
             weekRadio.Checked = false;
             monthRadio.Checked = true;
-            await Init();
+            await GetReport();
         }
 
         private async void weekRadio_CheckedChanged(object sender, EventArgs e)
         {
             weekRadio.Checked = true;
             monthRadio.Checked = false;
-            await Init();
+            await GetReport();
         }
 
         private async void searchBtn_Click(object sender, EventArgs e)
         {
-            await Init();
+            await GetReport();
         }
 
         private void Translate()

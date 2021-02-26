@@ -28,9 +28,9 @@ namespace CustomerManagement.Forms.Customers
 
         private void Init(int? customerId = null)
         {
-            if (customerId != null)
+            if (customerId != null) // if we have a customer Id  then we're editing the customer
             {
-                _customer = _customerRepository.GetAsync((int)customerId).Result;
+                _customer = _customerRepository.GetAsync((int)customerId).Result; // get the customers full details
 
                 nameInput.Text = _customer.Name;
                 address1Input.Text = _customer.Address?.Address1;
@@ -46,13 +46,13 @@ namespace CustomerManagement.Forms.Customers
 
         private void TranslatePage()
         {
-            if (_customer != null)
+            if (_customer != null) // edit customer
             {
                 Name = _translator.Translate("customer.editCustomer");
                 Text = _translator.Translate("customer.editCustomer");
                 pageTitle.Text = _translator.Translate("customer.editCustomer");
             } 
-            else
+            else // create customer
             {
                 Name = _translator.Translate("customer.addCustomer");
                 Text = _translator.Translate("customer.addCustomer");
@@ -78,7 +78,7 @@ namespace CustomerManagement.Forms.Customers
 
         private async void submitBtn_Click(object sender, EventArgs e)
         {
-            if (_customer == null)
+            if (_customer == null) // create new customer
             {
                 var newCustomer = new Customer
                 {
@@ -108,9 +108,9 @@ namespace CustomerManagement.Forms.Customers
                     CreatedBy = _currentUser.Name,
                     LastUpdateBy = _currentUser.Name,
                 };
-                await SubmitAsync(newCustomer, _customerRepository.CreateAsync);
+                await SubmitAsync(newCustomer, _customerRepository.CreateAsync); // pass the create func 
             }
-            else
+            else // edit existing customer
             {
                 var customer = new Customer
                 {
@@ -143,7 +143,7 @@ namespace CustomerManagement.Forms.Customers
                         }
                     }
                 };
-                await SubmitAsync(customer, _customerRepository.UpdateAsync);
+                await SubmitAsync(customer, _customerRepository.UpdateAsync); // pass the update create func
             }
         }
 
@@ -151,9 +151,9 @@ namespace CustomerManagement.Forms.Customers
         {
             try
             {
-                var result = await callback(customer);
+                var result = await callback(customer); // invoke the callback with the customer
 
-                if (result == 0)
+                if (result == 0) // failed to create/update the customer
                 {
                     MessageBox.Show(_translator.Translate("unexpectedError"));
                     return;
@@ -161,12 +161,12 @@ namespace CustomerManagement.Forms.Customers
 
                 Close();
             }
-            catch (InvalidEntityException ex)
+            catch (InvalidEntityException ex) // handle if the customer is invalid
             {
                 errorText.Visible = true;
                 errorText.Text = _translator.Translate($"customer.{ex.PropertyName}Error");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(_translator.Translate("unexpectedError"));
             }

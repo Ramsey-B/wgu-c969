@@ -26,21 +26,24 @@ namespace CustomerManagement
 
             using(var serviceProvider = services.BuildServiceProvider())
             {
+                // inits the project with the dashboard
                 var dashboard = serviceProvider.GetRequiredService<Dashboard>();
                 Application.Run(dashboard);
             }
         }
 
+        // Setup the microsoft DI the same way as ASP.Net does.
         private static void ConfigureServices(ServiceCollection services)
         {
             services
+                // Normally you would hide this in a config value.
                 .AddScoped<ISqlOrm>(c => new SqlOrm("server=wgudb.ucertify.com;user id=U07Uzf;password=53689134933;database=U07Uzf;persistsecurityinfo=True"))
                 .AddScoped<IAddressRepository, AddressRepository>()
                 .AddScoped<ICustomerRepository, CustomerRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IAppointmentRepository, AppointmentRepository>()
                 .AddScoped<Logger>()
-                .AddSingleton<Context>()
+                .AddScoped<Context>()
                 .AddScoped<Translator>()
                 .AddSingleton<Reminder>() // Must be a singleton to work.
                 .AddScoped<Dashboard>();

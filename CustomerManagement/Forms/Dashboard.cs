@@ -25,20 +25,21 @@ namespace CustomerManagement.Forms.Customers
             _context = context;
             _customerRepository = customerRepository;
             _translator = translator;
-            _currentUser = context.CurrentUser; // Triggers auth
-            if (_currentUser == null) Application.Exit();
             _appointmentRepository = appointmentRepository;
-            _ = reminder.HandleAppointmentReminders();
-            Shown += async (object sender, EventArgs e) =>
-            {
-                await getCustomers();
-            };
+            _currentUser = context.CurrentUser; // Triggers auth
+            if (_currentUser == null) Application.Exit(); // exit if the user wont log in
+
+            Translate();
+
+            _ = getCustomers();
+            _ = reminder.HandleAppointmentReminders(); // Do not await this so it doesn't block the main thread.
         }
 
         private async Task getCustomers()
         {
             _customers = await _customerRepository.GetAllAsync();
 
+            // map the customers to the table
             var displayCustomers = new BindingList<object>();
             _customers.ForEach(customer =>
             {
@@ -58,9 +59,10 @@ namespace CustomerManagement.Forms.Customers
             customersTable.DataSource = customersBinding;
         }
 
-        private void addBtn_Click(object s, System.EventArgs e)
+        private void addBtn_Click(object s, EventArgs e)
         {
             var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository);
+            // Refresh the customer data after the form is closed
             modifyCustomer.FormClosed += async (object sender, FormClosedEventArgs ev) =>
             {
                 await getCustomers();
@@ -68,11 +70,12 @@ namespace CustomerManagement.Forms.Customers
             modifyCustomer.ShowDialog();
         }
 
-        private void editBtn_Click(object s, System.EventArgs e)
+        private void editBtn_Click(object s, EventArgs e)
         {
             var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
 
             var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository, customerId);
+            // Refresh the customer data after the form is closed
             modifyCustomer.FormClosed += async (object sender, FormClosedEventArgs ev) =>
             {
                 await getCustomers();
@@ -80,7 +83,7 @@ namespace CustomerManagement.Forms.Customers
             modifyCustomer.ShowDialog();
         }
 
-        private async void deleteBtn_Click(object sender, System.EventArgs e)
+        private async void deleteBtn_Click(object sender, EventArgs e)
         {
             var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
             var name = customersTable.CurrentRow.Cells["Name"].Value.ToString();
@@ -92,7 +95,7 @@ namespace CustomerManagement.Forms.Customers
                 await _customerRepository.DeleteAsync(customerId);
                 await getCustomers();
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 MessageBox.Show(_translator.Translate("unexpectedError"));
             }
@@ -135,6 +138,22 @@ namespace CustomerManagement.Forms.Customers
         private void customerReportBtn_Click(object sender, EventArgs e)
         {
             new CustomersReport(_context).ShowDialog();
+        }
+
+        private void Translate()
+        {
+            Name = _translator.Translate("dashboard.pageTitle");
+            Text = _translator.Translate("dashboard.pageTitle");
+            pageHeader.Text = _translator.Translate("dashboard.pageHeader", new { Username = _context.CurrentUser.Name });
+            calendarBtn.Text = _translator.Translate("dashboard.calendar");
+            appointmentsBtn.Text = _translator.Translate("dashboard.viewAppointments");
+            deleteBtn.Text = _translator.Translate("delete");
+            editBtn.Text = _translator.Translate("edit");
+            addBtn.Text = _translator.Translate("add");
+            apptNumReportBtn.Text = _translator.Translate("dashboard.appointmentCountReport");
+            consultantReportBtn.Text = _translator.Translate("dashboard.consultantReport");
+            customerReportBtn.Text = _translator.Translate("dashboard.customerReport");
+            exitBtn.Text = _translator.Translate("exit");
         }
     }
 }

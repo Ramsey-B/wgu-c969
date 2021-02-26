@@ -51,7 +51,7 @@ namespace CustomerManagement.Data.Util
         {
             // Appends the Last inserted id mysql func so that the Id is returned instead of the row count. 
             sql = sql.EndsWith(";") ? sql : sql + ";";
-            sql += " SELECT LAST_INSERT_ID();";
+            sql += " SELECT LAST_INSERT_ID();"; // gets the last inserted id
             return await ExecuteAsync(sql, parameters);
         }
 
@@ -62,53 +62,57 @@ namespace CustomerManagement.Data.Util
 
         private IDbConnection GetConnection()
         {
-            return new MySqlConnection(_connectionString);
+            return new MySqlConnection(_connectionString); // generates a new connection to the DB.
         }
 
+        /// <summary>
+        /// Used to get a single column in return. 
+        /// </summary>
         private async Task<string> ExecuteScalarAsync(string sql, object parameters = null)
         {
-            using (var connection = GetConnection() as MySqlConnection)
+            using (var connection = GetConnection() as MySqlConnection) // Dispose of the connection to prevent a memory leak
             {
                 try
                 {
-                    connection.Open();
-                    sql = AddParametersToSql(sql, parameters);
-                    var cmd = new MySqlCommand(sql, connection);
+                    connection.Open(); // start the connection to the DB
+                    sql = AddParametersToSql(sql, parameters); // replace the '@Param@' with the parameters values
+                    var cmd = new MySqlCommand(sql, connection); // creates a new command
 
-                    var result = await cmd.ExecuteReaderAsync();
+                    var result = await cmd.ExecuteReaderAsync(); // executes the command
 
                     if (!result.HasRows) return default;
 
                     result.Read();
                     return result[0].ToString();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    throw new SqlException(ex.Message, ex);
                 }
                 finally
                 {
-                    connection.Close();
+                    connection.Close(); // ensures that even if the request throws an exception, we still close the connection.
                 }
             }
         }
 
         private async Task<List<T>> ExecuteAsync<T>(string sql, object parameters = null) where T : new()
         {
-            using(var connection = GetConnection() as MySqlConnection)
+            using(var connection = GetConnection() as MySqlConnection) // Dispose of the connection to prevent a memory leak
             {
                 try
                 {
-                    connection.Open();
-                    sql = AddParametersToSql(sql, parameters);
-                    var cmd = new MySqlCommand(sql, connection);
+                    connection.Open(); // start the connection to the DB
+                    sql = AddParametersToSql(sql, parameters); // replace the '@Param@' with the parameters values
+                    var cmd = new MySqlCommand(sql, connection); // creates a new command
 
-                    var result = await cmd.ExecuteReaderAsync();
+                    var result = await cmd.ExecuteReaderAsync(); // executes the command
 
                     if (!result.HasRows) return null;
 
                     var items = new List<T>();
 
+                    // map the results to the object types
                     while (result.Read())
                     {
                         var item = MapColumns<T>(result);
@@ -121,27 +125,31 @@ namespace CustomerManagement.Data.Util
 
                     return items;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    throw new SqlException(ex.Message, ex);
                 }
                 finally
                 {
-                    connection.Close();
+                    connection.Close(); // ensures that even if the request throws an exception, we still close the connection.
                 }
             }
         }
 
+        /// <summary>
+        /// Replaces the @Params@ with values
+        /// </summary>
         private string AddParametersToSql(string sql, object paramaters = null)
         {
             if (paramaters == null) return sql;
 
-            var props = paramaters.GetType().GetProperties().ToList();
+            var props = paramaters.GetType().GetProperties().ToList(); // get the properties from the parameters with reflection
 
-            foreach (var prop in props)
+            foreach (var prop in props) // iterate properties
             {
-                var value = prop.GetValue(paramaters);
+                var value = prop.GetValue(paramaters); // get the value of the property
 
+                // these if statements ensure the value is inserted in the correct format
                 if (value is string)
                 {
                     sql = sql.Replace($"@{prop.Name}@", $"'{value}'");
@@ -162,23 +170,25 @@ namespace CustomerManagement.Data.Util
 
         private T MapColumns<T>(DbDataReader result) where T : new()
         {
-            var instance = new T();
-            var props = instance.GetType().GetProperties().ToList();
+            var instance = new T(); // create a new instance of the generic type. This is why I use the type constraint of new(). This prevents things like interfaces from being used.
+            var props = instance.GetType().GetProperties().ToList();  // get the properties from the parameters with reflection
 
-            for (int i = 0; i < result.FieldCount; i++)
+            for (int i = 0; i < result.FieldCount; i++) // iternate over the columns in the row
             {
                 try
                 {
+                    // Find the property that has a Column attribute that matches the column name
                     var prop = props.Find(p => p.GetCustomAttribute<ColumnAttribute>()?.ColumnName?.ToLower() == result.GetName(i).ToLower());
                     if (prop == null)
                     {
+                        // if no property has the attribute that matches the column name, try the property name
                         prop = props.Find(p => p.Name.ToLower() == result.GetName(i).ToLower());
                     }
-                    if (prop == null) continue;
+                    if (prop == null) continue; // if no property matches, then ignore this column.
 
-                    prop.SetValue(instance, result[i], null);
+                    prop.SetValue(instance, result[i], null); // set the column value on the object.
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new SqlException($"Unable to map column '{result.GetName(i)}' with value {result[i]}");
                 }

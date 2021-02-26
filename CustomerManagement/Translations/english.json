@@ -93,5 +93,15 @@
   "search": "Search",
   "consultantSchedules": "Consultant Schedules",
   "customersReport": "Customers Report",
-  "reminderMessage": "Alert: You have an appointment in {Minutes} minutes with {CustomerName} at {Time}!"
+  "reminderMessage": "Alert: You have an appointment in {Minutes} minutes with {CustomerName} at {Time}!",
+  "dashboard": {
+    "pageTitle": "Dashboard",
+    "pageHeader": "Welcome {Username}!",
+    "calendar": "View Calendar",
+    "viewAppointments": "View Appointments",
+    "appointmentCountReport": "Number of Appointments",
+    "consultantReport": "Consultant Schedules",
+    "customerReport": "Customer Report"
+  },
+  "exit": "Exit"
 }

@@ -2,11 +2,6 @@
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -42,8 +37,9 @@ namespace CustomerManagement.Forms
 
             yearSelect.Items.AddRange(reportYears);
             yearSelect.SelectedItem = currentDate.Year;
-            GetAppointments();
+            GetAppointments().Wait();
 
+            // this is a event hook that gets the appointments after the user selects a year
             yearSelect.SelectedValueChanged += async (object sender, EventArgs e) =>
             {
                 await GetAppointments();
@@ -56,6 +52,7 @@ namespace CustomerManagement.Forms
             var endDate = startDate.AddYears(1).AddDays(-1);
             var result = await _appointmentRepository.GetAllAsync(startDate, endDate, _context.CurrentUser.Id);
 
+            // Collect the appointments by month
             var report = new Dictionary<string, int>()
             {
                 { "1", 0 }, // Jan
@@ -80,6 +77,7 @@ namespace CustomerManagement.Forms
             var displayData = new Dictionary<string, int>();
             foreach (var keyVal in report)
             {
+                // translate the months numbers to human readable strings.
                 displayData.Add(_translator.Translate("months." + keyVal.Key), keyVal.Value);
             }
 

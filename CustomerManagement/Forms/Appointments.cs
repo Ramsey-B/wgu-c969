@@ -25,11 +25,8 @@ namespace CustomerManagement.Forms
             _translator = translator;
             _customer = customer;
 
-            Shown += async (object sender, EventArgs e) =>
-            {
-                await GetAppointments();
-                TranslatePage();
-            };
+            GetAppointments().Wait();
+            TranslatePage();
         }
 
         private async Task GetAppointments()
@@ -37,20 +34,20 @@ namespace CustomerManagement.Forms
             var now = DateTime.UtcNow;
             DateTime start;
             DateTime end;
-            if (_customer != null)
+            if (_customer != null) // If this is for viewing customers appointments then show all the upcoming appointments
             {
-                start = DateTime.MinValue;
+                start = DateTime.UtcNow;
                 end = DateTime.MaxValue;
             }
             else if (monthRadio.Checked)
             {
-                start = new DateTime(now.Year, now.Month, 1);
-                end = start.AddMonths(1).AddDays(-1);
+                start = new DateTime(now.Year, now.Month, 1); // first day of the month
+                end = start.AddMonths(1).AddDays(-1); // last day of month
             }
             else
             {
-                start = now.AddDays(-(int)now.DayOfWeek);
-                end = start.AddDays(7);
+                start = now.AddDays(-(int)now.DayOfWeek); // first day of the week
+                end = start.AddDays(7); // last day of the week
             }
             _appointments = await _appointmentRepository.GetAllAsync(start, end, _context.CurrentUser.Id, _customer?.Id);
 
@@ -61,12 +58,13 @@ namespace CustomerManagement.Forms
         {
             if (appointments == null) return;
 
-            if (_customer != null)
+            if (_customer != null) // because we show all the customers appointments we don't need the filters
             {
                 monthRadio.Visible = false;
                 weekRadio.Visible = false;
             }
 
+            // Map appointments to the table
             var displayAppt = new BindingList<object>();
             appointments.ForEach(appt =>
             {
@@ -92,6 +90,7 @@ namespace CustomerManagement.Forms
         {
             var modifyAppt = new ModifyAppointment(_context, null, _customer);
             modifyAppt.Show();
+            // refresh the appointment data
             modifyAppt.FormClosed += async (object s, FormClosedEventArgs ec) =>
             {
                 await GetAppointments();
@@ -109,6 +108,7 @@ namespace CustomerManagement.Forms
             }
             var modifyAppt = new ModifyAppointment(_context, appointment, _customer);
             modifyAppt.Show();
+            // refresh the appointment data
             modifyAppt.FormClosed += async (object s, FormClosedEventArgs ec) =>
             {
                 await GetAppointments();

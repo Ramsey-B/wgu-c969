@@ -82,9 +82,10 @@ namespace CustomerManagement.Data.Repositories
         {
             var reports = await _sqlOrm.QueryListAsync<CustomerReport>(SelectSql.CustomerReport, new { UserId = userId });
 
-            var groups = reports.GroupBy(report => report.Id);
+            var groups = reports.GroupBy(report => report.Id); // group the reports by customer Id
 
             var reportList = new List<CustomerReport>();
+            // Combine individual customers reports into 1
             foreach (var group in groups)
             {
                 var report = new CustomerReport
@@ -102,9 +103,10 @@ namespace CustomerManagement.Data.Repositories
 
         private CustomerReport SetLastAndNextAppointment(List<CustomerReport> data, CustomerReport report)
         {
-            var pastAppts = new List<DateTime>();
-            var upcomingAppts = new List<DateTime>();
+            var pastAppts = new List<DateTime>(); // appointments before now
+            var upcomingAppts = new List<DateTime>(); // appointments after now
 
+            // splits the reports by if they're before or after now
             foreach (var item in data)
             {
                 if (item.LastAppointment < DateTime.UtcNow)
@@ -117,8 +119,8 @@ namespace CustomerManagement.Data.Repositories
                 }
             }
 
-            report.LastAppointment = pastAppts.Count > 0 ? (DateTime?)pastAppts.Max() : null;
-            report.NextAppointment = upcomingAppts.Count > 0 ? (DateTime?)upcomingAppts.Min() : null;
+            report.LastAppointment = pastAppts.Count > 0 ? (DateTime?)pastAppts.Max() : null; // gets the most recent past appointment time
+            report.NextAppointment = upcomingAppts.Count > 0 ? (DateTime?)upcomingAppts.Min() : null; // gets the next appointment time
             return report;
         }
 

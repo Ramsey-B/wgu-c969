@@ -22,10 +22,7 @@ namespace CustomerManagement.Forms
             _logger = context.GetService<Logger>();
             _translator = context.GetService<Translator>();
             _userRepository = context.GetService<IUserRepository>();
-            Shown += (object sender, EventArgs e) =>
-            {
-                TranslatePage();
-            };
+            TranslatePage();
         }
 
         private async void loginBtn_Click(object sender, EventArgs e)

@@ -29,18 +29,18 @@ namespace CustomerManagement.Forms
 
         private void TranslatePage()
         {
-            if (_appointment == null)
+            if (_appointment == null) // if appointment is null then we're creating a new one
             {
                 Name = _translator.Translate("appointment.addAppointment");
                 Text = _translator.Translate("appointment.addAppointment");
             }
-            else
+            else // else we're editing the new one
             {
                 Name = _translator.Translate("appointment.editAppointment");
                 Text = _translator.Translate("appointment.editAppointment");
             }
 
-            if (_customer == null)
+            if (_customer == null) // if no customer is provided we need the user to select one
             {
                 pageTitle.Text = _translator.Translate("appointment.modifyTitleNoCustomer");
             }
@@ -61,7 +61,7 @@ namespace CustomerManagement.Forms
 
         private void Init()
         {
-            if (_appointment != null)
+            if (_appointment != null) // if we're editing an appointment then set the inputs to their existing values.
             {
                 titleInput.Text = _appointment.Title;
                 descriptionInput.Text = _appointment.Description;
@@ -92,14 +92,20 @@ namespace CustomerManagement.Forms
             }
         }
 
+        /// <summary>
+        /// Validates the business hours of the new appointment,
+        /// handles callback/validation errors, calls the callback 
+        /// func with the new appointment.
+        /// </summary>
         private async Task SubmitAsync(Appointment appointment, Func<Appointment, Task<int>> callback)
         {
             try
             {
                 ValidateBusinessHours();
                 await callback(appointment);
-                Close();
+                Close(); // close the popup if the callback is successful
             }
+            // catch specific errors
             catch (OutOfHoursException ex)
             {
                 errorLabel.Visible = true;
@@ -117,7 +123,8 @@ namespace CustomerManagement.Forms
                 var end = ex.End.ToLocalTime();
                 errorLabel.Text = _translator.Translate("appointment.overlappingAppointmentError", new { Start = start, End = end });
             }
-            catch (Exception ex)
+            // catch all unexpected exceptions
+            catch (Exception)
             {
                 errorLabel.Visible = true;
                 errorLabel.Text = _translator.Translate("unexpectedError");
@@ -127,13 +134,13 @@ namespace CustomerManagement.Forms
         private async void submitBtn_Click(object sender, EventArgs e)
         {
             errorLabel.Visible = false;
-            if (_customer == null)
+            if (_customer == null) // ensure that a customer has been selected.
             {
                 errorLabel.Text = _translator.Translate("appointments.noCustomerSelected");
                 errorLabel.Visible = true;
                 return;
             }
-            if (_appointment == null)
+            if (_appointment == null) // create a new appointment
             {
                 var newAppt = new Appointment
                 {
@@ -151,9 +158,9 @@ namespace CustomerManagement.Forms
                     LastUpdateBy = _context.CurrentUser.Name
                 };
 
-                await SubmitAsync(newAppt, _appointmentRepository.CreateAsync);
+                await SubmitAsync(newAppt, _appointmentRepository.CreateAsync); // pass the create as the callback
             }
-            else
+            else // edit an existing appointment
             {
                 var newAppt = new Appointment
                 {
@@ -171,7 +178,7 @@ namespace CustomerManagement.Forms
                     LastUpdateBy = _context.CurrentUser.Name
                 };
 
-                await SubmitAsync(newAppt, _appointmentRepository.UpdateAsync);
+                await SubmitAsync(newAppt, _appointmentRepository.UpdateAsync); // pass the update as the callback
             }
         }
 
@@ -184,9 +191,11 @@ namespace CustomerManagement.Forms
         {
             var select = new CustomerSelect(_context);
             select.Show();
+
+            // Grab the selected Customer before the form closes
             select.FormClosing += (object s, FormClosingEventArgs ec) =>
             {
-                if (select.Customer != null)
+                if (select.Customer != null) // only set and update the title if the user selected a customer
                 {
                     _customer = select.Customer;
                     pageTitle.Text = _translator.Translate("appointment.modifyTitle", new { _customer.Name });

@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CustomerManagement.Core.Attributes
 {
+    /// <summary>
+    /// With the customer ORM this value is used to map a DB column to the object properties
+    /// </summary>
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = false)]
     public class ColumnAttribute : Attribute
     {

@@ -3,9 +3,12 @@ using System;
 
 namespace CustomerManagement.Core.Models
 {
+    /// <summary>
+    /// Abstract class for the common fields
+    /// </summary>
     public abstract class EntityBase
     {
-        public abstract int Id { get; set; }
+        public abstract int Id { get; set; } // ensures that super classes implement their own id.
         [Column("createDate")]
         public DateTime CreateDate { get; set; }
         [Column("createdBy")]

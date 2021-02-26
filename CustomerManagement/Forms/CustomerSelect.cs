@@ -20,7 +20,7 @@ namespace CustomerManagement.Forms
         private readonly Translator _translator;
         private List<Customer> customers;
 
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } // This allows the parent to grab the selected Customer
 
         public CustomerSelect(Context context)
         {
@@ -30,15 +30,12 @@ namespace CustomerManagement.Forms
             InitializeComponent();
             Translate();
 
-            Shown += async (object sender, EventArgs e) =>
-            {
-                await Init();
-            };
+            Init();
         }
 
-        private async Task Init()
+        private void Init()
         {
-            customers = await _customerRepository.GetAllAsync();
+            customers = _customerRepository.GetAllAsync().Result;
 
             var displayCustomers = new BindingList<object>();
             customers.ForEach(customer =>
@@ -58,7 +55,7 @@ namespace CustomerManagement.Forms
         private void selectBtn_Click(object sender, EventArgs e)
         {
             var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
-            Customer = customers.Find(c => c.Id == customerId);
+            Customer = customers.Find(c => c.Id == customerId); // Set the Customer to the selected one
             if (Customer == null)
             {
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
