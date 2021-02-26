@@ -44,7 +44,7 @@
             // 
             // username
             // 
-            this.username.Location = new System.Drawing.Point(293, 198);
+            this.username.Location = new System.Drawing.Point(99, 195);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(324, 31);
             this.username.TabIndex = 0;
@@ -57,7 +57,7 @@
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(293, 291);
+            this.password.Location = new System.Drawing.Point(99, 294);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(324, 31);
@@ -67,7 +67,7 @@
             // 
             this.loginBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.loginBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.loginBtn.Location = new System.Drawing.Point(483, 382);
+            this.loginBtn.Location = new System.Drawing.Point(303, 370);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(120, 56);
             this.loginBtn.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             this.cancelBtn.BackColor = System.Drawing.Color.Red;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cancelBtn.Location = new System.Drawing.Point(316, 382);
+            this.cancelBtn.Location = new System.Drawing.Point(91, 370);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(113, 56);
             this.cancelBtn.TabIndex = 4;
@@ -90,7 +90,7 @@
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(55, 198);
+            this.usernameLabel.Location = new System.Drawing.Point(94, 158);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(110, 25);
             this.usernameLabel.TabIndex = 5;
@@ -99,7 +99,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(55, 291);
+            this.passwordLabel.Location = new System.Drawing.Point(94, 266);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(106, 25);
             this.passwordLabel.TabIndex = 6;
@@ -109,7 +109,7 @@
             // 
             this.usernameError.AutoSize = true;
             this.usernameError.ForeColor = System.Drawing.Color.Red;
-            this.usernameError.Location = new System.Drawing.Point(288, 245);
+            this.usernameError.Location = new System.Drawing.Point(98, 229);
             this.usernameError.Name = "usernameError";
             this.usernameError.Size = new System.Drawing.Size(269, 25);
             this.usernameError.TabIndex = 7;
@@ -120,7 +120,7 @@
             // 
             this.passwordError.AutoSize = true;
             this.passwordError.ForeColor = System.Drawing.Color.Red;
-            this.passwordError.Location = new System.Drawing.Point(288, 339);
+            this.passwordError.Location = new System.Drawing.Point(98, 328);
             this.passwordError.Name = "passwordError";
             this.passwordError.Size = new System.Drawing.Size(265, 25);
             this.passwordError.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             this.loginError.AutoSize = true;
             this.loginError.ForeColor = System.Drawing.Color.Red;
-            this.loginError.Location = new System.Drawing.Point(288, 450);
+            this.loginError.Location = new System.Drawing.Point(86, 439);
             this.loginError.Name = "loginError";
             this.loginError.Size = new System.Drawing.Size(387, 25);
             this.loginError.TabIndex = 9;
@@ -142,7 +142,7 @@
             // 
             this.pageHeader.AutoSize = true;
             this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageHeader.Location = new System.Drawing.Point(327, 107);
+            this.pageHeader.Location = new System.Drawing.Point(93, 92);
             this.pageHeader.Name = "pageHeader";
             this.pageHeader.Size = new System.Drawing.Size(257, 31);
             this.pageHeader.TabIndex = 10;
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 608);
+            this.ClientSize = new System.Drawing.Size(690, 508);
             this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.loginError);
             this.Controls.Add(this.passwordError);
