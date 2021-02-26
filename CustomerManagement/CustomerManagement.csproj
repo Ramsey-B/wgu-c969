@@ -137,6 +137,12 @@
     <Compile Include="Forms\CustomerSelect.Designer.cs">
       <DependentUpon>CustomerSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CustomersReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersReport.Designer.cs">
+      <DependentUpon>CustomersReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ModifyAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerSelect.resx">
       <DependentUpon>CustomerSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomersReport.resx">
+      <DependentUpon>CustomersReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyAppointment.resx">
       <DependentUpon>ModifyAppointment.cs</DependentUpon>

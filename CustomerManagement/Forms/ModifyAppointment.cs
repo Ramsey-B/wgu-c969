@@ -2,14 +2,7 @@
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Translations;
-using Org.BouncyCastle.Asn1.X509.Qualified;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -68,8 +61,6 @@ namespace CustomerManagement.Forms
 
         private void Init()
         {
-            startInput.MinDate = DateTime.Now;
-            endInput.MinDate = DateTime.Now;
             if (_appointment != null)
             {
                 titleInput.Text = _appointment.Title;
@@ -91,6 +82,7 @@ namespace CustomerManagement.Forms
             if (
                     startInput.Value.Hour < businessStart.Hour || // before open
                     endInput.Value.Hour > businessEnd.Hour || // after close
+                    startInput.Value < DateTime.Now.ToLocalTime() || // Date is in the past
                     startInput.Value.Year != endInput.Value.Year || // different years
                     startInput.Value.Day != endInput.Value.Day || // different days
                     startInput.Value >= endInput.Value // start is after end

@@ -130,5 +130,10 @@ namespace CustomerManagement.Forms.Customers
         {
             new ConsultantSchedules(_context).ShowDialog();
         }
+
+        private void customerReportBtn_Click(object sender, EventArgs e)
+        {
+            new CustomersReport(_context).ShowDialog();
+        }
     }
 }

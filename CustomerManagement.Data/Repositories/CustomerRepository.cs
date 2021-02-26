@@ -78,6 +78,50 @@ namespace CustomerManagement.Data.Repositories
             return customers;
         }
 
+        public async Task<List<CustomerReport>> GetCustomerReportsAsync(int userId)
+        {
+            var reports = await _sqlOrm.QueryListAsync<CustomerReport>(SelectSql.CustomerReport, new { UserId = userId });
+
+            var groups = reports.GroupBy(report => report.Id);
+
+            var reportList = new List<CustomerReport>();
+            foreach (var group in groups)
+            {
+                var report = new CustomerReport
+                {
+                    Id = group.Key,
+                    CustomerName = group.FirstOrDefault()?.CustomerName,
+                    AppointmentCount = group.Count(),
+                };
+                report = SetLastAndNextAppointment(group.ToList(), report);
+                reportList.Add(report);
+            }
+
+            return reportList;
+        }
+
+        private CustomerReport SetLastAndNextAppointment(List<CustomerReport> data, CustomerReport report)
+        {
+            var pastAppts = new List<DateTime>();
+            var upcomingAppts = new List<DateTime>();
+
+            foreach (var item in data)
+            {
+                if (item.LastAppointment < DateTime.UtcNow)
+                {
+                    pastAppts.Add(item.LastAppointment.GetValueOrDefault());
+                }
+                else
+                {
+                    upcomingAppts.Add(item.LastAppointment.GetValueOrDefault());
+                }
+            }
+
+            report.LastAppointment = pastAppts.Count > 0 ? (DateTime?)pastAppts.Max() : null;
+            report.NextAppointment = upcomingAppts.Count > 0 ? (DateTime?)upcomingAppts.Min() : null;
+            return report;
+        }
+
         private void ValidateCustomerInputs(Customer customer)
         {
             if (string.IsNullOrWhiteSpace(customer.Name) || !Regex.Match(customer.Name, "^[\\sA-z'-]*$").Success)

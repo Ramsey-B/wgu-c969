@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.Translations;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,15 @@ namespace CustomerManagement.Forms
     {
         private readonly Context _context;
         private readonly IAppointmentRepository _appointmentRepository;
+        private readonly Translator _translator;
 
         public ConsultantSchedules(Context context)
         {
             _context = context;
             _appointmentRepository = _context.GetService<IAppointmentRepository>();
+            _translator = _context.GetService<Translator>();
             InitializeComponent();
+            Translate();
             Init();
         }
 
@@ -87,6 +91,17 @@ namespace CustomerManagement.Forms
         private async void searchBtn_Click(object sender, EventArgs e)
         {
             await Init();
+        }
+
+        private void Translate()
+        {
+            Name = _translator.Translate("consultantSchedules");
+            Text = _translator.Translate("consultantSchedules");
+            pageHeader.Text = _translator.Translate("consultantSchedules");
+            monthRadio.Text = _translator.Translate("month");
+            weekRadio.Text = _translator.Translate("week");
+            searchBtn.Text = _translator.Translate("search");
+            closeBtn.Text = _translator.Translate("close");
         }
     }
 }

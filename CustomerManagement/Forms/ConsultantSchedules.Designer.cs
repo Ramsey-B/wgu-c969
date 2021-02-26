@@ -50,13 +50,19 @@
             // 
             // reportTable
             // 
+            this.reportTable.AllowUserToAddRows = false;
+            this.reportTable.AllowUserToDeleteRows = false;
             this.reportTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.reportTable.Location = new System.Drawing.Point(96, 205);
             this.reportTable.Name = "reportTable";
             this.reportTable.ReadOnly = true;
+            this.reportTable.RowHeadersVisible = false;
             this.reportTable.RowHeadersWidth = 82;
             this.reportTable.RowTemplate.Height = 33;
             this.reportTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.reportTable.ShowCellErrors = false;
+            this.reportTable.ShowCellToolTips = false;
+            this.reportTable.ShowEditingIcon = false;
             this.reportTable.Size = new System.Drawing.Size(970, 476);
             this.reportTable.TabIndex = 1;
             // 

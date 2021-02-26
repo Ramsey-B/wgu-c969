@@ -89,5 +89,8 @@
   "createdBy": "Created By",
   "lastUpdate": "Last Updated",
   "lastUpdateBy": "Last Updated By",
-  "select": "Select"
+  "select": "Select",
+  "search": "Search",
+  "consultantSchedules": "Consultant Schedules",
+  "customersReport": "Customers Report"
 }

@@ -38,6 +38,7 @@
             this.exitBtn = new System.Windows.Forms.Button();
             this.apptNumReportBtn = new System.Windows.Forms.Button();
             this.consultantReportBtn = new System.Windows.Forms.Button();
+            this.customerReportBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +133,7 @@
             // 
             this.exitBtn.BackColor = System.Drawing.Color.Red;
             this.exitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.exitBtn.Location = new System.Drawing.Point(919, 1023);
+            this.exitBtn.Location = new System.Drawing.Point(919, 883);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(108, 48);
             this.exitBtn.TabIndex = 7;
@@ -152,7 +153,7 @@
             // 
             // consultantReportBtn
             // 
-            this.consultantReportBtn.Location = new System.Drawing.Point(82, 824);
+            this.consultantReportBtn.Location = new System.Drawing.Point(448, 729);
             this.consultantReportBtn.Name = "consultantReportBtn";
             this.consultantReportBtn.Size = new System.Drawing.Size(302, 44);
             this.consultantReportBtn.TabIndex = 9;
@@ -160,11 +161,22 @@
             this.consultantReportBtn.UseVisualStyleBackColor = true;
             this.consultantReportBtn.Click += new System.EventHandler(this.consultantReportBtn_Click);
             // 
+            // customerReportBtn
+            // 
+            this.customerReportBtn.Location = new System.Drawing.Point(84, 808);
+            this.customerReportBtn.Name = "customerReportBtn";
+            this.customerReportBtn.Size = new System.Drawing.Size(300, 45);
+            this.customerReportBtn.TabIndex = 10;
+            this.customerReportBtn.Text = "Customer Report";
+            this.customerReportBtn.UseVisualStyleBackColor = true;
+            this.customerReportBtn.Click += new System.EventHandler(this.customerReportBtn_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1161, 1115);
+            this.ClientSize = new System.Drawing.Size(1161, 976);
+            this.Controls.Add(this.customerReportBtn);
             this.Controls.Add(this.consultantReportBtn);
             this.Controls.Add(this.apptNumReportBtn);
             this.Controls.Add(this.exitBtn);
@@ -195,5 +207,6 @@
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Button apptNumReportBtn;
         private System.Windows.Forms.Button consultantReportBtn;
+        private System.Windows.Forms.Button customerReportBtn;
     }
 }
