@@ -22,22 +22,26 @@ namespace CustomerManagement
             _translator = translator;
         }
 
+        /// <summary>
+        /// Do not await this method or execution of other code will be blocked.
+        /// </summary>
         public async Task HandleAppointmentReminders()
         {
-            var appointments = await _appointmentRepository.GetAllAsync(DateTime.UtcNow.AddMinutes(-1), DateTime.UtcNow.AddDays(1), _context.CurrentUser.Id);
+            var appointments = await _appointmentRepository.GetAllAsync(DateTime.MinValue, DateTime.MaxValue);
+            for (int i = 0; i < appointments.Count; i++)
+            {
+                appointments[i].Start = DateTime.UtcNow.AddMinutes(i + 15);
+            }
             appointments = appointments.OrderBy(appt => appt.Start).ToList();
 
             foreach (var appt in appointments)
             {
-                await Task.Run(async () =>
+                var timeToGo = appt.Start - DateTime.UtcNow.AddMinutes(15);
+                if (timeToGo.Ticks > 0) // The appointment is over 15 mins from now
                 {
-                    var timeToGo = appt.Start - DateTime.UtcNow.AddMinutes(15);
-                    if (timeToGo.Ticks > 0) // The appointment is over 15 mins from now
-                    {
-                        await Task.Delay(timeToGo);
-                    }
-                    MessageBox.Show(_translator.Translate("reminderMessage", new { Minutes = timeToGo.Minutes + 15, appt.CustomerName, Time = appt.Start.ToLocalTime() }));
-                });
+                    await Task.Delay(timeToGo);
+                }
+                MessageBox.Show(_translator.Translate("reminderMessage", new { Minutes = timeToGo.Minutes + 15, appt.CustomerName, Time = appt.Start.ToLocalTime() }));
             }
         }
     }
