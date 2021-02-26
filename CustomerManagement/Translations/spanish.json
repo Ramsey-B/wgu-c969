@@ -13,7 +13,7 @@
     "modifyTitleNoCustomer": "Nueva cita",
     "noneSelected": "No se selecciono ninguna cita.",
     "outOfHoursError": "* La hora de la cita debe estar entre {Open} y {Close}",
-    "overlappingAppointmentError": "* Ya existe una cita de {Inicio} a {Fin}",
+    "overlappingAppointmentError": "* Ya existe una cita de {Start} a {End}",
     "requiredFieldError": "El campo '{PropertyName}' es obligatorio.",
     "start": "Comienzo",
     "title": "Titulo",

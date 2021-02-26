@@ -109,7 +109,7 @@
             // 
             this.usernameError.AutoSize = true;
             this.usernameError.ForeColor = System.Drawing.Color.Red;
-            this.usernameError.Location = new System.Drawing.Point(98, 229);
+            this.usernameError.Location = new System.Drawing.Point(98, 235);
             this.usernameError.Name = "usernameError";
             this.usernameError.Size = new System.Drawing.Size(269, 25);
             this.usernameError.TabIndex = 7;
@@ -120,7 +120,7 @@
             // 
             this.passwordError.AutoSize = true;
             this.passwordError.ForeColor = System.Drawing.Color.Red;
-            this.passwordError.Location = new System.Drawing.Point(98, 328);
+            this.passwordError.Location = new System.Drawing.Point(94, 335);
             this.passwordError.Name = "passwordError";
             this.passwordError.Size = new System.Drawing.Size(265, 25);
             this.passwordError.TabIndex = 8;
@@ -164,7 +164,7 @@
             this.Controls.Add(this.password);
             this.Controls.Add(this.username);
             this.Name = "Login";
-            this.Text = "* Please enter a Password";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
