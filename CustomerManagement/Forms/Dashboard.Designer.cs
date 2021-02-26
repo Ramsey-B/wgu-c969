@@ -36,7 +36,8 @@
             this.calendarBtn = new System.Windows.Forms.Button();
             this.pageHeader = new System.Windows.Forms.Label();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.apptNumReportBtn = new System.Windows.Forms.Button();
+            this.consultantReportBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,22 +140,33 @@
             this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // button1
+            // apptNumReportBtn
             // 
-            this.button1.Location = new System.Drawing.Point(82, 728);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(302, 45);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Number of Appointments";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.apptNumReportBtn.Location = new System.Drawing.Point(82, 728);
+            this.apptNumReportBtn.Name = "apptNumReportBtn";
+            this.apptNumReportBtn.Size = new System.Drawing.Size(302, 45);
+            this.apptNumReportBtn.TabIndex = 8;
+            this.apptNumReportBtn.Text = "Number of Appointments";
+            this.apptNumReportBtn.UseVisualStyleBackColor = true;
+            this.apptNumReportBtn.Click += new System.EventHandler(this.apptNumReportBtn_Click);
+            // 
+            // consultantReportBtn
+            // 
+            this.consultantReportBtn.Location = new System.Drawing.Point(82, 824);
+            this.consultantReportBtn.Name = "consultantReportBtn";
+            this.consultantReportBtn.Size = new System.Drawing.Size(302, 44);
+            this.consultantReportBtn.TabIndex = 9;
+            this.consultantReportBtn.Text = "Consultant Schedules";
+            this.consultantReportBtn.UseVisualStyleBackColor = true;
+            this.consultantReportBtn.Click += new System.EventHandler(this.consultantReportBtn_Click);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 1115);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.consultantReportBtn);
+            this.Controls.Add(this.apptNumReportBtn);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.calendarBtn);
@@ -181,6 +193,7 @@
         private System.Windows.Forms.Button calendarBtn;
         private System.Windows.Forms.Label pageHeader;
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button apptNumReportBtn;
+        private System.Windows.Forms.Button consultantReportBtn;
     }
 }

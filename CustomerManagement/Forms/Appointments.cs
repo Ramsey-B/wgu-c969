@@ -15,6 +15,7 @@ namespace CustomerManagement.Forms
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly Translator _translator;
         private readonly Customer _customer;
+        private List<Appointment> _appointments;
 
         public Appointments(Context context, Translator translator, IAppointmentRepository appointmentRepository, Customer customer = null)
         {
@@ -36,7 +37,12 @@ namespace CustomerManagement.Forms
             var now = DateTime.UtcNow;
             DateTime start;
             DateTime end;
-            if (monthRadio.Checked)
+            if (_customer != null)
+            {
+                start = DateTime.MinValue;
+                end = DateTime.MaxValue;
+            }
+            else if (monthRadio.Checked)
             {
                 start = new DateTime(now.Year, now.Month, 1);
                 end = start.AddMonths(1).AddDays(-1);
@@ -46,14 +52,21 @@ namespace CustomerManagement.Forms
                 start = now.AddDays(-(int)now.DayOfWeek);
                 end = start.AddDays(7);
             }
-            var result = await _appointmentRepository.GetAllAsync(_context.CurrentUser.Id, _customer?.Id, start, end);
+            _appointments = await _appointmentRepository.GetAllAsync(start, end, _context.CurrentUser.Id, _customer?.Id);
 
-            SetTable(result);
+            SetTable(_appointments);
         }
 
         private void SetTable(List<Appointment> appointments)
         {
             if (appointments == null) return;
+
+            if (_customer != null)
+            {
+                monthRadio.Visible = false;
+                weekRadio.Visible = false;
+            }
+
             var displayAppt = new BindingList<object>();
             appointments.ForEach(appt =>
             {
@@ -87,7 +100,8 @@ namespace CustomerManagement.Forms
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            var appointment = appointmentTable.CurrentRow.DataBoundItem as Appointment;
+            var appointmentId = (int)appointmentTable.CurrentRow.Cells["Id"].Value;
+            var appointment = _appointments.Find(appt => appt.Id == appointmentId);
             if (appointment == null)
             {
                 MessageBox.Show(_translator.Translate("appointment.noneSelected"));
@@ -103,17 +117,14 @@ namespace CustomerManagement.Forms
 
         private async void deleteBtn_Click(object sender, EventArgs e)
         {
-            var appointment = appointmentTable.CurrentRow.DataBoundItem as Appointment;
-            if (appointment == null)
-            {
-                MessageBox.Show(_translator.Translate("appointment.noneSelected"));
-                return;
-            }
-            var dialogResult = MessageBox.Show(_translator.Translate("appointment.confirmDelete", new { appointment.Title }), "", MessageBoxButtons.YesNo);
+            var appointmentId = (int)appointmentTable.CurrentRow.Cells["Id"].Value;
+            var title = appointmentTable.CurrentRow.Cells["Title"].Value.ToString();
+
+            var dialogResult = MessageBox.Show(_translator.Translate("appointment.confirmDelete", new { title }), "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) return;
             try
             {
-                await _appointmentRepository.DeleteAsync(appointment.Id);
+                await _appointmentRepository.DeleteAsync(appointmentId);
                 await GetAppointments();
             }
             catch (Exception)

@@ -57,7 +57,7 @@ namespace CustomerManagement.Data.Util
 
         public async Task<int> DeleteAsync(int id, string tableName)
         {
-            return await ExecuteAsync($"DELETE FROM {tableName} WHERE {tableName + "Id"} = @Id", new { Id = id });
+            return await ExecuteAsync($"DELETE FROM {tableName} WHERE {tableName + "Id"} = @Id@", new { Id = id });
         }
 
         private IDbConnection GetConnection()
@@ -144,16 +144,16 @@ namespace CustomerManagement.Data.Util
 
                 if (value is string)
                 {
-                    sql = sql.Replace($"@{prop.Name}", $"'{value}'");
+                    sql = sql.Replace($"@{prop.Name}@", $"'{value}'");
                 }
                 else if (value is DateTime date)
                 {
                     var dateStr = date.ToString("yyyy-MM-dd hh:mm:ss");
-                    sql = sql.Replace($"@{prop.Name}", $"'{dateStr}'");
+                    sql = sql.Replace($"@{prop.Name}@", $"'{dateStr}'");
                 }
                 else
                 {
-                    sql = sql.Replace($"@{prop.Name}", value?.ToString());
+                    sql = sql.Replace($"@{prop.Name}@", value?.ToString());
                 }
             }
 

@@ -2,6 +2,7 @@
 using CustomerManagement.Core.Models;
 using CustomerManagement.Translations;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,10 +16,12 @@ namespace CustomerManagement.Forms.Customers
         private readonly Translator _translator;
         private readonly User _currentUser;
         private readonly IAppointmentRepository _appointmentRepository;
+        private List<Customer> _customers;
 
-        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, IAppointmentRepository appointmentRepository)
+        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, IAppointmentRepository appointmentRepository, IUserRepository userRepository)
         {
             InitializeComponent();
+     
             _context = context;
             _customerRepository = customerRepository;
             _translator = translator;
@@ -33,10 +36,10 @@ namespace CustomerManagement.Forms.Customers
 
         private async Task getCustomers()
         {
-            var results = await _customerRepository.GetAllAsync();
+            _customers = await _customerRepository.GetAllAsync();
 
             var displayCustomers = new BindingList<object>();
-            results.ForEach(customer =>
+            _customers.ForEach(customer =>
             {
                 displayCustomers.Add(new
                 {
@@ -96,7 +99,8 @@ namespace CustomerManagement.Forms.Customers
 
         private void appointmentsBtn_Click(object sender, EventArgs e)
         {
-            var customer = customersTable.CurrentRow.DataBoundItem as Customer;
+            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
+            var customer = _customers.Find(c => c.Id == customerId);
             if (customer == null)
             {
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
@@ -117,9 +121,14 @@ namespace CustomerManagement.Forms.Customers
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void apptNumReportBtn_Click(object sender, EventArgs e)
         {
             new AppointmentsReport(_context).ShowDialog();
+        }
+
+        private void consultantReportBtn_Click(object sender, EventArgs e)
+        {
+            new ConsultantSchedules(_context).ShowDialog();
         }
     }
 }

@@ -68,6 +68,8 @@ namespace CustomerManagement.Forms
 
         private void Init()
         {
+            startInput.MinDate = DateTime.Now;
+            endInput.MinDate = DateTime.Now;
             if (_appointment != null)
             {
                 titleInput.Text = _appointment.Title;
@@ -87,8 +89,10 @@ namespace CustomerManagement.Forms
             var businessEnd = DateTime.Today.ToLocalTime().AddHours(17);
 
             if (
-                    startInput.Value < businessStart || // before open
-                    endInput.Value > businessEnd || // after close
+                    startInput.Value.Hour < businessStart.Hour || // before open
+                    endInput.Value.Hour > businessEnd.Hour || // after close
+                    startInput.Value.Year != endInput.Value.Year || // different years
+                    startInput.Value.Day != endInput.Value.Day || // different days
                     startInput.Value >= endInput.Value // start is after end
                 )
             {
@@ -121,7 +125,7 @@ namespace CustomerManagement.Forms
                 var end = ex.End.ToLocalTime();
                 errorLabel.Text = _translator.Translate("appointment.overlappingAppointmentError", new { Start = start, End = end });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 errorLabel.Visible = true;
                 errorLabel.Text = _translator.Translate("unexpectedError");
@@ -161,6 +165,7 @@ namespace CustomerManagement.Forms
             {
                 var newAppt = new Appointment
                 {
+                    Id = _appointment.Id,
                     CustomerId = _customer.Id,
                     UserId = _context.CurrentUser.Id,
                     Title = titleInput.Text,

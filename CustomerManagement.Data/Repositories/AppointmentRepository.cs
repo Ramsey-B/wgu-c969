@@ -17,21 +17,21 @@ namespace CustomerManagement.Data.Repositories
             _sqlOrm = sqlOrm;
         }
 
-        public async Task<List<Appointment>> GetAllAsync(int userId, int? customerId, DateTime? start = null, DateTime? end = null)
+        public async Task<List<Appointment>> GetAllAsync(DateTime start, DateTime end, int? userId = null, int? customerId = null, string searchTerm = null)
         {
             var sql = SelectSql.Appointment;
 
             if (customerId != null)
             {
-                sql += " AND customerId = @CustomerId";
+                sql += " AND appointment.customerId = @CustomerId@";
             }
-            if (start != null)
+            if (userId != null)
             {
-                sql += " AND start >= @Start";
+                sql += " AND appointment.userId = @UserId@";
             }
-            if (end != null)
+            if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                sql += " AND start <= @End";
+                sql += $" AND (userName LIKE '%{searchTerm}%' OR type LIKE '%{searchTerm}%' OR customerName LIKE '%{searchTerm}%')";
             }
 
             return await _sqlOrm.QueryListAsync<Appointment>(sql, new { UserId = userId, CustomerId = customerId, Start = start, End = end });

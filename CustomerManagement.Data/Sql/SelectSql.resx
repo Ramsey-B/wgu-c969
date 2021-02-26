@@ -121,10 +121,10 @@
     <value>SELECT * FROM address</value>
   </data>
   <data name="Appointment" xml:space="preserve">
-    <value>SELECT * FROM appointment WHERE userId = @UserId</value>
+    <value>SELECT * FROM appointment  INNER JOIN user ON user.userId = appointment.userId INNER JOIN customer ON customer.customerId = appointment.customerId WHERE (start BETWEEN @Start@ AND @End@)</value>
   </data>
   <data name="AppointmentTimeCheck" xml:space="preserve">
-    <value>SELECT start, end FROM appointment WHERE userId = @UserID AND ((start BETWEEN @Start AND @End) OR (end BETWEEN @Start AND @End));</value>
+    <value>SELECT start, end FROM appointment WHERE userId = @UserId@ AND ((start BETWEEN @Start@ AND @End@) OR (end BETWEEN @Start@ AND @End@));</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>SELECT * FROM city</value>
@@ -136,6 +136,6 @@
     <value>SELECT * FROM customer</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value>SELECT * FROM user WHERE userName = @Name AND password = @Password</value>
+    <value>SELECT * FROM user WHERE userName = @Name@ AND password = @Password@</value>
   </data>
 </root>

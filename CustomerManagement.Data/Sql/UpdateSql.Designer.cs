@@ -61,7 +61,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE address SET address = @Address1, address2 = @Address2, cityId = @CityId, postalCode = @PostalCode, phone = @Phone, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE addressId = @Id;.
+        ///   Looks up a localized string similar to UPDATE address SET address = @Address1@, address2 = @Address2@, cityId = @CityId@, postalCode = @PostalCode@, phone = @Phone@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE addressId = @Id@;.
         /// </summary>
         internal static string Address {
             get {
@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE customer SET customerId = @CustomerId, userId = @UserId, title = @Title, description = @Description, location = @Location, contact = @Contact, type = @Type, url = @Url, start = @Start, end = @End, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE appointmentId = @Id;.
+        ///   Looks up a localized string similar to UPDATE appointment SET customerId = @CustomerId@, userId = @UserId@, title = @Title@, description = @Description@, location = @Location@, contact = @Contact@, type = @Type@, url = @Url@, start = @Start@, end = @End@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE appointmentId = @Id@;.
         /// </summary>
         internal static string Appointment {
             get {
@@ -79,7 +79,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE city SET city = @Name, countryId = @CountryId, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE cityId = @Id;.
+        ///   Looks up a localized string similar to UPDATE city SET city = @Name@, countryId = @CountryId@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE cityId = @Id@;.
         /// </summary>
         internal static string City {
             get {
@@ -88,7 +88,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE country SET country = @Name, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE countryId = @Id;.
+        ///   Looks up a localized string similar to UPDATE country SET country = @Name@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE countryId = @Id@;.
         /// </summary>
         internal static string Country {
             get {
@@ -97,7 +97,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE customer SET customerName = @Name, addressId = @AddressId, active = @Active, lastUpdate = @LastUpdate, lastUpdateBy = @LastUpdateBy WHERE customerId = @Id;.
+        ///   Looks up a localized string similar to UPDATE customer SET customerName = @Name@, addressId = @AddressId@, active = @Active@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE customerId = @Id@;.
         /// </summary>
         internal static string Customer {
             get {

@@ -44,7 +44,7 @@
             this.appointmentTable.AllowUserToAddRows = false;
             this.appointmentTable.AllowUserToDeleteRows = false;
             this.appointmentTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointmentTable.Location = new System.Drawing.Point(143, 199);
+            this.appointmentTable.Location = new System.Drawing.Point(143, 155);
             this.appointmentTable.Name = "appointmentTable";
             this.appointmentTable.ReadOnly = true;
             this.appointmentTable.RowHeadersVisible = false;
@@ -58,7 +58,7 @@
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.addBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addBtn.Location = new System.Drawing.Point(768, 493);
+            this.addBtn.Location = new System.Drawing.Point(768, 436);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(95, 39);
             this.addBtn.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             this.editBtn.BackColor = System.Drawing.Color.Green;
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(634, 493);
+            this.editBtn.Location = new System.Drawing.Point(630, 436);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(95, 39);
             this.editBtn.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Red;
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(497, 493);
+            this.deleteBtn.Location = new System.Drawing.Point(490, 436);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(95, 39);
             this.deleteBtn.TabIndex = 3;
@@ -94,7 +94,7 @@
             // 
             this.closeBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.closeBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.closeBtn.Location = new System.Drawing.Point(768, 587);
+            this.closeBtn.Location = new System.Drawing.Point(768, 515);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(95, 42);
             this.closeBtn.TabIndex = 4;
@@ -116,7 +116,7 @@
             // 
             this.monthRadio.AutoSize = true;
             this.monthRadio.Checked = true;
-            this.monthRadio.Location = new System.Drawing.Point(143, 153);
+            this.monthRadio.Location = new System.Drawing.Point(143, 109);
             this.monthRadio.Name = "monthRadio";
             this.monthRadio.Size = new System.Drawing.Size(103, 29);
             this.monthRadio.TabIndex = 6;
@@ -128,7 +128,7 @@
             // weekRadio
             // 
             this.weekRadio.AutoSize = true;
-            this.weekRadio.Location = new System.Drawing.Point(301, 153);
+            this.weekRadio.Location = new System.Drawing.Point(297, 109);
             this.weekRadio.Name = "weekRadio";
             this.weekRadio.Size = new System.Drawing.Size(98, 29);
             this.weekRadio.TabIndex = 7;

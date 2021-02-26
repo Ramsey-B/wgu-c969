@@ -54,7 +54,7 @@ namespace CustomerManagement.Forms
         {
             var startDate = new DateTime((int)yearSelect.SelectedItem, 1, 1);
             var endDate = startDate.AddYears(1).AddDays(-1);
-            var result = await _appointmentRepository.GetAllAsync(_context.CurrentUser.Id, null, startDate, endDate);
+            var result = await _appointmentRepository.GetAllAsync(startDate, endDate, _context.CurrentUser.Id);
 
             var report = new Dictionary<string, int>()
             {

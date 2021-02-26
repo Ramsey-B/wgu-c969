@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM appointment WHERE userId = @UserId.
+        ///   Looks up a localized string similar to SELECT * FROM appointment  INNER JOIN user ON user.userId = appointment.userId INNER JOIN customer ON customer.customerId = appointment.customerId WHERE (start BETWEEN @Start@ AND @End@).
         /// </summary>
         internal static string Appointment {
             get {
@@ -79,7 +79,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @UserID AND ((start BETWEEN @Start AND @End) OR (end BETWEEN @Start AND @End));.
+        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @UserId@ AND ((start BETWEEN @Start@ AND @End@) OR (end BETWEEN @Start@ AND @End@));.
         /// </summary>
         internal static string AppointmentTimeCheck {
             get {
@@ -115,7 +115,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM user WHERE userName = @Name AND password = @Password.
+        ///   Looks up a localized string similar to SELECT * FROM user WHERE userName = @Name@ AND password = @Password@.
         /// </summary>
         internal static string User {
             get {

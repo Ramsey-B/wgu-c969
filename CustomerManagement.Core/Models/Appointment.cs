@@ -27,5 +27,9 @@ namespace CustomerManagement.Core.Models
         public DateTime Start { get; set; }
         [Column("end")]
         public DateTime End { get; set; }
+        [Column("userName")]
+        public string Username { get; set; }
+        [Column("customerName")]
+        public string CustomerName { get; set; }
     }
 }
