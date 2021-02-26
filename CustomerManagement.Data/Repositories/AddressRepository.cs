@@ -69,12 +69,13 @@ namespace CustomerManagement.Data.Repositories
             if (address?.City?.Country != null)
             {
                 address.City.Country.LastUpdate = DateTime.UtcNow;
-                rowsChanged += await _sqlOrm.ExecuteAsync(UpdateSql.Country, address?.City?.Country);
+                await _sqlOrm.ExecuteAsync(UpdateSql.Country, address?.City?.Country);
+                rowsChanged++;
             }
 
             if (address?.City != null)
             {
-                rowsChanged += await _sqlOrm.ExecuteAsync(UpdateSql.City, new
+                await _sqlOrm.ExecuteAsync(UpdateSql.City, new
                 {
                     address.City.Id,
                     address.City.Name,
@@ -82,11 +83,12 @@ namespace CustomerManagement.Data.Repositories
                     LastUpdate = DateTime.UtcNow,
                     address.City.LastUpdateBy
                 });
+                rowsChanged++;
             }
             
             if (address != null)
             {
-                rowsChanged += await _sqlOrm.ExecuteAsync(UpdateSql.Address, new
+                await _sqlOrm.ExecuteAsync(UpdateSql.Address, new
                 {
                     address.Id,
                     address.Address1,
@@ -97,6 +99,7 @@ namespace CustomerManagement.Data.Repositories
                     LastUpdate = DateTime.UtcNow,
                     address.LastUpdateBy
                 });
+                rowsChanged++;
             }
 
             return rowsChanged;

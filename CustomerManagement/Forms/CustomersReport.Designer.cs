@@ -90,7 +90,7 @@
             this.closeBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.closeBtn.Location = new System.Drawing.Point(477, 622);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(94, 50);
+            this.closeBtn.Size = new System.Drawing.Size(94, 41);
             this.closeBtn.TabIndex = 11;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = false;

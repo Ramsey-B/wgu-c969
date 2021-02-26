@@ -57,7 +57,8 @@ namespace CustomerManagement.Data.Repositories
             appointment.Start = new DateTime(appointment.Start.Year, appointment.Start.Month, appointment.Start.Day, appointment.Start.Hour, appointment.Start.Minute, 0);
             appointment.End = new DateTime(appointment.End.Year, appointment.End.Month, appointment.End.Day, appointment.End.Hour, appointment.End.Minute, 0);
             await AppointmentValidation(appointment);
-            return await _sqlOrm.ExecuteAsync(UpdateSql.Appointment, appointment);
+            await _sqlOrm.ExecuteAsync(UpdateSql.Appointment, appointment);
+            return 1;
         }
 
         public async Task<int> DeleteAsync(int id)

@@ -41,23 +41,21 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<int> UpdateAsync(Customer customer)
         {
+            if (customer == null) throw new ArgumentNullException(nameof(customer));
             ValidateCustomerInputs(customer);
-            var rowCount = await _addressRepository.UpdateAsync(customer?.Address);
+            var rowsChanged = await _addressRepository.UpdateAsync(customer?.Address);
 
-            if (customer != null)
+            await _sqlOrm.ExecuteAsync(UpdateSql.Customer, new
             {
-                rowCount = await _sqlOrm.ExecuteAsync(UpdateSql.Customer, new
-                {
-                    customer.Id,
-                    customer.Name,
-                    AddressId = customer.Address.Id,
-                    customer.Active,
-                    LastUpdate = DateTime.UtcNow,
-                    customer.LastUpdateBy
-                });
-            }
+                customer.Id,
+                customer.Name,
+                AddressId = customer.Address.Id,
+                customer.Active,
+                LastUpdate = DateTime.UtcNow,
+                customer.LastUpdateBy
+            });
 
-            return rowCount;
+            return rowsChanged += 1;
         }
 
         public async Task<int> DeleteAsync(int id)

@@ -44,7 +44,7 @@ namespace CustomerManagement.Data.Util
 
         public async Task<T> QueryAsync<T>(string sqlStatement, string tableName, int id) where T : new()
         {
-            return await QueryAsync<T>(sqlStatement + $" WHERE {tableName + "Id"} = @Id;", new { Id = id });
+            return await QueryAsync<T>(sqlStatement + $" WHERE {tableName + "Id"} = @Id@;", new { Id = id });
         }
 
         public async Task<int> CreateEntityAsync(string sql, object parameters)
@@ -156,7 +156,7 @@ namespace CustomerManagement.Data.Util
                 }
                 else if (value is DateTime date)
                 {
-                    var dateStr = date.ToString("yyyy-MM-dd hh:mm:ss");
+                    var dateStr = date.ToString("yyyy-MM-dd HH:mm:ss");
                     sql = sql.Replace($"@{prop.Name}@", $"'{dateStr}'");
                 }
                 else
