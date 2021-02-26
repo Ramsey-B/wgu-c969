@@ -92,5 +92,6 @@
   "select": "Select",
   "search": "Search",
   "consultantSchedules": "Consultant Schedules",
-  "customersReport": "Customers Report"
+  "customersReport": "Customers Report",
+  "reminderMessage": "Alert: You have an appointment in {Minutes} minutes with {CustomerName} at {Time}!"
 }

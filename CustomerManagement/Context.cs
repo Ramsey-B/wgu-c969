@@ -41,30 +41,6 @@ namespace CustomerManagement
             return _servicePorvider.GetRequiredService<T>();
         }
 
-        public async Task HandleReminders(List<Appointment> appointments)
-        {
-            //appointments = appointments.FindAll(appt => appt.Start > DateTime.UtcNow.AddMinutes(-1) && appt.Start < DateTime.UtcNow.AddDays(1));
-            for (int i = 0; i < appointments.Count; i++)
-            {
-                appointments[i].Start = DateTime.UtcNow.AddMinutes(i + 15);
-            }
-            
-            appointments = appointments.OrderBy(appt => appt.Start).ToList();
-
-            foreach (var appt in appointments)
-            {
-                await Task.Run(async () => 
-                {
-                    var timeToGo = appt.Start - DateTime.UtcNow.AddMinutes(15);
-                    if (timeToGo.Ticks > 0) // The appointment is over 15 mins from now
-                    {
-                        await Task.Delay(timeToGo);
-                    }
-                    MessageBox.Show($"Alert: You have an appointment in {timeToGo.Minutes + 15} minutes with {appt.CustomerName} at {appt.Start.ToLocalTime()}!");
-                });
-            }
-        }
-
         private User Authenticate()
         {
             if (_currentUser == null)

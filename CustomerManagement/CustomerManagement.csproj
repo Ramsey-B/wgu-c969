@@ -170,6 +170,7 @@
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reminder.cs" />
     <Compile Include="Translations\Translator.cs" />
     <Compile Include="Context.cs" />
     <EmbeddedResource Include="Forms\Appointments.resx">

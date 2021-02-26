@@ -48,6 +48,7 @@ namespace CustomerManagement
                 .AddSingleton<Context>()
                 .AddScoped<Translator>()
                 .AddScoped<Dashboard>()
+                .AddSingleton<Reminder>() // Must be a singleton to work.
                 .AddScoped<Login>();
         }
     }

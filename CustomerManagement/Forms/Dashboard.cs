@@ -18,7 +18,7 @@ namespace CustomerManagement.Forms.Customers
         private readonly IAppointmentRepository _appointmentRepository;
         private List<Customer> _customers;
 
-        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, IAppointmentRepository appointmentRepository)
+        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, IAppointmentRepository appointmentRepository, Reminder reminder)
         {
             InitializeComponent();
      
@@ -28,7 +28,7 @@ namespace CustomerManagement.Forms.Customers
             _currentUser = context.CurrentUser; // Triggers auth
             if (_currentUser == null) Application.Exit();
             _appointmentRepository = appointmentRepository;
-            _context.HandleReminders(_appointmentRepository.GetAllAsync(DateTime.MinValue, DateTime.MaxValue, _context.CurrentUser.Id).Result);
+            _ = reminder.HandleAppointmentReminders();
             Shown += async (object sender, EventArgs e) =>
             {
                 await getCustomers();
