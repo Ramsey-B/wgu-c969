@@ -41,6 +41,10 @@ namespace CustomerManagement.Data.Repositories
         {
             appointment.CreateDate = DateTime.UtcNow;
             appointment.LastUpdate = DateTime.UtcNow;
+
+            // Remove Seconds from schedule
+            appointment.Start = new DateTime(appointment.Start.Year, appointment.Start.Month, appointment.Start.Day, appointment.Start.Hour, appointment.Start.Minute, 0);
+            appointment.End = new DateTime(appointment.End.Year, appointment.End.Month, appointment.End.Day, appointment.End.Hour, appointment.End.Minute, 0);
             await AppointmentValidation(appointment);
             return await _sqlOrm.CreateEntityAsync(CreateSql.Appointment, appointment);
         }
@@ -48,6 +52,10 @@ namespace CustomerManagement.Data.Repositories
         public async Task<int> UpdateAsync(Appointment appointment)
         {
             appointment.LastUpdate = DateTime.UtcNow;
+
+            // Remove Seconds from schedule
+            appointment.Start = new DateTime(appointment.Start.Year, appointment.Start.Month, appointment.Start.Day, appointment.Start.Hour, appointment.Start.Minute, 0);
+            appointment.End = new DateTime(appointment.End.Year, appointment.End.Month, appointment.End.Day, appointment.End.Hour, appointment.End.Minute, 0);
             await AppointmentValidation(appointment);
             return await _sqlOrm.ExecuteAsync(UpdateSql.Appointment, appointment);
         }
@@ -71,8 +79,6 @@ namespace CustomerManagement.Data.Repositories
 
         private async Task AppointmentValidation(Appointment appointment)
         {
-            await AppointmentTimeCheckAsync(appointment.UserId, appointment.Start, appointment.End);
-
             if (string.IsNullOrWhiteSpace(appointment.Title))
             {
                 throw new InvalidEntityException("title");
@@ -82,6 +88,8 @@ namespace CustomerManagement.Data.Repositories
             {
                 throw new InvalidEntityException("type");
             }
+
+            await AppointmentTimeCheckAsync(appointment.UserId, appointment.Start, appointment.End);
         }
     }
 }
