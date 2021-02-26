@@ -1,33 +1,19 @@
 ﻿using CustomerManagement.Core.Models;
 using CustomerManagement.Forms;
-using CustomerManagement.Translations;
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement
 {
     public class Context
     {
-        private readonly Login _login;
         private readonly IServiceProvider _servicePorvider;
         private User _currentUser;
 
-        public Context(Login login, IServiceProvider serviceProvider)
+        public Context(IServiceProvider serviceProvider)
         {
-            _login = login;
-            _servicePorvider = serviceProvider;
-
-            _login.FormClosed += (object sender, FormClosedEventArgs e) =>
-            {
-                _currentUser = _login.User;
-            };
+            _servicePorvider = serviceProvider; // used for dependecy injection.
         }
 
         public User CurrentUser
@@ -36,6 +22,11 @@ namespace CustomerManagement
             set { _currentUser = value; }
         }
 
+        /// <summary>
+        /// Gets a registered service by type.
+        /// Used so we only need to pass the context to 
+        /// sub forms instead of all dependencies.
+        /// </summary>
         public T GetService<T>()
         {
             return _servicePorvider.GetRequiredService<T>();
@@ -43,9 +34,10 @@ namespace CustomerManagement
 
         private User Authenticate()
         {
-            if (_currentUser == null)
+            while (_currentUser == null) // keep forcing the login till the user is set.
             {
-                _login.ShowDialog();
+                var login = new Login(this);
+                login.ShowDialog(); // If the current user is unknown, display the login.
             }
             return _currentUser;
         }

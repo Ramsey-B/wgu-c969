@@ -10,17 +10,18 @@ namespace CustomerManagement.Forms
 {
     public partial class Login : Form
     {
+        private readonly Context _context;
         private readonly Logger _logger;
         private readonly Translator _translator;
         private readonly IUserRepository _userRepository;
-        public User User;
 
-        public Login(Logger logger, Translator translator, IUserRepository userRepository)
+        public Login(Context context)
         {
             InitializeComponent();
-            _logger = logger;
-            _translator = translator;
-            _userRepository = userRepository;
+            _context = context;
+            _logger = context.GetService<Logger>();
+            _translator = context.GetService<Translator>();
+            _userRepository = context.GetService<IUserRepository>();
             Shown += (object sender, EventArgs e) =>
             {
                 TranslatePage();
@@ -52,7 +53,7 @@ namespace CustomerManagement.Forms
                 var user = await _userRepository.LoginAsync(new User() { Name = username.Text, Password = password.Text });
 
                 _logger.LogMessage($"User with username ({user.Name}) and id ({user.Id}) successfully logged in.");
-                User = user;
+                _context.CurrentUser = user;
                 Close();
             }
             catch (InvalidLoginException ex)
@@ -61,7 +62,7 @@ namespace CustomerManagement.Forms
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("login.loginError");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("unexpectedError");

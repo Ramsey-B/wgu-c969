@@ -1,16 +1,11 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Data.Repositories;
 using CustomerManagement.Data.Util;
-using CustomerManagement.Forms;
 using CustomerManagement.Forms.Customers;
 using CustomerManagement.Logging;
 using CustomerManagement.Translations;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Authentication.ExtendedProtection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement
@@ -47,9 +42,8 @@ namespace CustomerManagement
                 .AddScoped<Logger>()
                 .AddSingleton<Context>()
                 .AddScoped<Translator>()
-                .AddScoped<Dashboard>()
                 .AddSingleton<Reminder>() // Must be a singleton to work.
-                .AddScoped<Login>();
+                .AddScoped<Dashboard>();
         }
     }
 }
