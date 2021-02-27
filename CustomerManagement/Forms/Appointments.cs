@@ -73,11 +73,9 @@ namespace CustomerManagement.Forms
                 {
                     appt.Id,
                     appt.Title,
+                    appt.CustomerName,
                     appt.Type,
                     appt.Description,
-                    appt.Contact,
-                    appt.Location,
-                    appt.Url,
                     Start = appt.Start.ToLocalTime(),
                     End = appt.End.ToLocalTime()
                 });
@@ -108,7 +106,11 @@ namespace CustomerManagement.Forms
                 MessageBox.Show(_translator.Translate("appointment.noneSelected"));
                 return;
             }
-            var modifyAppt = new ModifyAppointment(_context, appointment, _customer);
+            var modifyAppt = new ModifyAppointment(_context, appointment, new Customer 
+            { 
+                Id = appointment.CustomerId, 
+                Name = appointment.CustomerName
+            });
             modifyAppt.Show();
             // refresh the appointment data
             modifyAppt.FormClosed += async (object s, FormClosedEventArgs ec) =>
