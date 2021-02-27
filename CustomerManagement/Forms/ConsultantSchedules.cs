@@ -44,7 +44,7 @@ namespace CustomerManagement.Forms
             }
             var results = await _appointmentRepository.GetAllAsync(start, end, searchTerm: searchBox.Text) ?? new List<Appointment>();
 
-            results = results.OrderBy(appt => appt.Username).ToList(); // sorts the results by their username
+            results = results.OrderBy(appt => appt.Username).ToList(); // sorts the results by their username. Used orderby so I don't need to implement my own sort alg
 
             // map the results to the table
             var displayAppt = new BindingList<object>();

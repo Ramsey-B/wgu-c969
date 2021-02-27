@@ -66,6 +66,7 @@ namespace CustomerManagement.Forms
 
             // Map appointments to the table
             var displayAppt = new BindingList<object>();
+            // Foreach is used to iterate over the entire appointments list
             appointments.ForEach(appt =>
             {
                 displayAppt.Add(new
@@ -90,7 +91,7 @@ namespace CustomerManagement.Forms
         {
             var modifyAppt = new ModifyAppointment(_context, null, _customer);
             modifyAppt.Show();
-            // refresh the appointment data
+            // refreshes the appointment data after the modify form is closed
             modifyAppt.FormClosed += async (object s, FormClosedEventArgs ec) =>
             {
                 await GetAppointments();
@@ -100,6 +101,7 @@ namespace CustomerManagement.Forms
         private void editBtn_Click(object sender, EventArgs e)
         {
             var appointmentId = (int)appointmentTable.CurrentRow.Cells["Id"].Value;
+            // find is used to get the appointment by id from the appointments list. If its not found it returns null
             var appointment = _appointments.Find(appt => appt.Id == appointmentId);
             if (appointment == null)
             {

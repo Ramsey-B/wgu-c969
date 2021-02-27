@@ -192,7 +192,8 @@ namespace CustomerManagement.Forms
             var select = new CustomerSelect(_context);
             select.Show();
 
-            // Grab the selected Customer before the form closes
+            // Adds the lambda to the FormClosing life cycle events to that we can grab the selected customer 
+            // before the form closes. A lambda is used because this code is not reused.
             select.FormClosing += (object s, FormClosingEventArgs ec) =>
             {
                 if (select.Customer != null) // only set and update the title if the user selected a customer

@@ -55,7 +55,7 @@ namespace CustomerManagement.Forms
         private void selectBtn_Click(object sender, EventArgs e)
         {
             var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
-            Customer = customers.Find(c => c.Id == customerId); // Set the Customer to the selected one
+            Customer = customers.Find(c => c.Id == customerId); // Find the customer by Id or return null. Used so I don't need to implement my own search alg
             if (Customer == null)
             {
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
