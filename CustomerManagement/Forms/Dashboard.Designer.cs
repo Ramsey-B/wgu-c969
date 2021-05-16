@@ -39,7 +39,10 @@
             this.apptNumReportBtn = new System.Windows.Forms.Button();
             this.consultantReportBtn = new System.Windows.Forms.Button();
             this.customerReportBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // customersTable
@@ -110,10 +113,11 @@
             // calendarBtn
             // 
             this.calendarBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.calendarBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.calendarBtn.Location = new System.Drawing.Point(82, 139);
+            this.calendarBtn.Location = new System.Drawing.Point(406, 3);
             this.calendarBtn.Name = "calendarBtn";
-            this.calendarBtn.Size = new System.Drawing.Size(217, 47);
+            this.calendarBtn.Size = new System.Drawing.Size(258, 75);
             this.calendarBtn.TabIndex = 5;
             this.calendarBtn.Text = "Calendar";
             this.calendarBtn.UseVisualStyleBackColor = false;
@@ -123,7 +127,7 @@
             // 
             this.pageHeader.AutoSize = true;
             this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageHeader.Location = new System.Drawing.Point(77, 55);
+            this.pageHeader.Location = new System.Drawing.Point(350, 139);
             this.pageHeader.Name = "pageHeader";
             this.pageHeader.Size = new System.Drawing.Size(291, 37);
             this.pageHeader.TabIndex = 6;
@@ -171,25 +175,49 @@
             this.customerReportBtn.UseVisualStyleBackColor = true;
             this.customerReportBtn.Click += new System.EventHandler(this.customerReportBtn_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.calendarBtn);
+            this.panel1.Location = new System.Drawing.Point(2, -3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1159, 78);
+            this.panel1.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(14, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(283, 41);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Jim\'s Landscaping";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 976);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.customerReportBtn);
             this.Controls.Add(this.consultantReportBtn);
             this.Controls.Add(this.apptNumReportBtn);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.pageHeader);
-            this.Controls.Add(this.calendarBtn);
             this.Controls.Add(this.appointmentsBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.customersTable);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +236,7 @@
         private System.Windows.Forms.Button apptNumReportBtn;
         private System.Windows.Forms.Button consultantReportBtn;
         private System.Windows.Forms.Button customerReportBtn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
