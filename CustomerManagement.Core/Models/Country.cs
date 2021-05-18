@@ -4,9 +4,7 @@ namespace CustomerManagement.Core.Models
 {
     public class Country : EntityBase
     {
-        [Column("country")]
+        [Column("name")]
         public string Name { get; set; }
-        [Column("countryId")]
-        public override int Id { get; set; }
     }
 }

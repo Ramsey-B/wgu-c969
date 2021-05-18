@@ -57,7 +57,7 @@ namespace CustomerManagement.Data.Util
 
         public async Task<int> DeleteAsync(int id, string tableName)
         {
-            return await ExecuteAsync($"DELETE FROM {tableName} WHERE {tableName + "Id"} = @Id@", new { Id = id });
+            return await ExecuteAsync($"DELETE FROM {tableName} WHERE id = @Id@", new { Id = id });
         }
 
         private IDbConnection GetConnection()
@@ -75,8 +75,8 @@ namespace CustomerManagement.Data.Util
                 try
                 {
                     connection.Open(); // start the connection to the DB
-                    sql = AddParametersToSql(sql, parameters); // replace the '@Param@' with the parameters values
                     var cmd = new MySqlCommand(sql, connection); // creates a new command
+                    AddParameters(ref cmd, parameters);
 
                     var result = await cmd.ExecuteReaderAsync(); // executes the command
 
@@ -103,8 +103,8 @@ namespace CustomerManagement.Data.Util
                 try
                 {
                     connection.Open(); // start the connection to the DB
-                    sql = AddParametersToSql(sql, parameters); // replace the '@Param@' with the parameters values
                     var cmd = new MySqlCommand(sql, connection); // creates a new command
+                    AddParameters(ref cmd, parameters);
 
                     var result = await cmd.ExecuteReaderAsync(); // executes the command
 
@@ -136,36 +136,19 @@ namespace CustomerManagement.Data.Util
             }
         }
 
-        /// <summary>
-        /// Replaces the @Params@ with values
-        /// </summary>
-        private string AddParametersToSql(string sql, object paramaters = null)
+        private void AddParameters(ref MySqlCommand command, object parameters = null)
         {
-            if (paramaters == null) return sql;
+            if (parameters == null) return;
 
-            var props = paramaters.GetType().GetProperties().ToList(); // get the properties from the parameters with reflection
+            var props = parameters.GetType().GetProperties().ToList(); // get the properties from the parameters with reflection
 
             foreach (var prop in props) // iterate properties
             {
-                var value = prop.GetValue(paramaters); // get the value of the property
+                var value = prop.GetValue(parameters); // get the value of the property
+                var name = prop.GetCustomAttribute<ColumnAttribute>()?.ColumnName ?? prop.Name;
 
-                // these if statements ensure the value is inserted in the correct format
-                if (value is string)
-                {
-                    sql = sql.Replace($"@{prop.Name}@", $"'{value}'");
-                }
-                else if (value is DateTime date)
-                {
-                    var dateStr = date.ToString("yyyy-MM-dd HH:mm:ss");
-                    sql = sql.Replace($"@{prop.Name}@", $"'{dateStr}'");
-                }
-                else
-                {
-                    sql = sql.Replace($"@{prop.Name}@", value?.ToString());
-                }
+                command.Parameters.AddWithValue(name, value);
             }
-
-            return sql;
         }
 
         private T MapColumns<T>(DbDataReader result) where T : new()
@@ -188,9 +171,9 @@ namespace CustomerManagement.Data.Util
 
                     prop.SetValue(instance, result[i], null); // set the column value on the object.
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw new SqlException($"Unable to map column '{result.GetName(i)}' with value {result[i]}");
+                    throw new SqlException($"Unable to map column '{result.GetName(i)}' with value {result[i]}", ex);
                 }
             }
 

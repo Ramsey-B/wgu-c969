@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>UPDATE address SET address = @Address1@, address2 = @Address2@, cityId = @CityId@, postalCode = @PostalCode@, phone = @Phone@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE addressId = @Id@;</value>
+    <value>UPDATE address SET address1 = @address1, address2 = @address2, cityId = @cityId, postalCode = @postalCode, phone = @phone, lastUpdated = @lastUpdated, lastUpdatedBy = @lastUpdatedBy WHERE id = @id;</value>
   </data>
   <data name="Appointment" xml:space="preserve">
-    <value>UPDATE appointment SET customerId = @CustomerId@, userId = @UserId@, title = @Title@, description = @Description@, location = @Location@, contact = @Contact@, type = @Type@, url = @Url@, start = @Start@, end = @End@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE appointmentId = @Id@;</value>
+    <value>UPDATE appointment SET customerId = @CustomerId, userId = @UserId, title = @Title, description = @Description, location = @Location, crewName = @crewName, type = @type, start = @start, end = @end, lastUpdated = @lastUpdated, lastUpdatedBy = @lastUpdatedBy WHERE id = @id;</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>UPDATE city SET city = @Name@, countryId = @CountryId@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE cityId = @Id@;</value>
+    <value>UPDATE city SET name = @name, countryId = @countryId, lastUpdated = @lastUpdated, lastUpdatedBy = @lastUpdatedBy WHERE id = @id;</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>UPDATE country SET country = @Name@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE countryId = @Id@;</value>
+    <value>UPDATE country SET name = @name, lastUpdated = @lastUpdated, lastUpdatedBy = @lastUpdatedBy WHERE id = @id;</value>
   </data>
   <data name="Customer" xml:space="preserve">
-    <value>UPDATE customer SET customerName = @Name@, addressId = @AddressId@, active = @Active@, lastUpdate = @LastUpdate@, lastUpdateBy = @LastUpdateBy@ WHERE customerId = @Id@;</value>
+    <value>UPDATE customer SET name = @name, addressId = @addressId, active = @active, lastUpdated = @lastUpdated, lastUpdatedBy = @lastUpdatedBy WHERE id = @id;</value>
   </data>
 </root>

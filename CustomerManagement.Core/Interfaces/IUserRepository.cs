@@ -9,6 +9,7 @@ namespace CustomerManagement.Core.Interfaces
     public interface IUserRepository
     {
         Task<User> LoginAsync(User user);
-        Task<int> CreateAsync(User user);
+        Task<User> CreateAsync(User user);
+        Task<bool> CheckUsernameExists(string username);
     }
 }

@@ -61,7 +61,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@Address1@, @Address2@, @CityId@, @PostalCode@, @Phone@, @CreateDate@, @CreatedBy@, @LastUpdate@, @LastUpdateBy@);.
+        ///   Looks up a localized string similar to INSERT INTO address (address1, address2, cityId, postalCode, phone, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@address1, @address2, @cityId, @postalCode, @phone, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);.
         /// </summary>
         internal static string Address {
             get {
@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@CustomerId@, @UserId@, @Title@, @Description@, @Location@, @Contact@, @Type@, @Url@, @Start@, @End@, @CreateDate@, @CreatedBy@, @LastUpdate@, @LastUpdateBy@);.
+        ///   Looks up a localized string similar to INSERT INTO appointment (customerId, userId, title, description, location, crewName, type, start, end, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@customerId, @userId, @title, @description, @location, @crewName, @type, @start, @end, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);.
         /// </summary>
         internal static string Appointment {
             get {
@@ -79,7 +79,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@Name@, @CountryId@, @CreateDate@, @CreatedBy@, @LastUpdate@, @LastUpdateBy@);.
+        ///   Looks up a localized string similar to INSERT INTO city (name, countryId, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@name, @countryId, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);.
         /// </summary>
         internal static string City {
             get {
@@ -88,7 +88,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@Name@, @CreateDate@, @CreatedBy@, @LastUpdate@, @LastUpdateBy@);.
+        ///   Looks up a localized string similar to INSERT INTO country (name, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@name, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);.
         /// </summary>
         internal static string Country {
             get {
@@ -97,7 +97,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@Name@, @AddressId@, @Active@, @CreateDate@, @CreatedBy@, @LastUpdate@, @LastUpdateBy@);.
+        ///   Looks up a localized string similar to INSERT INTO customer (name, addressId, active, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@name, @addressId, @active, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);.
         /// </summary>
         internal static string Customer {
             get {
@@ -106,7 +106,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO user (userName, password, active, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@Name@, @Password@, @Active@, @CreateDate@, @CreatedBy@, @LastUpdate@, @LastUpdateBy@);.
+        ///   Looks up a localized string similar to INSERT INTO user (username, password, active, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@username, @password, @active, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);.
         /// </summary>
         internal static string User {
             get {

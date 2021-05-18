@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM appointment  INNER JOIN user ON user.userId = appointment.userId INNER JOIN customer ON customer.customerId = appointment.customerId WHERE (start BETWEEN @Start@ AND @End@).
+        ///   Looks up a localized string similar to SELECT * FROM appointment  INNER JOIN user ON user.userId = appointment.userId INNER JOIN customer ON customer.customerId = appointment.customerId WHERE (start BETWEEN @start AND @end).
         /// </summary>
         internal static string Appointment {
             get {
@@ -79,7 +79,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @UserId@ AND ((start BETWEEN @Start@ AND @End@) OR (end BETWEEN @Start@ AND @End@));.
+        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @userId AND ((start BETWEEN @start AND @end) OR (end BETWEEN @start AND @end));.
         /// </summary>
         internal static string AppointmentTimeCheck {
             get {
@@ -115,7 +115,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT customer.customerId, customerName, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @UserId@;.
+        ///   Looks up a localized string similar to SELECT customer.customerId, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;.
         /// </summary>
         internal static string CustomerReport {
             get {
@@ -124,11 +124,20 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM user WHERE userName = @Name@ AND password = @Password@.
+        ///   Looks up a localized string similar to SELECT id, username, active, createdDate, createdBy, lastUpdated, lastUpdatedBy FROM user WHERE username = @name AND password = @password.
         /// </summary>
         internal static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT COUNT(username) FROM users WHERE username = @username.
+        /// </summary>
+        internal static string UsernameCount {
+            get {
+                return ResourceManager.GetString("UsernameCount", resourceCulture);
             }
         }
     }

@@ -34,8 +34,8 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<int> CreateAsync(Address newAddress)
         {
-            newAddress.City.Country.CreateDate = DateTime.UtcNow;
-            newAddress.City.Country.LastUpdate = DateTime.UtcNow;
+            newAddress.City.Country.CreatedDate = DateTime.UtcNow;
+            newAddress.City.Country.LastUpdated = DateTime.UtcNow;
             var countryId = await _sqlOrm.CreateEntityAsync(CreateSql.Country, newAddress.City.Country);
 
             var cityId = await _sqlOrm.CreateEntityAsync(CreateSql.City, new 
@@ -45,7 +45,7 @@ namespace CustomerManagement.Data.Repositories
                 CreateDate = DateTime.UtcNow,
                 newAddress.City.CreatedBy,
                 LastUpdate = DateTime.UtcNow,
-                newAddress.City.LastUpdateBy
+                newAddress.City.LastUpdatedBy
             });
 
             return await _sqlOrm.CreateEntityAsync(CreateSql.Address, new
@@ -58,7 +58,7 @@ namespace CustomerManagement.Data.Repositories
                 CreateDate = DateTime.UtcNow,
                 newAddress.CreatedBy,
                 LastUpdate = DateTime.UtcNow,
-                newAddress.LastUpdateBy
+                newAddress.LastUpdatedBy
             });
         }
 
@@ -68,7 +68,7 @@ namespace CustomerManagement.Data.Repositories
 
             if (address?.City?.Country != null)
             {
-                address.City.Country.LastUpdate = DateTime.UtcNow;
+                address.City.Country.LastUpdated = DateTime.UtcNow;
                 await _sqlOrm.ExecuteAsync(UpdateSql.Country, address?.City?.Country);
                 rowsChanged++;
             }
@@ -81,7 +81,7 @@ namespace CustomerManagement.Data.Repositories
                     address.City.Name,
                     CountryId = address.City.Country.Id,
                     LastUpdate = DateTime.UtcNow,
-                    address.City.LastUpdateBy
+                    address.City.LastUpdatedBy
                 });
                 rowsChanged++;
             }
@@ -97,7 +97,7 @@ namespace CustomerManagement.Data.Repositories
                     address.PostalCode,
                     address.Phone,
                     LastUpdate = DateTime.UtcNow,
-                    address.LastUpdateBy
+                    address.LastUpdatedBy
                 });
                 rowsChanged++;
             }

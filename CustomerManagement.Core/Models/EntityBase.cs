@@ -4,18 +4,19 @@ using System;
 namespace CustomerManagement.Core.Models
 {
     /// <summary>
-    /// Abstract class for the common fields
+    /// Base class for the common fields
     /// </summary>
-    public abstract class EntityBase
+    public class EntityBase
     {
-        public abstract int Id { get; set; } // ensures that super classes implement their own id.
-        [Column("createDate")]
-        public DateTime CreateDate { get; set; }
+        [Column("id")]
+        public virtual int Id { get; set; }
+        [Column("createdDate")]
+        public virtual DateTime CreatedDate { get; set; }
         [Column("createdBy")]
-        public string CreatedBy { get; set; }
-        [Column("lastUpdate")]
-        public DateTime LastUpdate { get; set; }
-        [Column("lastUpdateBy")]
-        public string LastUpdateBy { get; set; }
+        public virtual string CreatedBy { get; set; }
+        [Column("lastUpdated")]
+        public virtual DateTime LastUpdated { get; set; }
+        [Column("lastUpdatedBy")]
+        public virtual string LastUpdatedBy { get; set; }
     }
 }

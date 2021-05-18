@@ -75,12 +75,25 @@
   "login": {
     "login": "Login",
     "loginError": "* Username or Password was invalid. Please try again.",
-    "pageHeader": "Please login below",
+    "pageHeader": "Welcome! Please Login",
     "pageTitle": "Login",
     "password": "Password",
     "passwordError": "* Please enter a Password",
     "username": "Username",
-    "usernameError": "* Please enter a Username"
+    "usernameError": "* Please enter a Username",
+    "register": "Register"
+  },
+  "register": {
+    "pageTitle": "Register",
+    "pageHeader": "Welcome! Create your account",
+    "username": "Username",
+    "password": "Password",
+    "passwordError": "* Password must have at least 8 characters, 1 upper case, 1 lower case, 1 number, and 1 special character",
+    "usernameError": "* Username must be at least {charCount} characters",
+    "usernameTakenError": "* Username '{username}' is unavailable",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordError": "* Passwords must match",
+    "create": "Create"
   },
   "month": "Month",
   "months": {

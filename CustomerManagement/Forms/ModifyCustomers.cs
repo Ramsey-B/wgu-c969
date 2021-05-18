@@ -96,17 +96,17 @@ namespace CustomerManagement.Forms.Customers
                             Country = new Country
                             {
                                 Name = countryInput.Text,
-                                CreatedBy = _currentUser.Name,
-                                LastUpdateBy = _currentUser.Name,
+                                CreatedBy = _currentUser.Username,
+                                LastUpdatedBy = _currentUser.Username,
                             },
-                            CreatedBy = _currentUser.Name,
-                            LastUpdateBy = _currentUser.Name,
+                            CreatedBy = _currentUser.Username,
+                            LastUpdatedBy = _currentUser.Username,
                         },
-                        CreatedBy = _currentUser.Name,
-                        LastUpdateBy = _currentUser.Name,
+                        CreatedBy = _currentUser.Username,
+                        LastUpdatedBy = _currentUser.Username,
                     },
-                    CreatedBy = _currentUser.Name,
-                    LastUpdateBy = _currentUser.Name,
+                    CreatedBy = _currentUser.Username,
+                    LastUpdatedBy = _currentUser.Username,
                 };
                 await SubmitAsync(newCustomer, _customerRepository.CreateAsync); // pass the create func 
             }
@@ -117,7 +117,7 @@ namespace CustomerManagement.Forms.Customers
                     Id = _customer.Id,
                     Name = nameInput.Text,
                     Active = activeCheckbox.Checked,
-                    LastUpdateBy = _currentUser.Name,
+                    LastUpdatedBy = _currentUser.Username,
                     AddressId = _customer.AddressId,
                     Address = new Address
                     {
@@ -127,18 +127,18 @@ namespace CustomerManagement.Forms.Customers
                         Address2 = address2Input.Text,
                         PostalCode = postalCodeInput.Text,
                         Phone = phoneInput.Text,
-                        LastUpdateBy = _currentUser.Name,
+                        LastUpdatedBy = _currentUser.Username,
                         City = new City
                         {
                             Id = _customer.Address.CityId,
                             CountryId = _customer.Address.City.CountryId,
                             Name = cityInput.Text,
-                            LastUpdateBy = _currentUser.Name,
+                            LastUpdatedBy = _currentUser.Username,
                             Country = new Country
                             {
                                 Id = _customer.Address.City.CountryId,
                                 Name = countryInput.Text,
-                                LastUpdateBy = _currentUser.Name
+                                LastUpdatedBy = _currentUser.Username
                             }
                         }
                     }

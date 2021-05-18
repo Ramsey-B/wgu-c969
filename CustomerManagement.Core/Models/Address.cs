@@ -4,9 +4,7 @@ namespace CustomerManagement.Core.Models
 {
     public class Address : EntityBase
     {
-        [Column("addressId")]
-        public override int Id { get; set; }
-        [Column("address")]
+        [Column("address1")]
         public string Address1 { get; set; }
         [Column("address2")]
         public string Address2 { get; set; }

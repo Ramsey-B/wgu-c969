@@ -7,13 +7,11 @@ namespace CustomerManagement.Core.Models
 {
     public class User : EntityBase
     {
-        [Column("userName")]
-        public string Name { get; set; }
+        [Column("username")]
+        public string Username { get; set; }
         [Column("password")]
         public string Password { get; set; }
         [Column("active")]
-        public int Active { get; set; }
-        [Column("userId")]
-        public override int Id { get; set; }
+        public bool Active { get; set; }
     }
 }

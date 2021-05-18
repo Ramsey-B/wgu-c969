@@ -7,9 +7,9 @@ namespace CustomerManagement.Core.Models
 {
     public class CustomerReport
     {
-        [Column("customerId")]
+        [Column("id")]
         public int Id { get; set; }
-        [Column("customerName")]
+        [Column("name")]
         public string CustomerName { get; set; }
         [Column("start")]
         public DateTime? LastAppointment { get; set; }

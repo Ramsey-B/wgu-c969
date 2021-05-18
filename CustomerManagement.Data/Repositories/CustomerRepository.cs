@@ -33,7 +33,7 @@ namespace CustomerManagement.Data.Repositories
                 CreateDate = DateTime.UtcNow,
                 customer.CreatedBy,
                 LastUpdate = DateTime.UtcNow,
-                customer.LastUpdateBy
+                customer.LastUpdatedBy
             });
 
             return customerId;
@@ -52,7 +52,7 @@ namespace CustomerManagement.Data.Repositories
                 AddressId = customer.Address.Id,
                 customer.Active,
                 LastUpdate = DateTime.UtcNow,
-                customer.LastUpdateBy
+                customer.LastUpdatedBy
             });
 
             return rowsChanged += 1;

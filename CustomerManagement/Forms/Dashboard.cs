@@ -48,10 +48,10 @@ namespace CustomerManagement.Forms.Customers
                     customer.Id,
                     customer.Name,
                     customer.Active,
-                    CreatedDate = customer.CreateDate.ToLocalTime(),
+                    CreatedDate = customer.CreatedDate.ToLocalTime(),
                     customer.CreatedBy,
-                    LastUpdated = customer.LastUpdate.ToLocalTime(),
-                    customer.LastUpdateBy
+                    LastUpdated = customer.LastUpdated.ToLocalTime(),
+                    customer.LastUpdatedBy
                 });
             });
             var customersBinding = new BindingSource();
@@ -144,7 +144,7 @@ namespace CustomerManagement.Forms.Customers
         {
             Name = _translator.Translate("dashboard.pageTitle");
             Text = _translator.Translate("dashboard.pageTitle");
-            pageHeader.Text = _translator.Translate("dashboard.pageHeader", new { Username = _context.CurrentUser.Name });
+            pageHeader.Text = _translator.Translate("dashboard.pageHeader", new { Username = _context.CurrentUser.Username });
             calendarBtn.Text = _translator.Translate("dashboard.calendar");
             appointmentsBtn.Text = _translator.Translate("dashboard.viewAppointments");
             deleteBtn.Text = _translator.Translate("delete");

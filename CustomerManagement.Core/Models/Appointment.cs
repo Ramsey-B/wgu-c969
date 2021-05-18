@@ -5,8 +5,6 @@ namespace CustomerManagement.Core.Models
 {
     public class Appointment : EntityBase
     {
-        [Column("appointmentId")]
-        public override int Id { get; set; }
         [Column("customerId")]
         public int CustomerId { get; set; }
         [Column("userId")]
@@ -17,19 +15,17 @@ namespace CustomerManagement.Core.Models
         public string Description { get; set; }
         [Column("location")]
         public string Location { get; set; }
-        [Column("contact")]
-        public string Contact { get; set; }
+        [Column("crewName")]
+        public string Crew { get; set; }
         [Column("type")]
         public string Type { get; set; }
-        [Column("url")]
-        public string Url { get; set; }
         [Column("start")]
         public DateTime Start { get; set; }
         [Column("end")]
         public DateTime End { get; set; }
-        [Column("userName")]
+        [Column("username")]
         public string Username { get; set; }
-        [Column("customerName")]
+        [Column("name")]
         public string CustomerName { get; set; }
     }
 }

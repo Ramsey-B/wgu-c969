@@ -47,9 +47,9 @@ namespace CustomerManagement.Forms
 
             try
             {
-                var user = await _userRepository.LoginAsync(new User() { Name = username.Text, Password = password.Text });
+                var user = await _userRepository.LoginAsync(new User() { Username = username.Text, Password = password.Text });
 
-                _logger.LogMessage($"User with username ({user.Name}) and id ({user.Id}) successfully logged in.");
+                _logger.LogMessage($"User with username ({user.Username}) and id ({user.Id}) successfully logged in.");
                 _context.CurrentUser = user;
                 Close();
             }
@@ -59,7 +59,7 @@ namespace CustomerManagement.Forms
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("login.loginError");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("unexpectedError");
@@ -73,7 +73,7 @@ namespace CustomerManagement.Forms
             pageHeader.Text = _translator.Translate("login.pageHeader");
             usernameLabel.Text = _translator.Translate("login.username");
             passwordLabel.Text = _translator.Translate("login.password");
-            cancelBtn.Text = _translator.Translate("cancel");
+            registerBtn.Text = _translator.Translate("login.register");
             loginBtn.Text = _translator.Translate("login.login");
         }
 
@@ -84,9 +84,20 @@ namespace CustomerManagement.Forms
             loginError.Visible = false;
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void registerBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // stop the app if the user wont log in.
+            var register = new Register(_context);
+            register.Show();
+
+            register.FormClosed += (object s, FormClosedEventArgs ec) =>
+            {
+                if (_context.CurrentUser != null) Close();
+            };
+        }
+
+        private void pageHeader_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

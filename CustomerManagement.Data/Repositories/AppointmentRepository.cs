@@ -39,8 +39,8 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<int> CreateAsync(Appointment appointment)
         {
-            appointment.CreateDate = DateTime.UtcNow;
-            appointment.LastUpdate = DateTime.UtcNow;
+            appointment.CreatedDate = DateTime.UtcNow;
+            appointment.LastUpdated = DateTime.UtcNow;
 
             // Remove Seconds from schedule
             appointment.Start = new DateTime(appointment.Start.Year, appointment.Start.Month, appointment.Start.Day, appointment.Start.Hour, appointment.Start.Minute, 0);
@@ -51,7 +51,7 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<int> UpdateAsync(Appointment appointment)
         {
-            appointment.LastUpdate = DateTime.UtcNow;
+            appointment.LastUpdated = DateTime.UtcNow;
 
             // Remove Seconds from schedule
             appointment.Start = new DateTime(appointment.Start.Year, appointment.Start.Month, appointment.Start.Day, appointment.Start.Hour, appointment.Start.Minute, 0);

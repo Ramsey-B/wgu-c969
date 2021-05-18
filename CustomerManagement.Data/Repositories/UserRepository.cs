@@ -17,25 +17,34 @@ namespace CustomerManagement.Data.Repositories
             _sqlOrm = sqlOrm;
         }
 
+        public async Task<bool> CheckUsernameExists(string username)
+        {
+            var result = await _sqlOrm.ExecuteAsync(SelectSql.UsernameCount, new { username });
+            return result > 0;
+        }
+
         public async Task<User> LoginAsync(User user)
         {
             user.Password = HashPassword(user.Password);
             var result = await _sqlOrm.QueryAsync<User>(SelectSql.User, user);
             if (result == null)
             {
-                throw new InvalidLoginException(user.Name);
+                throw new InvalidLoginException(user.Username);
             }
             result.Password = null; // ensures the password is never returned.
             return result;
         }
 
-        public async Task<int> CreateAsync(User user)
+        public async Task<User> CreateAsync(User user)
         {
             user.Password = HashPassword(user.Password);
-            user.CreateDate = DateTime.UtcNow;
-            user.LastUpdate = DateTime.UtcNow;
+            user.CreatedDate = DateTime.UtcNow;
+            user.LastUpdated = DateTime.UtcNow;
 
-            return await _sqlOrm.CreateEntityAsync(CreateSql.User, user);
+            _ = await _sqlOrm.CreateEntityAsync(CreateSql.User, user);
+            var result = await _sqlOrm.QueryAsync<User>(SelectSql.User, user);
+            result.Password = null;
+            return result;
         }
 
         /// <summary>

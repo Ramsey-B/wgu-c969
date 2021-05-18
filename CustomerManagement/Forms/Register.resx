@@ -117,31 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Address" xml:space="preserve">
-    <value>SELECT * FROM address</value>
-  </data>
-  <data name="Appointment" xml:space="preserve">
-    <value>SELECT * FROM appointment  INNER JOIN user ON user.userId = appointment.userId INNER JOIN customer ON customer.customerId = appointment.customerId WHERE (start BETWEEN @start AND @end)</value>
-  </data>
-  <data name="AppointmentTimeCheck" xml:space="preserve">
-    <value>SELECT start, end FROM appointment WHERE userId = @userId AND ((start BETWEEN @start AND @end) OR (end BETWEEN @start AND @end));</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>SELECT * FROM city</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>SELECT * FROM country</value>
-  </data>
-  <data name="Customer" xml:space="preserve">
-    <value>SELECT * FROM customer</value>
-  </data>
-  <data name="CustomerReport" xml:space="preserve">
-    <value>SELECT customer.customerId, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>SELECT id, username, active, createdDate, createdBy, lastUpdated, lastUpdatedBy FROM user WHERE username = @name AND password = @password</value>
-  </data>
-  <data name="UsernameCount" xml:space="preserve">
-    <value>SELECT COUNT(username) FROM users WHERE username = @username</value>
-  </data>
 </root>

@@ -66,9 +66,8 @@ namespace CustomerManagement.Forms
                 titleInput.Text = _appointment.Title;
                 descriptionInput.Text = _appointment.Description;
                 locationInput.Text = _appointment.Location;
-                contactInput.Text = _appointment.Contact;
+                contactInput.Text = _appointment.Crew;
                 typeInput.Text = _appointment.Type;
-                urlInput.Text = _appointment.Url;
                 startInput.Value = _appointment.Start.ToLocalTime();
                 endInput.Value = _appointment.End.ToLocalTime();
             }
@@ -149,13 +148,12 @@ namespace CustomerManagement.Forms
                     Title = titleInput.Text,
                     Description = descriptionInput.Text,
                     Location = locationInput.Text,
-                    Contact = contactInput.Text,
+                    Crew = contactInput.Text,
                     Type = typeInput.Text,
-                    Url = urlInput.Text,
                     Start = startInput.Value.ToUniversalTime(),
                     End = endInput.Value.ToUniversalTime(),
-                    CreatedBy = _context.CurrentUser.Name,
-                    LastUpdateBy = _context.CurrentUser.Name
+                    CreatedBy = _context.CurrentUser.Username,
+                    LastUpdatedBy = _context.CurrentUser.Username
                 };
 
                 await SubmitAsync(newAppt, _appointmentRepository.CreateAsync); // pass the create as the callback
@@ -170,12 +168,11 @@ namespace CustomerManagement.Forms
                     Title = titleInput.Text,
                     Description = descriptionInput.Text,
                     Location = locationInput.Text,
-                    Contact = contactInput.Text,
+                    Crew = contactInput.Text,
                     Type = typeInput.Text,
-                    Url = urlInput.Text,
                     Start = startInput.Value.ToUniversalTime(),
                     End = endInput.Value.ToUniversalTime(),
-                    LastUpdateBy = _context.CurrentUser.Name
+                    LastUpdatedBy = _context.CurrentUser.Username
                 };
 
                 await SubmitAsync(newAppt, _appointmentRepository.UpdateAsync); // pass the update as the callback

@@ -33,18 +33,21 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.password = new System.Windows.Forms.TextBox();
             this.loginBtn = new System.Windows.Forms.Button();
-            this.cancelBtn = new System.Windows.Forms.Button();
+            this.registerBtn = new System.Windows.Forms.Button();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameError = new System.Windows.Forms.Label();
             this.passwordError = new System.Windows.Forms.Label();
             this.loginError = new System.Windows.Forms.Label();
             this.pageHeader = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // username
             // 
-            this.username.Location = new System.Drawing.Point(99, 195);
+            this.username.Location = new System.Drawing.Point(139, 246);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(324, 31);
             this.username.TabIndex = 0;
@@ -57,7 +60,7 @@
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(99, 294);
+            this.password.Location = new System.Drawing.Point(139, 345);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(324, 31);
@@ -67,7 +70,7 @@
             // 
             this.loginBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.loginBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.loginBtn.Location = new System.Drawing.Point(303, 370);
+            this.loginBtn.Location = new System.Drawing.Point(343, 421);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(120, 56);
             this.loginBtn.TabIndex = 3;
@@ -75,22 +78,22 @@
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
-            // cancelBtn
+            // registerBtn
             // 
-            this.cancelBtn.BackColor = System.Drawing.Color.Red;
-            this.cancelBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cancelBtn.Location = new System.Drawing.Point(91, 370);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(113, 56);
-            this.cancelBtn.TabIndex = 4;
-            this.cancelBtn.Text = "Cancel";
-            this.cancelBtn.UseVisualStyleBackColor = false;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            this.registerBtn.BackColor = System.Drawing.Color.Red;
+            this.registerBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.registerBtn.Location = new System.Drawing.Point(131, 421);
+            this.registerBtn.Name = "registerBtn";
+            this.registerBtn.Size = new System.Drawing.Size(113, 56);
+            this.registerBtn.TabIndex = 4;
+            this.registerBtn.Text = "Register";
+            this.registerBtn.UseVisualStyleBackColor = false;
+            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(94, 158);
+            this.usernameLabel.Location = new System.Drawing.Point(134, 209);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(110, 25);
             this.usernameLabel.TabIndex = 5;
@@ -99,7 +102,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(94, 266);
+            this.passwordLabel.Location = new System.Drawing.Point(134, 317);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(106, 25);
             this.passwordLabel.TabIndex = 6;
@@ -109,7 +112,7 @@
             // 
             this.usernameError.AutoSize = true;
             this.usernameError.ForeColor = System.Drawing.Color.Red;
-            this.usernameError.Location = new System.Drawing.Point(98, 235);
+            this.usernameError.Location = new System.Drawing.Point(138, 286);
             this.usernameError.Name = "usernameError";
             this.usernameError.Size = new System.Drawing.Size(269, 25);
             this.usernameError.TabIndex = 7;
@@ -120,7 +123,7 @@
             // 
             this.passwordError.AutoSize = true;
             this.passwordError.ForeColor = System.Drawing.Color.Red;
-            this.passwordError.Location = new System.Drawing.Point(94, 335);
+            this.passwordError.Location = new System.Drawing.Point(134, 386);
             this.passwordError.Name = "passwordError";
             this.passwordError.Size = new System.Drawing.Size(265, 25);
             this.passwordError.TabIndex = 8;
@@ -131,7 +134,7 @@
             // 
             this.loginError.AutoSize = true;
             this.loginError.ForeColor = System.Drawing.Color.Red;
-            this.loginError.Location = new System.Drawing.Point(86, 439);
+            this.loginError.Location = new System.Drawing.Point(126, 490);
             this.loginError.Name = "loginError";
             this.loginError.Size = new System.Drawing.Size(387, 25);
             this.loginError.TabIndex = 9;
@@ -142,29 +145,53 @@
             // 
             this.pageHeader.AutoSize = true;
             this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageHeader.Location = new System.Drawing.Point(93, 92);
+            this.pageHeader.Location = new System.Drawing.Point(133, 150);
             this.pageHeader.Name = "pageHeader";
-            this.pageHeader.Size = new System.Drawing.Size(257, 31);
+            this.pageHeader.Size = new System.Drawing.Size(318, 31);
             this.pageHeader.TabIndex = 10;
-            this.pageHeader.Text = "Please login below";
+            this.pageHeader.Text = "Welcome! Please Login";
+            this.pageHeader.Click += new System.EventHandler(this.pageHeader_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(1, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1159, 78);
+            this.panel1.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(14, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(283, 41);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Jim\'s Landscaping";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 508);
+            this.ClientSize = new System.Drawing.Size(610, 583);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.loginError);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.usernameError);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
-            this.Controls.Add(this.cancelBtn);
+            this.Controls.Add(this.registerBtn);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.password);
             this.Controls.Add(this.username);
             this.Name = "Login";
             this.Text = "Login";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,12 +203,14 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Button loginBtn;
-        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label usernameError;
         private System.Windows.Forms.Label passwordError;
         private System.Windows.Forms.Label loginError;
         private System.Windows.Forms.Label pageHeader;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
