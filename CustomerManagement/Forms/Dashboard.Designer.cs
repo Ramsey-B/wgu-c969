@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customersTable = new System.Windows.Forms.DataGridView();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
@@ -40,7 +43,12 @@
             this.consultantReportBtn = new System.Windows.Forms.Button();
             this.customerReportBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.customersBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.reportsBtn = new System.Windows.Forms.Button();
+            this.tableHeader = new System.Windows.Forms.Label();
+            this.searchInput = new System.Windows.Forms.TextBox();
+            this.searchBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,10 +57,34 @@
             // 
             this.customersTable.AllowUserToAddRows = false;
             this.customersTable.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.customersTable.Location = new System.Drawing.Point(82, 218);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.customersTable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.customersTable.Location = new System.Drawing.Point(82, 305);
             this.customersTable.Name = "customersTable";
             this.customersTable.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.customersTable.RowHeadersVisible = false;
             this.customersTable.RowHeadersWidth = 82;
             this.customersTable.RowTemplate.Height = 33;
@@ -66,7 +98,7 @@
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Red;
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(629, 591);
+            this.deleteBtn.Location = new System.Drawing.Point(629, 678);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(108, 49);
             this.deleteBtn.TabIndex = 1;
@@ -78,7 +110,7 @@
             // 
             this.editBtn.BackColor = System.Drawing.Color.Green;
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(777, 592);
+            this.editBtn.Location = new System.Drawing.Point(777, 679);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(108, 48);
             this.editBtn.TabIndex = 2;
@@ -90,7 +122,7 @@
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.addBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addBtn.Location = new System.Drawing.Point(919, 590);
+            this.addBtn.Location = new System.Drawing.Point(919, 677);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(108, 50);
             this.addBtn.TabIndex = 3;
@@ -102,7 +134,7 @@
             // 
             this.appointmentsBtn.BackColor = System.Drawing.Color.Green;
             this.appointmentsBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.appointmentsBtn.Location = new System.Drawing.Point(82, 591);
+            this.appointmentsBtn.Location = new System.Drawing.Point(82, 678);
             this.appointmentsBtn.Name = "appointmentsBtn";
             this.appointmentsBtn.Size = new System.Drawing.Size(217, 49);
             this.appointmentsBtn.TabIndex = 4;
@@ -115,9 +147,9 @@
             this.calendarBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.calendarBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.calendarBtn.Location = new System.Drawing.Point(406, 3);
+            this.calendarBtn.Location = new System.Drawing.Point(674, 3);
             this.calendarBtn.Name = "calendarBtn";
-            this.calendarBtn.Size = new System.Drawing.Size(258, 75);
+            this.calendarBtn.Size = new System.Drawing.Size(162, 75);
             this.calendarBtn.TabIndex = 5;
             this.calendarBtn.Text = "Calendar";
             this.calendarBtn.UseVisualStyleBackColor = false;
@@ -137,9 +169,9 @@
             // 
             this.exitBtn.BackColor = System.Drawing.Color.Red;
             this.exitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.exitBtn.Location = new System.Drawing.Point(919, 883);
+            this.exitBtn.Location = new System.Drawing.Point(990, 3);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(108, 48);
+            this.exitBtn.Size = new System.Drawing.Size(169, 75);
             this.exitBtn.TabIndex = 7;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = false;
@@ -147,7 +179,7 @@
             // 
             // apptNumReportBtn
             // 
-            this.apptNumReportBtn.Location = new System.Drawing.Point(82, 728);
+            this.apptNumReportBtn.Location = new System.Drawing.Point(96, 819);
             this.apptNumReportBtn.Name = "apptNumReportBtn";
             this.apptNumReportBtn.Size = new System.Drawing.Size(302, 45);
             this.apptNumReportBtn.TabIndex = 8;
@@ -157,7 +189,7 @@
             // 
             // consultantReportBtn
             // 
-            this.consultantReportBtn.Location = new System.Drawing.Point(448, 729);
+            this.consultantReportBtn.Location = new System.Drawing.Point(462, 820);
             this.consultantReportBtn.Name = "consultantReportBtn";
             this.consultantReportBtn.Size = new System.Drawing.Size(302, 44);
             this.consultantReportBtn.TabIndex = 9;
@@ -167,7 +199,7 @@
             // 
             // customerReportBtn
             // 
-            this.customerReportBtn.Location = new System.Drawing.Point(84, 808);
+            this.customerReportBtn.Location = new System.Drawing.Point(98, 899);
             this.customerReportBtn.Name = "customerReportBtn";
             this.customerReportBtn.Size = new System.Drawing.Size(300, 45);
             this.customerReportBtn.TabIndex = 10;
@@ -178,12 +210,29 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel1.Controls.Add(this.reportsBtn);
+            this.panel1.Controls.Add(this.customersBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.calendarBtn);
+            this.panel1.Controls.Add(this.exitBtn);
             this.panel1.Location = new System.Drawing.Point(2, -3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1159, 78);
             this.panel1.TabIndex = 11;
+            // 
+            // customersBtn
+            // 
+            this.customersBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.customersBtn.Cursor = System.Windows.Forms.Cursors.No;
+            this.customersBtn.Enabled = false;
+            this.customersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.customersBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.customersBtn.Location = new System.Drawing.Point(517, 2);
+            this.customersBtn.Name = "customersBtn";
+            this.customersBtn.Size = new System.Drawing.Size(162, 75);
+            this.customersBtn.TabIndex = 12;
+            this.customersBtn.Text = "Customers";
+            this.customersBtn.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -196,16 +245,58 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Jim\'s Landscaping";
             // 
+            // reportsBtn
+            // 
+            this.reportsBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.reportsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.reportsBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.reportsBtn.Location = new System.Drawing.Point(834, 2);
+            this.reportsBtn.Name = "reportsBtn";
+            this.reportsBtn.Size = new System.Drawing.Size(162, 75);
+            this.reportsBtn.TabIndex = 13;
+            this.reportsBtn.Text = "Reports";
+            this.reportsBtn.UseVisualStyleBackColor = false;
+            // 
+            // tableHeader
+            // 
+            this.tableHeader.AutoSize = true;
+            this.tableHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableHeader.Location = new System.Drawing.Point(75, 256);
+            this.tableHeader.Name = "tableHeader";
+            this.tableHeader.Size = new System.Drawing.Size(190, 37);
+            this.tableHeader.TabIndex = 12;
+            this.tableHeader.Text = "tableHeader";
+            // 
+            // searchInput
+            // 
+            this.searchInput.Location = new System.Drawing.Point(600, 259);
+            this.searchInput.Name = "searchInput";
+            this.searchInput.Size = new System.Drawing.Size(285, 31);
+            this.searchInput.TabIndex = 13;
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.searchBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchBtn.Location = new System.Drawing.Point(900, 256);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(127, 37);
+            this.searchBtn.TabIndex = 14;
+            this.searchBtn.Text = "searchBtn";
+            this.searchBtn.UseVisualStyleBackColor = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 976);
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.searchInput);
+            this.Controls.Add(this.tableHeader);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.customerReportBtn);
             this.Controls.Add(this.consultantReportBtn);
             this.Controls.Add(this.apptNumReportBtn);
-            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.appointmentsBtn);
             this.Controls.Add(this.addBtn);
@@ -238,5 +329,10 @@
         private System.Windows.Forms.Button customerReportBtn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button customersBtn;
+        private System.Windows.Forms.Button reportsBtn;
+        private System.Windows.Forms.Label tableHeader;
+        private System.Windows.Forms.TextBox searchInput;
+        private System.Windows.Forms.Button searchBtn;
     }
 }
