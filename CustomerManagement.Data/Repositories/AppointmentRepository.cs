@@ -23,18 +23,18 @@ namespace CustomerManagement.Data.Repositories
 
             if (customerId != null)
             {
-                sql += " AND appointment.customerId = @CustomerId@";
+                sql += " AND appointment.customerId = @customerId";
             }
             if (userId != null)
             {
-                sql += " AND appointment.userId = @UserId@";
+                sql += " AND appointment.userId = @userId";
             }
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 sql += $" AND (userName LIKE '%{searchTerm}%' OR type LIKE '%{searchTerm}%' OR customerName LIKE '%{searchTerm}%')";
             }
 
-            return await _sqlOrm.QueryListAsync<Appointment>(sql, new { UserId = userId, CustomerId = customerId, Start = start, End = end });
+            return await _sqlOrm.QueryListAsync<Appointment>(sql, new { userId, customerId, Start = start, End = end });
         }
 
         public async Task<int> CreateAsync(Appointment appointment)

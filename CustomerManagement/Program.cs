@@ -37,7 +37,7 @@ namespace CustomerManagement
         {
             services
                 // Normally you would hide this in a config value.
-                .AddScoped<ISqlOrm>(c => new SqlOrm("server=wgudb.ucertify.com;user id=U07Uzf;password=53689134933;database=U07Uzf;persistsecurityinfo=True"))
+                .AddScoped<ISqlOrm>(c => new SqlOrm("server=sql3.freemysqlhosting.net;user id=sql3412683;password=aTZZWZNxPB;database=sql3412683;persistsecurityinfo=True"))
                 .AddScoped<IAddressRepository, AddressRepository>()
                 .AddScoped<ICustomerRepository, CustomerRepository>()
                 .AddScoped<IUserRepository, UserRepository>()

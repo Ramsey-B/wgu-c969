@@ -14,7 +14,7 @@ namespace CustomerManagement.Core.Models
         public virtual DateTime CreatedDate { get; set; }
         [Column("createdBy")]
         public virtual string CreatedBy { get; set; }
-        [Column("lastUpdated")]
+        [Column("lastUpdatedDate")]
         public virtual DateTime LastUpdated { get; set; }
         [Column("lastUpdatedBy")]
         public virtual string LastUpdatedBy { get; set; }

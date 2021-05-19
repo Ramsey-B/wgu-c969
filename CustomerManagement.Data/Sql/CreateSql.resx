@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>INSERT INTO address (address1, address2, cityId, postalCode, phone, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@address1, @address2, @cityId, @postalCode, @phone, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);</value>
+    <value>INSERT INTO address (address1, address2, cityId, postalCode, phone, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy) VALUES (@address1, @address2, @cityId, @postalCode, @phone, @createdDate, @createdBy, @lastUpdatedDate, @lastUpdatedBy);</value>
   </data>
   <data name="Appointment" xml:space="preserve">
-    <value>INSERT INTO appointment (customerId, userId, title, description, location, crewName, type, start, end, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@customerId, @userId, @title, @description, @location, @crewName, @type, @start, @end, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);</value>
+    <value>INSERT INTO appointment (customerId, userId, title, description, location, crewName, type, start, end, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy) VALUES (@customerId, @userId, @title, @description, @location, @crewName, @type, @start, @end, @createdDate, @createdBy, @lastUpdatedDate, @lastUpdatedBy);</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>INSERT INTO city (name, countryId, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@name, @countryId, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);</value>
+    <value>INSERT INTO city (name, countryId, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy) VALUES (@name, @countryId, @createdDate, @createdBy, @lastUpdatedDate, @lastUpdatedBy);</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>INSERT INTO country (name, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@name, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);</value>
+    <value>INSERT INTO country (name, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy) VALUES (@name, @createdDate, @createdBy, @lastUpdatedDate, @lastUpdatedBy);</value>
   </data>
   <data name="Customer" xml:space="preserve">
-    <value>INSERT INTO customer (name, addressId, active, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@name, @addressId, @active, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);</value>
+    <value>INSERT INTO customer (name, addressId, active, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy) VALUES (@name, @addressId, @active, @createdDate, @createdBy, @lastUpdatedDate, @lastUpdatedBy);</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value>INSERT INTO user (username, password, active, createdDate, createdBy, lastUpdated, lastUpdatedBy) VALUES (@username, @password, @active, @createdDate, @createdBy, @lastUpdated, @lastUpdatedBy);</value>
+    <value>INSERT INTO user (username, password, active, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy) VALUES (@username, @password, @active, @createdDate, @createdBy, @lastUpdatedDate, @lastUpdatedBy);</value>
   </data>
 </root>

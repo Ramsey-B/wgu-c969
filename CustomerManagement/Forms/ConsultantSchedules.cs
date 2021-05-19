@@ -56,7 +56,7 @@ namespace CustomerManagement.Forms
                     appt.CustomerName,
                     appt.Title,
                     appt.Type,
-                    appt.Contact,
+                    appt.Crew,
                     Start = appt.Start.ToLocalTime(),
                     End = appt.End.ToLocalTime()
                 });

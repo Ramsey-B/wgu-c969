@@ -60,7 +60,7 @@ namespace CustomerManagement.Forms
 
             if (isValid && await _userRepository.CheckUsernameExists(username.Text))
             {
-                usernameError.Text = _translator.Translate("register.usernameTakenError");
+                usernameError.Text = _translator.Translate("register.usernameTakenError", new { username = username.Text });
                 usernameError.Visible = true;
                 isValid = false;
             }
@@ -99,7 +99,7 @@ namespace CustomerManagement.Forms
                 _context.CurrentUser = user;
                 Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("unexpectedError");

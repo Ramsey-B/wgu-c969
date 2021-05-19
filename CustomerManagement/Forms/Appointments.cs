@@ -152,7 +152,7 @@ namespace CustomerManagement.Forms
             }
             else
             {
-                pageHeader.Text = _translator.Translate("calendar.pageHeader", new { _context.CurrentUser.Name });
+                pageHeader.Text = _translator.Translate("calendar.pageHeader", new { _context.CurrentUser.Username });
                 Name = _translator.Translate("calendar.pageTitle");
                 Text = _translator.Translate("calendar.pageTitle");
             }
