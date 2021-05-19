@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
@@ -35,28 +36,10 @@ namespace CustomerManagement.Forms.Customers
             _ = reminder.HandleAppointmentReminders(); // Do not await this so it doesn't block the main thread.
         }
 
-        private async Task getCustomers()
+        private async Task getCustomers(string searchTerm = "")
         {
-            _customers = await _customerRepository.GetAllAsync();
-
-            // map the customers to the table
-            var displayCustomers = new BindingList<object>();
-            _customers.ForEach(customer =>
-            {
-                displayCustomers.Add(new
-                {
-                    customer.Id,
-                    customer.Name,
-                    customer.Active,
-                    CreatedDate = customer.CreatedDate.ToLocalTime(),
-                    customer.CreatedBy,
-                    LastUpdated = customer.LastUpdated.ToLocalTime(),
-                    customer.LastUpdatedBy
-                });
-            });
-            var customersBinding = new BindingSource();
-            customersBinding.DataSource = displayCustomers;
-            customersTable.DataSource = customersBinding;
+            _customers = await _customerRepository.GetAllAsync(searchTerm);
+            TableService.SetData<Customer>(ref customersTable, _customers);
         }
 
         private void addBtn_Click(object s, EventArgs e)
@@ -154,6 +137,17 @@ namespace CustomerManagement.Forms.Customers
             consultantReportBtn.Text = _translator.Translate("dashboard.consultantReport");
             customerReportBtn.Text = _translator.Translate("dashboard.customerReport");
             exitBtn.Text = _translator.Translate("exit");
+        }
+
+        private void reportsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void searchBtn_Click(object sender, EventArgs e)
+        {
+            await getCustomers(searchInput.Text);
+            searchInput.Text = "";
         }
     }
 }

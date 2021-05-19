@@ -25,16 +25,10 @@ namespace CustomerManagement.Data.Repositories
             ValidateCustomerInputs(customer);
             var addressId = await _addressRepository.CreateAsync(customer.Address);
 
-            var customerId = await _sqlOrm.CreateEntityAsync(CreateSql.Customer, new
-            {
-                customer.Name,
-                AddressId = addressId,
-                customer.Active,
-                CreateDate = DateTime.UtcNow,
-                customer.CreatedBy,
-                LastUpdate = DateTime.UtcNow,
-                customer.LastUpdatedBy
-            });
+            customer.AddressId = addressId;
+            customer.CreatedDate = DateTime.UtcNow;
+            customer.LastUpdated = DateTime.UtcNow;
+            var customerId = await _sqlOrm.CreateEntityAsync(CreateSql.Customer, customer);
 
             return customerId;
         }
@@ -45,15 +39,9 @@ namespace CustomerManagement.Data.Repositories
             ValidateCustomerInputs(customer);
             var rowsChanged = await _addressRepository.UpdateAsync(customer?.Address);
 
-            await _sqlOrm.ExecuteAsync(UpdateSql.Customer, new
-            {
-                customer.Id,
-                customer.Name,
-                AddressId = customer.Address.Id,
-                customer.Active,
-                LastUpdate = DateTime.UtcNow,
-                customer.LastUpdatedBy
-            });
+            customer.AddressId = customer.Address.Id;
+            customer.LastUpdated = DateTime.UtcNow;
+            await _sqlOrm.ExecuteAsync(UpdateSql.Customer, customer);
 
             return rowsChanged += 1;
         }
@@ -70,9 +58,14 @@ namespace CustomerManagement.Data.Repositories
             return customer;
         }
 
-        public async Task<List<Customer>> GetAllAsync()
+        public async Task<List<Customer>> GetAllAsync(string searchTerm = "")
         {
-            var customers = await _sqlOrm.QueryListAsync<Customer>(SelectSql.Customer);
+            var sql = SelectSql.Customer;
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                sql += "WHERE name LIKE @searchTerm OR createdBy LIKE @searchTerm";
+            }
+            var customers = await _sqlOrm.QueryListAsync<Customer>(sql, new { searchTerm });
             return customers;
         }
 

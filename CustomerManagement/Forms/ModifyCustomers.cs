@@ -166,7 +166,7 @@ namespace CustomerManagement.Forms.Customers
                 errorText.Visible = true;
                 errorText.Text = _translator.Translate($"customer.{ex.PropertyName}Error");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show(_translator.Translate("unexpectedError"));
             }

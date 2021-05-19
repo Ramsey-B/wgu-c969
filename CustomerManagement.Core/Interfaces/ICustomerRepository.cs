@@ -10,7 +10,7 @@ namespace CustomerManagement.Core.Interfaces
         Task<int> UpdateAsync(Customer customer);
         Task<int> DeleteAsync(int id);
         Task<Customer> GetAsync(int id);
-        Task<List<Customer>> GetAllAsync();
+        Task<List<Customer>> GetAllAsync(string searchTerm = "");
         Task<List<CustomerReport>> GetCustomerReportsAsync(int userId);
     }
 }
