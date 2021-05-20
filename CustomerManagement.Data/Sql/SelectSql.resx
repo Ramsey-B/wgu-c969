@@ -140,7 +140,7 @@
 ON customer.addressId = address.id INNER JOIN city ON address.cityId = city.id INNER JOIN country ON city.countryId = country.id</value>
   </data>
   <data name="CustomerReport" xml:space="preserve">
-    <value>SELECT customer.id, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;</value>
+    <value>SELECT customer.id, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.id WHERE appointment.userId = @userId;</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>SELECT id, username, active, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy FROM user WHERE username = @username AND password = @password</value>

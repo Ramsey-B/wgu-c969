@@ -87,12 +87,8 @@ namespace CustomerManagement.Forms
         private void registerBtn_Click(object sender, EventArgs e)
         {
             var register = new Register(_context);
-            register.Show();
-
-            register.FormClosed += (object s, FormClosedEventArgs ec) =>
-            {
-                if (_context.CurrentUser != null) Close();
-            };
+            register.ShowDialog();
+            Close();
         }
 
         private void pageHeader_Click(object sender, EventArgs e)

@@ -45,7 +45,7 @@ namespace CustomerManagement
             while (_currentUser == null) // keep forcing the login till the user is set.
             {
                 var login = new Login(this);
-                login.ShowDialog(); // If the current user is unknown, display the login.
+                login.ShowDialog();
             }
             return _currentUser;
         }

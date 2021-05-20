@@ -125,7 +125,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT customer.id, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;.
+        ///   Looks up a localized string similar to SELECT customer.id, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.id WHERE appointment.userId = @userId;.
         /// </summary>
         internal static string CustomerReport {
             get {

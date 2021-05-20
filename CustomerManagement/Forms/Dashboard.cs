@@ -16,7 +16,6 @@ namespace CustomerManagement.Forms.Customers
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
         private readonly User _currentUser;
-        private readonly IAppointmentRepository _appointmentRepository;
         private List<Customer> _customers;
 
         public Dashboard(Context context)
@@ -26,7 +25,6 @@ namespace CustomerManagement.Forms.Customers
             _context = context;
             _customerRepository = _context.GetService<ICustomerRepository>();
             _translator = _context.GetService<Translator>();
-            _appointmentRepository = _context.GetService<IAppointmentRepository>();
             _currentUser = context.CurrentUser; // Triggers auth
             if (_currentUser == null) Application.Exit(); // exit if the user wont log in
 
@@ -70,14 +68,14 @@ namespace CustomerManagement.Forms.Customers
 
         private async void deleteBtn_Click(object sender, EventArgs e)
         {
-            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
-            var name = customersTable.CurrentRow.Cells["Name"].Value.ToString();
+            var index = customersTable.CurrentRow.Index;
+            var customer = _customers[index];
 
-            var dialogResult = MessageBox.Show(_translator.Translate("customer.confirmDelete", new { name }), "", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(_translator.Translate("customer.confirmDelete", new { name = customer.Name }), "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) return;
             try
             {
-                await _customerRepository.DeleteAsync(customerId);
+                await _customerRepository.DeleteAsync(customer.Id);
                 await getCustomers();
             }
             catch (Exception)
@@ -96,7 +94,7 @@ namespace CustomerManagement.Forms.Customers
                 return;
             }
             var appointments = new Appointments(_context, customer);
-            appointments.Show();
+            _context.Navigate(appointments);
         }
 
         private void calendarBtn_Click(object sender, EventArgs e)
@@ -110,21 +108,6 @@ namespace CustomerManagement.Forms.Customers
             Application.Exit();
         }
 
-        private void apptNumReportBtn_Click(object sender, EventArgs e)
-        {
-            new AppointmentsReport(_context).ShowDialog();
-        }
-
-        private void consultantReportBtn_Click(object sender, EventArgs e)
-        {
-            new ConsultantSchedules(_context).ShowDialog();
-        }
-
-        private void customerReportBtn_Click(object sender, EventArgs e)
-        {
-            new CustomersReport(_context).ShowDialog();
-        }
-
         private void Translate()
         {
             Name = _translator.Translate("dashboard.pageTitle");
@@ -135,9 +118,6 @@ namespace CustomerManagement.Forms.Customers
             deleteBtn.Text = _translator.Translate("delete");
             editBtn.Text = _translator.Translate("edit");
             addBtn.Text = _translator.Translate("add");
-            apptNumReportBtn.Text = _translator.Translate("dashboard.appointmentCountReport");
-            consultantReportBtn.Text = _translator.Translate("dashboard.consultantReport");
-            customerReportBtn.Text = _translator.Translate("dashboard.customerReport");
             exitBtn.Text = _translator.Translate("exit");
         }
 

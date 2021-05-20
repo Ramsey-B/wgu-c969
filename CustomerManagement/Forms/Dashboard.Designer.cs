@@ -39,9 +39,6 @@
             this.calendarBtn = new System.Windows.Forms.Button();
             this.pageHeader = new System.Windows.Forms.Label();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.apptNumReportBtn = new System.Windows.Forms.Button();
-            this.consultantReportBtn = new System.Windows.Forms.Button();
-            this.customerReportBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.reportsBtn = new System.Windows.Forms.Button();
             this.customersBtn = new System.Windows.Forms.Button();
@@ -185,39 +182,6 @@
             this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // apptNumReportBtn
-            // 
-            this.apptNumReportBtn.Location = new System.Drawing.Point(48, 426);
-            this.apptNumReportBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.apptNumReportBtn.Name = "apptNumReportBtn";
-            this.apptNumReportBtn.Size = new System.Drawing.Size(151, 23);
-            this.apptNumReportBtn.TabIndex = 8;
-            this.apptNumReportBtn.Text = "Number of Appointments";
-            this.apptNumReportBtn.UseVisualStyleBackColor = true;
-            this.apptNumReportBtn.Click += new System.EventHandler(this.apptNumReportBtn_Click);
-            // 
-            // consultantReportBtn
-            // 
-            this.consultantReportBtn.Location = new System.Drawing.Point(231, 426);
-            this.consultantReportBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.consultantReportBtn.Name = "consultantReportBtn";
-            this.consultantReportBtn.Size = new System.Drawing.Size(151, 23);
-            this.consultantReportBtn.TabIndex = 9;
-            this.consultantReportBtn.Text = "Consultant Schedules";
-            this.consultantReportBtn.UseVisualStyleBackColor = true;
-            this.consultantReportBtn.Click += new System.EventHandler(this.consultantReportBtn_Click);
-            // 
-            // customerReportBtn
-            // 
-            this.customerReportBtn.Location = new System.Drawing.Point(49, 467);
-            this.customerReportBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.customerReportBtn.Name = "customerReportBtn";
-            this.customerReportBtn.Size = new System.Drawing.Size(150, 23);
-            this.customerReportBtn.TabIndex = 10;
-            this.customerReportBtn.Text = "Customer Report";
-            this.customerReportBtn.UseVisualStyleBackColor = true;
-            this.customerReportBtn.Click += new System.EventHandler(this.customerReportBtn_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
@@ -309,14 +273,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 508);
+            this.ClientSize = new System.Drawing.Size(586, 403);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.searchInput);
             this.Controls.Add(this.tableHeader);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.customerReportBtn);
-            this.Controls.Add(this.consultantReportBtn);
-            this.Controls.Add(this.apptNumReportBtn);
             this.Controls.Add(this.pageHeader);
             this.Controls.Add(this.appointmentsBtn);
             this.Controls.Add(this.addBtn);
@@ -345,9 +306,6 @@
         private System.Windows.Forms.Button calendarBtn;
         private System.Windows.Forms.Label pageHeader;
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.Button apptNumReportBtn;
-        private System.Windows.Forms.Button consultantReportBtn;
-        private System.Windows.Forms.Button customerReportBtn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button customersBtn;

@@ -99,11 +99,16 @@ namespace CustomerManagement.Forms
                 _context.CurrentUser = user;
                 Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 loginError.Visible = true;
                 loginError.Text = _translator.Translate("unexpectedError");
             }
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

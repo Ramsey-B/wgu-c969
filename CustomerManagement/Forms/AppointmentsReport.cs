@@ -1,7 +1,10 @@
 ﻿using CustomerManagement.Core.Interfaces;
+using CustomerManagement.Core.Models;
+using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -52,8 +55,7 @@ namespace CustomerManagement.Forms
             var endDate = startDate.AddYears(1).AddDays(-1);
             var result = await _appointmentRepository.GetAllAsync(startDate, endDate, _context.CurrentUser.Id);
 
-            // Collect the appointments by month
-            var report = new Dictionary<string, int>()
+            var monthCount = new Dictionary<string, int>()
             {
                 { "1", 0 }, // Jan
                 { "2", 0 }, // Feb
@@ -68,22 +70,17 @@ namespace CustomerManagement.Forms
                 { "11", 0 }, // Nov
                 { "12", 0 }, // Dec
             };
-
-            result.ForEach(appt =>
+            result.ForEach(r =>
             {
-                report[appt.Start.Month.ToString()]++;
+                monthCount[r.Start.Month.ToString()]++;
             });
-
-            var displayData = new Dictionary<string, int>();
-            foreach (var keyVal in report)
+            var report = new List<AppointmentReport>();
+            foreach (var month in monthCount)
             {
-                // translate the months numbers to human readable strings.
-                displayData.Add(_translator.Translate("months." + keyVal.Key), keyVal.Value);
+                report.Add(new AppointmentReport() { Month = month.Key, Count = month.Value });
             }
 
-            var appointmentBinding = new BindingSource();
-            appointmentBinding.DataSource = displayData;
-            reportTable.DataSource = appointmentBinding;
+            TableService.SetData(ref reportTable, report);
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
