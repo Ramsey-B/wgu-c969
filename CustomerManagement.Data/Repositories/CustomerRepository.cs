@@ -110,7 +110,8 @@ namespace CustomerManagement.Data.Repositories
             var sql = SelectSql.Customer;
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                sql += "WHERE name LIKE @searchTerm OR createdBy LIKE @searchTerm";
+                searchTerm = $"%{searchTerm}%";
+                sql += " WHERE customer.name LIKE @searchTerm OR address.phone LIKE @searchTerm OR address.address1 LIKE @searchTerm OR address.address2 LIKE @searchTerm OR city.name LIKE @searchTerm OR country.name LIKE @searchTerm";
             }
             var customers = await _sqlOrm.QueryListAsync<Customer>(sql, new { searchTerm });
             return customers;
