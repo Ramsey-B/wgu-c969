@@ -23,7 +23,33 @@ namespace CustomerManagement.Data.Repositories
         public async Task<int> CreateAsync(Customer customer)
         {
             ValidateCustomerInputs(customer);
-            var addressId = await _addressRepository.CreateAsync(customer.Address);
+            var addressId = await _addressRepository.CreateAsync(new Address
+            {
+                Address1 = customer.Address1,
+                Address2 = customer.Address2,
+                Phone = customer.Phone,
+                PostalCode = customer.PostalCode,
+                CreatedBy = customer.CreatedBy,
+                LastUpdatedBy = customer.LastUpdatedBy,
+                CreatedDate = DateTime.UtcNow,
+                LastUpdated = DateTime.UtcNow,
+                City = new City
+                {
+                    Name = customer.City,
+                    CreatedBy = customer.CreatedBy,
+                    LastUpdatedBy = customer.LastUpdatedBy,
+                    CreatedDate = DateTime.UtcNow,
+                    LastUpdated = DateTime.UtcNow,
+                    Country = new Country
+                    {
+                        Name = customer.Country,
+                        CreatedBy = customer.CreatedBy,
+                        LastUpdatedBy = customer.LastUpdatedBy,
+                        CreatedDate = DateTime.UtcNow,
+                        LastUpdated = DateTime.UtcNow,
+                    }
+                }
+            });
 
             customer.AddressId = addressId;
             customer.CreatedDate = DateTime.UtcNow;
@@ -37,9 +63,31 @@ namespace CustomerManagement.Data.Repositories
         {
             if (customer == null) throw new ArgumentNullException(nameof(customer));
             ValidateCustomerInputs(customer);
-            var rowsChanged = await _addressRepository.UpdateAsync(customer?.Address);
+            var rowsChanged = await _addressRepository.UpdateAsync(new Address
+            {
+                Id = customer.AddressId,
+                Address1 = customer.Address1,
+                Address2 = customer.Address2,
+                Phone = customer.Phone,
+                PostalCode = customer.PostalCode,
+                LastUpdatedBy = customer.LastUpdatedBy,
+                LastUpdated = DateTime.UtcNow,
+                City = new City
+                {
+                    Id = customer.CityId,
+                    Name = customer.City,
+                    LastUpdatedBy = customer.LastUpdatedBy,
+                    LastUpdated = DateTime.UtcNow,
+                    Country = new Country
+                    {
+                        Id = customer.CountryId,
+                        Name = customer.Country,
+                        LastUpdatedBy = customer.LastUpdatedBy,
+                        LastUpdated = DateTime.UtcNow,
+                    }
+                }
+            });
 
-            customer.AddressId = customer.Address.Id;
             customer.LastUpdated = DateTime.UtcNow;
             await _sqlOrm.ExecuteAsync(UpdateSql.Customer, customer);
 
@@ -53,8 +101,7 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<Customer> GetAsync(int id)
         {
-            var customer = await _sqlOrm.QueryAsync<Customer>(SelectSql.Customer, "customer", id);
-            customer.Address = await _addressRepository.GetAsync(customer.AddressId);
+            var customer = await _sqlOrm.QueryAsync<Customer>(SelectSql.Customer + " WHERE customer.id = @id", new { id });
             return customer;
         }
 
@@ -122,27 +169,27 @@ namespace CustomerManagement.Data.Repositories
                 throw new InvalidEntityException("name");
             }
 
-            if (string.IsNullOrWhiteSpace(customer.Address.PostalCode) || !customer.Address.PostalCode.All(char.IsDigit))
+            if (string.IsNullOrWhiteSpace(customer.PostalCode) || !customer.PostalCode.All(char.IsDigit))
             {
                 throw new InvalidEntityException("postalCode");
             }
 
-            if (string.IsNullOrWhiteSpace(customer.Address.Address1))
+            if (string.IsNullOrWhiteSpace(customer.Address1))
             {
                 throw new InvalidEntityException("address1");
             }
 
-            if (string.IsNullOrWhiteSpace(customer.Address.Phone) || !customer.Address.Phone.All(char.IsDigit))
+            if (string.IsNullOrWhiteSpace(customer.Phone) || !customer.Phone.All(char.IsDigit))
             {
                 throw new InvalidEntityException("phone");
             }
 
-            if (string.IsNullOrWhiteSpace(customer.Address.City.Name) || !Regex.Match(customer.Address.City.Name, "^[\\sA-z'-]*$").Success)
+            if (string.IsNullOrWhiteSpace(customer.City) || !Regex.Match(customer.City, "^[\\sA-z'-]*$").Success)
             {
                 throw new InvalidEntityException("city");
             }
 
-            if (string.IsNullOrWhiteSpace(customer.Address.City.Country.Name) || !Regex.Match(customer.Address.City.Country.Name, "^[\\sA-z'-]*$").Success)
+            if (string.IsNullOrWhiteSpace(customer.Country) || !Regex.Match(customer.Country, "^[\\sA-z'-]*$").Success)
             {
                 throw new InvalidEntityException("country");
             }

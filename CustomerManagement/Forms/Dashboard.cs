@@ -55,9 +55,10 @@ namespace CustomerManagement.Forms.Customers
 
         private void editBtn_Click(object s, EventArgs e)
         {
-            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
+            var index = customersTable.CurrentRow.Index;
+            var customer = _customers[index];
 
-            var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository, customerId);
+            var modifyCustomer = new ModifyCustomer(_currentUser, _translator, _customerRepository, customer.Id);
             // Refresh the customer data after the form is closed
             modifyCustomer.FormClosed += async (object sender, FormClosedEventArgs ev) =>
             {

@@ -13,7 +13,22 @@ namespace CustomerManagement.Core.Models
         public bool Active { get; set; }
         [Column("addressId")]
         public int AddressId { get; set; }
-        public Address Address { get; set; }
+        [Column("address1")]
+        public string Address1 { get; set; }
+        [Column("address2")]
+        public string Address2 { get; set; }
+        [Column("phone")]
+        public string Phone { get; set; }
+        [Column("cityName")]
+        public string City { get; set; }
+        [Column("countryName")]
+        public string Country { get; set; }
+        [Column("postalCode")]
+        public string PostalCode { get; set; }
+        [Column("cityId")]
+        public int CityId { get; set; }
+        [Column("countryId")]
+        public int CountryId { get; set; }
 
         public Dictionary<string, string> GetColumns(Func<string, string> translation)
         {
@@ -41,12 +56,12 @@ namespace CustomerManagement.Core.Models
             {
                 Name,
                 Active,
-                Address?.Phone,
-                Address?.Address1,
-                Address?.Address2,
-                Address?.City?.Name,
-                Address?.PostalCode,
-                Address?.City?.Country?.Name
+                Phone,
+                Address1,
+                Address2,
+                City,
+                PostalCode,
+                Country
             };
         }
     }

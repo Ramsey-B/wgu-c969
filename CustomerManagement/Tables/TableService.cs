@@ -13,6 +13,8 @@ namespace CustomerManagement.Tables
     {
         public static void SetData<T>(ref DataGridView table, List<T> data, Func<string, string> translation = null) where T : ITableItem, new()
         {
+            table.Columns.Clear();
+            table.Rows.Clear();
             if (translation == null)
             {
                 translation = (string str) => str;

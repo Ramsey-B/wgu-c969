@@ -18,16 +18,16 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<Address> GetAsync(int id)
         {
-            var address = await _sqlOrm.QueryAsync<Address>(SelectSql.Address, "address", id);
+            var address = await _sqlOrm.QueryAsync<Address>(SelectSql.Address, id);
 
             if (address != null)
             { 
-                address.City = await _sqlOrm.QueryAsync<City>(SelectSql.City, "city", address.CityId);
+                address.City = await _sqlOrm.QueryAsync<City>(SelectSql.City, address.CityId);
             }
 
             if (address?.City != null)
             {
-                address.City.Country = await _sqlOrm.QueryAsync<Country>(SelectSql.Country, "country", address.City.CountryId);
+                address.City.Country = await _sqlOrm.QueryAsync<Country>(SelectSql.Country, address.City.CountryId);
             }
             return address;
         }

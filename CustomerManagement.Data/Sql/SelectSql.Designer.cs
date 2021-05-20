@@ -106,7 +106,8 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM customer.
+        ///   Looks up a localized string similar to SELECT customer.id, customer.active, customer.createdDate, customer.createdBy, customer.lastUpdatedBy, customer.lastUpdatedDate, customer.name, address1, address2, addressId, phone, city.name as cityName, postalCode, country.Name as countryName, city.id as cityId, country.id as countryId FROM customer INNER JOIN address 
+        ///ON customer.addressId = address.id INNER JOIN city ON address.cityId = city.id INNER JOIN country ON city.countryId = country.id.
         /// </summary>
         internal static string Customer {
             get {

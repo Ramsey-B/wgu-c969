@@ -33,12 +33,12 @@ namespace CustomerManagement.Forms.Customers
                 _customer = _customerRepository.GetAsync((int)customerId).Result; // get the customers full details
 
                 nameInput.Text = _customer.Name;
-                address1Input.Text = _customer.Address?.Address1;
-                address2Input.Text = _customer.Address?.Address2;
-                postalCodeInput.Text = _customer.Address?.PostalCode;
-                phoneInput.Text = _customer.Address?.Phone;
-                cityInput.Text = _customer.Address?.City?.Name;
-                countryInput.Text = _customer.Address?.City?.Country?.Name;
+                address1Input.Text = _customer.Address1;
+                address2Input.Text = _customer.Address2;
+                postalCodeInput.Text = _customer.PostalCode;
+                phoneInput.Text = _customer.Phone;
+                cityInput.Text = _customer.City;
+                countryInput.Text = _customer.Country;
                 activeCheckbox.Checked = _customer.Active;
             }
             TranslatePage();
@@ -84,27 +84,12 @@ namespace CustomerManagement.Forms.Customers
                 {
                     Name = nameInput.Text,
                     Active = activeCheckbox.Checked,
-                    Address = new Address
-                    {
-                        Address1 = address1Input.Text,
-                        Address2 = address2Input.Text,
-                        PostalCode = postalCodeInput.Text,
-                        Phone = phoneInput.Text,
-                        City = new City
-                        {
-                            Name = cityInput.Text,
-                            Country = new Country
-                            {
-                                Name = countryInput.Text,
-                                CreatedBy = _currentUser.Username,
-                                LastUpdatedBy = _currentUser.Username,
-                            },
-                            CreatedBy = _currentUser.Username,
-                            LastUpdatedBy = _currentUser.Username,
-                        },
-                        CreatedBy = _currentUser.Username,
-                        LastUpdatedBy = _currentUser.Username,
-                    },
+                    Address1 = address1Input.Text,
+                    Address2 = address2Input.Text,
+                    PostalCode = postalCodeInput.Text,
+                    Phone = phoneInput.Text,
+                    City = cityInput.Text,
+                    Country = countryInput.Text,
                     CreatedBy = _currentUser.Username,
                     LastUpdatedBy = _currentUser.Username,
                 };
@@ -119,29 +104,14 @@ namespace CustomerManagement.Forms.Customers
                     Active = activeCheckbox.Checked,
                     LastUpdatedBy = _currentUser.Username,
                     AddressId = _customer.AddressId,
-                    Address = new Address
-                    {
-                        Id = _customer.AddressId,
-                        CityId = _customer.Address.CityId,
-                        Address1 = address1Input.Text,
-                        Address2 = address2Input.Text,
-                        PostalCode = postalCodeInput.Text,
-                        Phone = phoneInput.Text,
-                        LastUpdatedBy = _currentUser.Username,
-                        City = new City
-                        {
-                            Id = _customer.Address.CityId,
-                            CountryId = _customer.Address.City.CountryId,
-                            Name = cityInput.Text,
-                            LastUpdatedBy = _currentUser.Username,
-                            Country = new Country
-                            {
-                                Id = _customer.Address.City.CountryId,
-                                Name = countryInput.Text,
-                                LastUpdatedBy = _currentUser.Username
-                            }
-                        }
-                    }
+                    CityId = _customer.CityId,
+                    Address1 = address1Input.Text,
+                    Address2 = address2Input.Text,
+                    PostalCode = postalCodeInput.Text,
+                    Phone = phoneInput.Text,
+                    City = cityInput.Text,
+                    Country = countryInput.Text,
+                    CountryId = _customer.CountryId
                 };
                 await SubmitAsync(customer, _customerRepository.UpdateAsync); // pass the update create func
             }

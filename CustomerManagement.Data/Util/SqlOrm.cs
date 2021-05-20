@@ -42,9 +42,9 @@ namespace CustomerManagement.Data.Util
             return await ExecuteAsync<T>(sqlStatement, parameters) ?? new List<T>();
         }
 
-        public async Task<T> QueryAsync<T>(string sqlStatement, string tableName, int id) where T : new()
+        public async Task<T> QueryAsync<T>(string sqlStatement, int id) where T : new()
         {
-            return await QueryAsync<T>(sqlStatement + $" WHERE {tableName + "Id"} = @Id@;", new { Id = id });
+            return await QueryAsync<T>(sqlStatement + $" WHERE id = @id;", new { id });
         }
 
         public async Task<int> CreateEntityAsync(string sql, object parameters)
@@ -57,7 +57,7 @@ namespace CustomerManagement.Data.Util
 
         public async Task<int> DeleteAsync(int id, string tableName)
         {
-            return await ExecuteAsync($"DELETE FROM {tableName} WHERE id = @Id@", new { Id = id });
+            return await ExecuteAsync($"DELETE FROM {tableName} WHERE id = @id", new { id });
         }
 
         private IDbConnection GetConnection()
