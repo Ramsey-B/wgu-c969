@@ -1,14 +1,11 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
@@ -36,26 +33,15 @@ namespace CustomerManagement.Forms
         private void Init()
         {
             customers = _customerRepository.GetAllAsync().Result;
-
-            var displayCustomers = new BindingList<object>();
-            customers.ForEach(customer =>
-            {
-                displayCustomers.Add(new
-                {
-                    customer.Id,
-                    customer.Name,
-                    customer.Active
-                });
-            });
-            var customersBinding = new BindingSource();
-            customersBinding.DataSource = displayCustomers;
-            customersTable.DataSource = customersBinding;
+            customers.FindAll(c => c.Active);
+            var items = customers.Select(c => new Core.Models.CustomerSelect() { Name = c.Name });
+            TableService.SetData(ref customersTable, items.ToList());
         }
 
         private void selectBtn_Click(object sender, EventArgs e)
         {
-            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
-            Customer = customers.Find(c => c.Id == customerId); // Find the customer by Id or return null. Used so I don't need to implement my own search alg
+            var index = customersTable.CurrentRow.Index;
+            Customer = customers[index]; 
             if (Customer == null)
             {
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));

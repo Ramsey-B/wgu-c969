@@ -32,6 +32,14 @@ namespace CustomerManagement
             return _servicePorvider.GetRequiredService<T>();
         }
 
+        private static Form currentForm;
+        public void Navigate(Form form)
+        {
+            form.Show();
+            if (currentForm != null) currentForm.Close();
+            currentForm = form;
+        }
+
         private User Authenticate()
         {
             while (_currentUser == null) // keep forcing the login till the user is set.

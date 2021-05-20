@@ -39,9 +39,10 @@
             // 
             this.pageHeader.AutoSize = true;
             this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageHeader.Location = new System.Drawing.Point(98, 44);
+            this.pageHeader.Location = new System.Drawing.Point(49, 23);
+            this.pageHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pageHeader.Name = "pageHeader";
-            this.pageHeader.Size = new System.Drawing.Size(682, 62);
+            this.pageHeader.Size = new System.Drawing.Size(190, 17);
             this.pageHeader.TabIndex = 0;
             this.pageHeader.Text = "Please select a customer";
             // 
@@ -50,7 +51,8 @@
             this.customersTable.AllowUserToAddRows = false;
             this.customersTable.AllowUserToDeleteRows = false;
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.customersTable.Location = new System.Drawing.Point(104, 109);
+            this.customersTable.Location = new System.Drawing.Point(52, 57);
+            this.customersTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customersTable.Name = "customersTable";
             this.customersTable.ReadOnly = true;
             this.customersTable.RowHeadersVisible = false;
@@ -59,16 +61,17 @@
             this.customersTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customersTable.ShowEditingIcon = false;
             this.customersTable.ShowRowErrors = false;
-            this.customersTable.Size = new System.Drawing.Size(512, 341);
+            this.customersTable.Size = new System.Drawing.Size(256, 177);
             this.customersTable.TabIndex = 1;
             // 
             // selectBtn
             // 
             this.selectBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.selectBtn.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.selectBtn.Location = new System.Drawing.Point(503, 494);
+            this.selectBtn.Location = new System.Drawing.Point(252, 257);
+            this.selectBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectBtn.Name = "selectBtn";
-            this.selectBtn.Size = new System.Drawing.Size(113, 50);
+            this.selectBtn.Size = new System.Drawing.Size(56, 26);
             this.selectBtn.TabIndex = 2;
             this.selectBtn.Text = "Select";
             this.selectBtn.UseVisualStyleBackColor = false;
@@ -78,9 +81,10 @@
             // 
             this.cancelBtn.BackColor = System.Drawing.Color.Red;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cancelBtn.Location = new System.Drawing.Point(340, 494);
+            this.cancelBtn.Location = new System.Drawing.Point(170, 257);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(113, 50);
+            this.cancelBtn.Size = new System.Drawing.Size(56, 26);
             this.cancelBtn.TabIndex = 3;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
@@ -88,13 +92,14 @@
             // 
             // CustomerSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 740);
+            this.ClientSize = new System.Drawing.Size(381, 385);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.selectBtn);
             this.Controls.Add(this.customersTable);
             this.Controls.Add(this.pageHeader);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CustomerSelect";
             this.Text = "CustomerSelect";
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).EndInit();

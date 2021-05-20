@@ -117,35 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Address" xml:space="preserve">
-    <value>SELECT * FROM address</value>
-  </data>
-  <data name="Appointment" xml:space="preserve">
-    <value>select customerId, appointment.userId, title, description, location, crewName, type, start, end, user.username, customer.name as customerName, address.phone as customerPhone from appointment INNER JOIN user ON user.id = appointment.userId INNER JOIN customer ON customer.id = appointment.customerId INNER JOIN address ON address.id = customer.addressId WHERE (start BETWEEN @start AND @end)</value>
-  </data>
-  <data name="AppointmentTimeCheck" xml:space="preserve">
-    <value>SELECT start, end FROM appointment WHERE userId = @userId AND ((start BETWEEN @start AND @end) OR (end BETWEEN @start AND @end));</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>SELECT * FROM city</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>SELECT * FROM country</value>
-  </data>
-  <data name="CrewSchedule" xml:space="preserve">
-    <value>SELECT crewName, customer.name as customerName, title, type, start, end FROM appointment INNER JOIN customer ON customer.id = appointment.customerId WHERE (start BETWEEN @start AND @end)</value>
-  </data>
-  <data name="Customer" xml:space="preserve">
-    <value>SELECT customer.id, customer.active, customer.createdDate, customer.createdBy, customer.lastUpdatedBy, customer.lastUpdatedDate, customer.name, address1, address2, addressId, phone, city.name as cityName, postalCode, country.Name as countryName, city.id as cityId, country.id as countryId FROM customer INNER JOIN address 
-ON customer.addressId = address.id INNER JOIN city ON address.cityId = city.id INNER JOIN country ON city.countryId = country.id</value>
-  </data>
-  <data name="CustomerReport" xml:space="preserve">
-    <value>SELECT customer.id, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>SELECT id, username, active, createdDate, createdBy, lastUpdatedDate, lastUpdatedBy FROM user WHERE username = @username AND password = @password</value>
-  </data>
-  <data name="UsernameCount" xml:space="preserve">
-    <value>SELECT COUNT(username) FROM user WHERE username = @username</value>
-  </data>
 </root>

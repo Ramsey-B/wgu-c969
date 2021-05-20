@@ -19,20 +19,21 @@ namespace CustomerManagement.Forms.Customers
         private readonly IAppointmentRepository _appointmentRepository;
         private List<Customer> _customers;
 
-        public Dashboard(Context context, Translator translator, ICustomerRepository customerRepository, IAppointmentRepository appointmentRepository, Reminder reminder)
+        public Dashboard(Context context)
         {
             InitializeComponent();
      
             _context = context;
-            _customerRepository = customerRepository;
-            _translator = translator;
-            _appointmentRepository = appointmentRepository;
+            _customerRepository = _context.GetService<ICustomerRepository>();
+            _translator = _context.GetService<Translator>();
+            _appointmentRepository = _context.GetService<IAppointmentRepository>();
             _currentUser = context.CurrentUser; // Triggers auth
             if (_currentUser == null) Application.Exit(); // exit if the user wont log in
 
             Translate();
 
             _ = getCustomers();
+            var reminder = _context.GetService<Reminder>();
             _ = reminder.HandleAppointmentReminders(); // Do not await this so it doesn't block the main thread.
         }
 
@@ -87,26 +88,26 @@ namespace CustomerManagement.Forms.Customers
 
         private void appointmentsBtn_Click(object sender, EventArgs e)
         {
-            var customerId = (int)customersTable.CurrentRow.Cells["Id"].Value;
-            var customer = _customers.Find(c => c.Id == customerId);
+            var index = customersTable.CurrentRow.Index;
+            var customer = _customers[index];
             if (customer == null)
             {
                 MessageBox.Show(_translator.Translate("customer.noneSelected"));
                 return;
             }
-            var appointments = new Appointments(_context, _translator, _appointmentRepository, customer);
+            var appointments = new Appointments(_context, customer);
             appointments.Show();
         }
 
         private void calendarBtn_Click(object sender, EventArgs e)
         {
-            var appointments = new Appointments(_context, _translator, _appointmentRepository);
-            appointments.Show();
+            var appointments = new Appointments(_context);
+            _context.Navigate(appointments);
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void apptNumReportBtn_Click(object sender, EventArgs e)
@@ -142,7 +143,8 @@ namespace CustomerManagement.Forms.Customers
 
         private void reportsBtn_Click(object sender, EventArgs e)
         {
-
+            var reports = new Reports(_context);
+            _context.Navigate(reports);
         }
 
         private async void searchBtn_Click(object sender, EventArgs e)

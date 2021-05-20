@@ -50,9 +50,8 @@ namespace CustomerManagement.Forms
             }
             descriptionLabel.Text = _translator.Translate("appointment.description");
             locationLabel.Text = _translator.Translate("appointment.location");
-            contactLabel.Text = _translator.Translate("appointment.contact");
+            crewLabel.Text = _translator.Translate("appointment.contact");
             typeLabel.Text = _translator.Translate("appointment.type");
-            urlLabel.Text = _translator.Translate("appointment.url");
             startLabel.Text = _translator.Translate("appointment.start");
             endLabel.Text = _translator.Translate("appointment.end");
             cancelBtn.Text = _translator.Translate("cancel");
@@ -66,7 +65,7 @@ namespace CustomerManagement.Forms
                 titleInput.Text = _appointment.Title;
                 descriptionInput.Text = _appointment.Description;
                 locationInput.Text = _appointment.Location;
-                contactInput.Text = _appointment.Crew;
+                crewInput.Text = _appointment.Crew;
                 typeInput.Text = _appointment.Type;
                 startInput.Value = _appointment.Start.ToLocalTime();
                 endInput.Value = _appointment.End.ToLocalTime();
@@ -148,7 +147,7 @@ namespace CustomerManagement.Forms
                     Title = titleInput.Text,
                     Description = descriptionInput.Text,
                     Location = locationInput.Text,
-                    Crew = contactInput.Text,
+                    Crew = crewInput.Text,
                     Type = typeInput.Text,
                     Start = startInput.Value.ToUniversalTime(),
                     End = endInput.Value.ToUniversalTime(),
@@ -168,7 +167,7 @@ namespace CustomerManagement.Forms
                     Title = titleInput.Text,
                     Description = descriptionInput.Text,
                     Location = locationInput.Text,
-                    Crew = contactInput.Text,
+                    Crew = crewInput.Text,
                     Type = typeInput.Text,
                     Start = startInput.Value.ToUniversalTime(),
                     End = endInput.Value.ToUniversalTime(),

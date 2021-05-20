@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,47 @@ namespace CustomerManagement.Forms
             _translator = _context.GetService<Translator>();
             InitializeComponent();
             Translate();
-            GetReport().Wait();
+            _ = AddCrewNames();
+            _ = GetReport();
+
+            monthRadio.Click += async (object sender, EventArgs e) =>
+            {
+                dayRadio.Checked = false;
+                weekRadio.Checked = false;
+                monthRadio.Checked = true;
+                await GetReport();
+            };
+
+            weekRadio.Click += async (object sender, EventArgs e) =>
+            {
+                dayRadio.Checked = false;
+                weekRadio.Checked = true;
+                monthRadio.Checked = false;
+                await GetReport();
+            };
+
+            dayRadio.Click += async (object sender, EventArgs e) =>
+            {
+                dayRadio.Checked = true;
+                weekRadio.Checked = false;
+                monthRadio.Checked = false;
+                await GetReport();
+            };
+        }
+
+        private async Task AddCrewNames()
+        {
+            var now = DateTime.UtcNow;
+            var start = new DateTime(now.Year, now.Month, 1);
+            var end = start.AddMonths(1).AddDays(-1);
+            var appointments = await _appointmentRepository.GetAllAsync(start, end);
+            var crewNames = appointments.Select(a => a.Crew).OrderBy(c => c).ToList();
+
+            var all = "all";
+            crewSelect.Items.Add(all);
+            crewNames.ForEach(n => crewSelect.Items.Add(n));
+            crewSelect.SelectedItem = all;
+            crewSelect.SelectedValueChanged += async (object sender, EventArgs e) => await GetReport();
         }
 
         private async Task GetReport()
@@ -34,55 +75,28 @@ namespace CustomerManagement.Forms
             DateTime end;
             if (monthRadio.Checked)
             {
-                start = new DateTime(now.Year, now.Month, 1);
-                end = start.AddMonths(1).AddDays(-1);
+                start = new DateTime(now.Year, now.Month, 1); // first day of the month
+                end = start.AddMonths(1).AddDays(-1); // last day of month
+            }
+            else if (weekRadio.Checked)
+            {
+                start = now.AddDays(-(int)now.DayOfWeek); // first day of the week
+                end = start.AddDays(7); // last day of the week
             }
             else
             {
-                start = now.AddDays(-(int)now.DayOfWeek);
-                end = start.AddDays(7);
+                start = new DateTime(now.Year, now.Month, now.Day); // start of day
+                end = new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddSeconds(-1); // end of day
             }
-            var results = await _appointmentRepository.GetAllAsync(start, end, searchTerm: searchBox.Text) ?? new List<Appointment>();
+            var crew = crewSelect.SelectedItem == null || crewSelect.SelectedItem.ToString() == "all" ? null : crewSelect.SelectedItem.ToString();
+            var results = await _appointmentRepository.GetConsultantSchedules(start, end, crew) ?? new List<ConsultantSchedule>();
 
-            results = results.OrderBy(appt => appt.Username).ToList(); // sorts the results by their username. Used orderby so I don't need to implement my own sort alg
-
-            // map the results to the table
-            var displayAppt = new BindingList<object>();
-            results.ForEach(appt =>
-            {
-                displayAppt.Add(new
-                {
-                    appt.Username,
-                    appt.CustomerName,
-                    appt.Title,
-                    appt.Type,
-                    appt.Crew,
-                    Start = appt.Start.ToLocalTime(),
-                    End = appt.End.ToLocalTime()
-                });
-            });
-            var appointmentBinding = new BindingSource();
-            appointmentBinding.DataSource = displayAppt;
-            reportTable.DataSource = appointmentBinding;
+            TableService.SetData(ref reportTable, results);
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private async void monthRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            weekRadio.Checked = false;
-            monthRadio.Checked = true;
-            await GetReport();
-        }
-
-        private async void weekRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            weekRadio.Checked = true;
-            monthRadio.Checked = false;
-            await GetReport();
         }
 
         private async void searchBtn_Click(object sender, EventArgs e)
@@ -97,7 +111,6 @@ namespace CustomerManagement.Forms
             pageHeader.Text = _translator.Translate("consultantSchedules");
             monthRadio.Text = _translator.Translate("month");
             weekRadio.Text = _translator.Translate("week");
-            searchBtn.Text = _translator.Translate("search");
             closeBtn.Text = _translator.Translate("close");
         }
     }

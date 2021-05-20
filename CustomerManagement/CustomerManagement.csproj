@@ -143,6 +143,12 @@
     <Compile Include="Forms\CustomersReport.Designer.cs">
       <DependentUpon>CustomersReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InitForm.Designer.cs">
+      <DependentUpon>InitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ModifyAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <EmbeddedResource Include="Forms\CustomersReport.resx">
       <DependentUpon>CustomersReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InitForm.resx">
+      <DependentUpon>InitForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyAppointment.resx">
       <DependentUpon>ModifyAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

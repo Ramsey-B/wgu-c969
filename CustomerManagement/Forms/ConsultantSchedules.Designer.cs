@@ -33,8 +33,8 @@
             this.closeBtn = new System.Windows.Forms.Button();
             this.weekRadio = new System.Windows.Forms.RadioButton();
             this.monthRadio = new System.Windows.Forms.RadioButton();
-            this.searchBox = new System.Windows.Forms.TextBox();
-            this.searchBtn = new System.Windows.Forms.Button();
+            this.dayRadio = new System.Windows.Forms.RadioButton();
+            this.crewSelect = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.reportTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,18 +42,20 @@
             // 
             this.pageHeader.AutoSize = true;
             this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageHeader.Location = new System.Drawing.Point(89, 44);
+            this.pageHeader.Location = new System.Drawing.Point(44, 23);
+            this.pageHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pageHeader.Name = "pageHeader";
-            this.pageHeader.Size = new System.Drawing.Size(348, 37);
+            this.pageHeader.Size = new System.Drawing.Size(138, 20);
             this.pageHeader.TabIndex = 0;
-            this.pageHeader.Text = "Consultant Schedules";
+            this.pageHeader.Text = "Crew Schedules";
             // 
             // reportTable
             // 
             this.reportTable.AllowUserToAddRows = false;
             this.reportTable.AllowUserToDeleteRows = false;
             this.reportTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.reportTable.Location = new System.Drawing.Point(96, 205);
+            this.reportTable.Location = new System.Drawing.Point(48, 107);
+            this.reportTable.Margin = new System.Windows.Forms.Padding(2);
             this.reportTable.Name = "reportTable";
             this.reportTable.ReadOnly = true;
             this.reportTable.RowHeadersVisible = false;
@@ -63,16 +65,17 @@
             this.reportTable.ShowCellErrors = false;
             this.reportTable.ShowCellToolTips = false;
             this.reportTable.ShowEditingIcon = false;
-            this.reportTable.Size = new System.Drawing.Size(970, 476);
+            this.reportTable.Size = new System.Drawing.Size(485, 248);
             this.reportTable.TabIndex = 1;
             // 
             // closeBtn
             // 
             this.closeBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.closeBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.closeBtn.Location = new System.Drawing.Point(937, 730);
+            this.closeBtn.Location = new System.Drawing.Point(468, 380);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(2);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(129, 42);
+            this.closeBtn.Size = new System.Drawing.Size(64, 26);
             this.closeBtn.TabIndex = 2;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = false;
@@ -81,58 +84,60 @@
             // weekRadio
             // 
             this.weekRadio.AutoSize = true;
-            this.weekRadio.Location = new System.Drawing.Point(265, 150);
+            this.weekRadio.Location = new System.Drawing.Point(120, 78);
+            this.weekRadio.Margin = new System.Windows.Forms.Padding(2);
             this.weekRadio.Name = "weekRadio";
-            this.weekRadio.Size = new System.Drawing.Size(98, 29);
+            this.weekRadio.Size = new System.Drawing.Size(54, 17);
             this.weekRadio.TabIndex = 9;
             this.weekRadio.Text = "Week";
             this.weekRadio.UseVisualStyleBackColor = true;
-            this.weekRadio.CheckedChanged += new System.EventHandler(this.weekRadio_CheckedChanged);
             // 
             // monthRadio
             // 
             this.monthRadio.AutoSize = true;
             this.monthRadio.Checked = true;
-            this.monthRadio.Location = new System.Drawing.Point(96, 150);
+            this.monthRadio.Location = new System.Drawing.Point(48, 78);
+            this.monthRadio.Margin = new System.Windows.Forms.Padding(2);
             this.monthRadio.Name = "monthRadio";
-            this.monthRadio.Size = new System.Drawing.Size(103, 29);
+            this.monthRadio.Size = new System.Drawing.Size(55, 17);
             this.monthRadio.TabIndex = 8;
             this.monthRadio.TabStop = true;
             this.monthRadio.Text = "Month";
             this.monthRadio.UseVisualStyleBackColor = true;
-            this.monthRadio.CheckedChanged += new System.EventHandler(this.monthRadio_CheckedChanged);
             // 
-            // searchBox
+            // dayRadio
             // 
-            this.searchBox.Location = new System.Drawing.Point(693, 150);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(217, 31);
-            this.searchBox.TabIndex = 10;
+            this.dayRadio.AutoSize = true;
+            this.dayRadio.Location = new System.Drawing.Point(190, 78);
+            this.dayRadio.Margin = new System.Windows.Forms.Padding(2);
+            this.dayRadio.Name = "dayRadio";
+            this.dayRadio.Size = new System.Drawing.Size(44, 17);
+            this.dayRadio.TabIndex = 12;
+            this.dayRadio.Text = "Day";
+            this.dayRadio.UseVisualStyleBackColor = true;
             // 
-            // searchBtn
+            // crewSelect
             // 
-            this.searchBtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.searchBtn.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.searchBtn.Location = new System.Drawing.Point(937, 141);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(129, 47);
-            this.searchBtn.TabIndex = 11;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.UseVisualStyleBackColor = false;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            this.crewSelect.FormattingEnabled = true;
+            this.crewSelect.Location = new System.Drawing.Point(446, 78);
+            this.crewSelect.Margin = new System.Windows.Forms.Padding(2);
+            this.crewSelect.Name = "crewSelect";
+            this.crewSelect.Size = new System.Drawing.Size(87, 17);
+            this.crewSelect.TabIndex = 13;
             // 
             // ConsultantSchedules
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1240, 884);
-            this.Controls.Add(this.searchBtn);
-            this.Controls.Add(this.searchBox);
+            this.ClientSize = new System.Drawing.Size(620, 460);
+            this.Controls.Add(this.crewSelect);
+            this.Controls.Add(this.dayRadio);
             this.Controls.Add(this.weekRadio);
             this.Controls.Add(this.monthRadio);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.reportTable);
             this.Controls.Add(this.pageHeader);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ConsultantSchedules";
             this.Text = "ConsultantSchedules";
             ((System.ComponentModel.ISupportInitialize)(this.reportTable)).EndInit();
@@ -148,7 +153,7 @@
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.RadioButton weekRadio;
         private System.Windows.Forms.RadioButton monthRadio;
-        private System.Windows.Forms.TextBox searchBox;
-        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.RadioButton dayRadio;
+        private System.Windows.Forms.ListBox crewSelect;
     }
 }

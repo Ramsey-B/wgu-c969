@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customersTable = new System.Windows.Forms.DataGridView();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
@@ -57,35 +57,35 @@
             // 
             this.customersTable.AllowUserToAddRows = false;
             this.customersTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.customersTable.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.customersTable.DefaultCellStyle = dataGridViewCellStyle2;
             this.customersTable.Location = new System.Drawing.Point(41, 159);
-            this.customersTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customersTable.Margin = new System.Windows.Forms.Padding(2);
             this.customersTable.Name = "customersTable";
             this.customersTable.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customersTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customersTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.customersTable.RowHeadersVisible = false;
             this.customersTable.RowHeadersWidth = 82;
             this.customersTable.RowTemplate.Height = 33;
@@ -100,7 +100,7 @@
             this.deleteBtn.BackColor = System.Drawing.Color.Red;
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.deleteBtn.Location = new System.Drawing.Point(314, 353);
-            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(54, 25);
             this.deleteBtn.TabIndex = 1;
@@ -113,7 +113,7 @@
             this.editBtn.BackColor = System.Drawing.Color.Green;
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.editBtn.Location = new System.Drawing.Point(388, 353);
-            this.editBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(54, 25);
             this.editBtn.TabIndex = 2;
@@ -126,7 +126,7 @@
             this.addBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.addBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.addBtn.Location = new System.Drawing.Point(460, 352);
-            this.addBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(54, 26);
             this.addBtn.TabIndex = 3;
@@ -139,7 +139,7 @@
             this.appointmentsBtn.BackColor = System.Drawing.Color.Green;
             this.appointmentsBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.appointmentsBtn.Location = new System.Drawing.Point(41, 353);
-            this.appointmentsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.appointmentsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.appointmentsBtn.Name = "appointmentsBtn";
             this.appointmentsBtn.Size = new System.Drawing.Size(108, 25);
             this.appointmentsBtn.TabIndex = 4;
@@ -153,7 +153,7 @@
             this.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.calendarBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.calendarBtn.Location = new System.Drawing.Point(337, 2);
-            this.calendarBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.calendarBtn.Margin = new System.Windows.Forms.Padding(2);
             this.calendarBtn.Name = "calendarBtn";
             this.calendarBtn.Size = new System.Drawing.Size(81, 39);
             this.calendarBtn.TabIndex = 5;
@@ -176,8 +176,8 @@
             // 
             this.exitBtn.BackColor = System.Drawing.Color.Red;
             this.exitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.exitBtn.Location = new System.Drawing.Point(495, 2);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitBtn.Location = new System.Drawing.Point(502, 2);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(2);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(84, 39);
             this.exitBtn.TabIndex = 7;
@@ -188,7 +188,7 @@
             // apptNumReportBtn
             // 
             this.apptNumReportBtn.Location = new System.Drawing.Point(48, 426);
-            this.apptNumReportBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.apptNumReportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.apptNumReportBtn.Name = "apptNumReportBtn";
             this.apptNumReportBtn.Size = new System.Drawing.Size(151, 23);
             this.apptNumReportBtn.TabIndex = 8;
@@ -199,7 +199,7 @@
             // consultantReportBtn
             // 
             this.consultantReportBtn.Location = new System.Drawing.Point(231, 426);
-            this.consultantReportBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.consultantReportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.consultantReportBtn.Name = "consultantReportBtn";
             this.consultantReportBtn.Size = new System.Drawing.Size(151, 23);
             this.consultantReportBtn.TabIndex = 9;
@@ -210,7 +210,7 @@
             // customerReportBtn
             // 
             this.customerReportBtn.Location = new System.Drawing.Point(49, 467);
-            this.customerReportBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customerReportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.customerReportBtn.Name = "customerReportBtn";
             this.customerReportBtn.Size = new System.Drawing.Size(150, 23);
             this.customerReportBtn.TabIndex = 10;
@@ -227,9 +227,9 @@
             this.panel1.Controls.Add(this.calendarBtn);
             this.panel1.Controls.Add(this.exitBtn);
             this.panel1.Location = new System.Drawing.Point(1, -2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(580, 41);
+            this.panel1.Size = new System.Drawing.Size(974, 41);
             this.panel1.TabIndex = 11;
             // 
             // reportsBtn
@@ -238,7 +238,7 @@
             this.reportsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.reportsBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.reportsBtn.Location = new System.Drawing.Point(417, 1);
-            this.reportsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reportsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.reportsBtn.Name = "reportsBtn";
             this.reportsBtn.Size = new System.Drawing.Size(81, 39);
             this.reportsBtn.TabIndex = 13;
@@ -254,7 +254,7 @@
             this.customersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.customersBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.customersBtn.Location = new System.Drawing.Point(258, 1);
-            this.customersBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customersBtn.Margin = new System.Windows.Forms.Padding(2);
             this.customersBtn.Name = "customersBtn";
             this.customersBtn.Size = new System.Drawing.Size(81, 39);
             this.customersBtn.TabIndex = 12;
@@ -287,7 +287,7 @@
             // searchInput
             // 
             this.searchInput.Location = new System.Drawing.Point(300, 135);
-            this.searchInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.searchInput.Margin = new System.Windows.Forms.Padding(2);
             this.searchInput.Name = "searchInput";
             this.searchInput.Size = new System.Drawing.Size(144, 20);
             this.searchInput.TabIndex = 13;
@@ -297,7 +297,7 @@
             this.searchBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.searchBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchBtn.Location = new System.Drawing.Point(450, 133);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(64, 22);
             this.searchBtn.TabIndex = 14;
@@ -309,7 +309,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 508);
+            this.ClientSize = new System.Drawing.Size(586, 508);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.searchInput);
             this.Controls.Add(this.tableHeader);
@@ -324,7 +324,7 @@
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.customersTable);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             ((System.ComponentModel.ISupportInitialize)(this.customersTable)).EndInit();

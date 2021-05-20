@@ -1,9 +1,11 @@
 ﻿using CustomerManagement.Core.Attributes;
+using CustomerManagement.Core.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace CustomerManagement.Core.Models
 {
-    public class Appointment : EntityBase
+    public class Appointment : EntityBase, ITableItem
     {
         [Column("customerId")]
         public int CustomerId { get; set; }
@@ -25,7 +27,39 @@ namespace CustomerManagement.Core.Models
         public DateTime End { get; set; }
         [Column("username")]
         public string Username { get; set; }
-        [Column("name")]
+        [Column("customerName")]
         public string CustomerName { get; set; }
+        [Column("customerPhone")]
+        public string CustomerPhone { get; set; }
+
+        public Dictionary<string, string> GetColumns(Func<string, string> translation)
+        {
+            return new Dictionary<string, string>()
+            {
+                { "title", translation.Invoke("title") },
+                { "start", translation.Invoke("start") },
+                { "end", translation.Invoke("end") },
+                { "customer", translation.Invoke("customer") },
+                { "phone", translation.Invoke("phone") },
+                { "type", translation.Invoke("type") },
+                { "description", translation.Invoke("description") },
+                { "crew", translation.Invoke("crew") },
+            };
+        }
+
+        public object[] GetRow()
+        {
+            return new object[]
+            {
+                Title,
+                Start,
+                End,
+                CustomerName,
+                CustomerPhone,
+                Type,
+                Description,
+                Crew
+            };
+        }
     }
 }

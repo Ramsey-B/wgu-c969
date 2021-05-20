@@ -119,7 +119,7 @@ namespace CustomerManagement.Data.Repositories
 
         public async Task<List<CustomerReport>> GetCustomerReportsAsync(int userId)
         {
-            var reports = await _sqlOrm.QueryListAsync<CustomerReport>(SelectSql.CustomerReport, new { UserId = userId });
+            var reports = await _sqlOrm.QueryListAsync<CustomerReport>(SelectSql.CustomerReport, new { userId });
 
             var groups = reports.GroupBy(report => report.Id); // group the reports by customer Id
 

@@ -33,17 +33,15 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.descriptionInput = new System.Windows.Forms.TextBox();
             this.locationInput = new System.Windows.Forms.TextBox();
-            this.contactInput = new System.Windows.Forms.TextBox();
+            this.crewInput = new System.Windows.Forms.TextBox();
             this.typeInput = new System.Windows.Forms.TextBox();
-            this.urlInput = new System.Windows.Forms.TextBox();
             this.startInput = new System.Windows.Forms.DateTimePicker();
             this.endInput = new System.Windows.Forms.DateTimePicker();
             this.titleLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.locationLabel = new System.Windows.Forms.Label();
-            this.contactLabel = new System.Windows.Forms.Label();
+            this.crewLabel = new System.Windows.Forms.Label();
             this.typeLabel = new System.Windows.Forms.Label();
-            this.urlLabel = new System.Windows.Forms.Label();
             this.startLabel = new System.Windows.Forms.Label();
             this.endLabel = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
@@ -55,9 +53,10 @@
             // 
             // titleInput
             // 
-            this.titleInput.Location = new System.Drawing.Point(257, 153);
+            this.titleInput.Location = new System.Drawing.Point(128, 80);
+            this.titleInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.titleInput.Name = "titleInput";
-            this.titleInput.Size = new System.Drawing.Size(282, 31);
+            this.titleInput.Size = new System.Drawing.Size(143, 20);
             this.titleInput.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -68,126 +67,123 @@
             // 
             // descriptionInput
             // 
-            this.descriptionInput.Location = new System.Drawing.Point(257, 204);
+            this.descriptionInput.Location = new System.Drawing.Point(128, 106);
+            this.descriptionInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.descriptionInput.Name = "descriptionInput";
-            this.descriptionInput.Size = new System.Drawing.Size(282, 31);
+            this.descriptionInput.Size = new System.Drawing.Size(143, 20);
             this.descriptionInput.TabIndex = 2;
             // 
             // locationInput
             // 
-            this.locationInput.Location = new System.Drawing.Point(257, 255);
+            this.locationInput.Location = new System.Drawing.Point(128, 133);
+            this.locationInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.locationInput.Name = "locationInput";
-            this.locationInput.Size = new System.Drawing.Size(282, 31);
+            this.locationInput.Size = new System.Drawing.Size(143, 20);
             this.locationInput.TabIndex = 3;
             // 
-            // contactInput
+            // crewInput
             // 
-            this.contactInput.Location = new System.Drawing.Point(257, 304);
-            this.contactInput.Name = "contactInput";
-            this.contactInput.Size = new System.Drawing.Size(282, 31);
-            this.contactInput.TabIndex = 4;
+            this.crewInput.Location = new System.Drawing.Point(128, 158);
+            this.crewInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.crewInput.Name = "crewInput";
+            this.crewInput.Size = new System.Drawing.Size(143, 20);
+            this.crewInput.TabIndex = 4;
             // 
             // typeInput
             // 
-            this.typeInput.Location = new System.Drawing.Point(257, 357);
+            this.typeInput.Location = new System.Drawing.Point(128, 186);
+            this.typeInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.typeInput.Name = "typeInput";
-            this.typeInput.Size = new System.Drawing.Size(282, 31);
+            this.typeInput.Size = new System.Drawing.Size(143, 20);
             this.typeInput.TabIndex = 5;
-            // 
-            // urlInput
-            // 
-            this.urlInput.Location = new System.Drawing.Point(257, 412);
-            this.urlInput.Name = "urlInput";
-            this.urlInput.Size = new System.Drawing.Size(282, 31);
-            this.urlInput.TabIndex = 6;
             // 
             // startInput
             // 
             this.startInput.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.startInput.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startInput.Location = new System.Drawing.Point(257, 461);
+            this.startInput.Location = new System.Drawing.Point(129, 216);
+            this.startInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.startInput.Name = "startInput";
-            this.startInput.Size = new System.Drawing.Size(282, 31);
+            this.startInput.Size = new System.Drawing.Size(143, 20);
             this.startInput.TabIndex = 7;
             // 
             // endInput
             // 
             this.endInput.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.endInput.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endInput.Location = new System.Drawing.Point(257, 512);
+            this.endInput.Location = new System.Drawing.Point(129, 245);
+            this.endInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.endInput.Name = "endInput";
-            this.endInput.Size = new System.Drawing.Size(282, 31);
+            this.endInput.Size = new System.Drawing.Size(143, 20);
             this.endInput.TabIndex = 8;
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(153, 153);
+            this.titleLabel.Location = new System.Drawing.Point(80, 80);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(53, 25);
+            this.titleLabel.Size = new System.Drawing.Size(27, 13);
             this.titleLabel.TabIndex = 9;
             this.titleLabel.Text = "Title";
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(90, 207);
+            this.descriptionLabel.Location = new System.Drawing.Point(47, 106);
+            this.descriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(120, 25);
+            this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 10;
             this.descriptionLabel.Text = "Description";
             // 
             // locationLabel
             // 
             this.locationLabel.AutoSize = true;
-            this.locationLabel.Location = new System.Drawing.Point(112, 255);
+            this.locationLabel.Location = new System.Drawing.Point(59, 133);
+            this.locationLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.locationLabel.Name = "locationLabel";
-            this.locationLabel.Size = new System.Drawing.Size(94, 25);
+            this.locationLabel.Size = new System.Drawing.Size(48, 13);
             this.locationLabel.TabIndex = 11;
             this.locationLabel.Text = "Location";
             // 
-            // contactLabel
+            // crewLabel
             // 
-            this.contactLabel.AutoSize = true;
-            this.contactLabel.Location = new System.Drawing.Point(124, 304);
-            this.contactLabel.Name = "contactLabel";
-            this.contactLabel.Size = new System.Drawing.Size(86, 25);
-            this.contactLabel.TabIndex = 12;
-            this.contactLabel.Text = "Contact";
+            this.crewLabel.AutoSize = true;
+            this.crewLabel.Location = new System.Drawing.Point(72, 158);
+            this.crewLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.crewLabel.Name = "crewLabel";
+            this.crewLabel.Size = new System.Drawing.Size(31, 13);
+            this.crewLabel.TabIndex = 12;
+            this.crewLabel.Text = "Crew";
             // 
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(153, 357);
+            this.typeLabel.Location = new System.Drawing.Point(76, 186);
+            this.typeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.typeLabel.Name = "typeLabel";
-            this.typeLabel.Size = new System.Drawing.Size(60, 25);
+            this.typeLabel.Size = new System.Drawing.Size(31, 13);
             this.typeLabel.TabIndex = 13;
             this.typeLabel.Text = "Type";
-            // 
-            // urlLabel
-            // 
-            this.urlLabel.AutoSize = true;
-            this.urlLabel.Location = new System.Drawing.Point(171, 412);
-            this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(39, 25);
-            this.urlLabel.TabIndex = 14;
-            this.urlLabel.Text = "Url";
             // 
             // startLabel
             // 
             this.startLabel.AutoSize = true;
-            this.startLabel.Location = new System.Drawing.Point(153, 461);
+            this.startLabel.Location = new System.Drawing.Point(76, 219);
+            this.startLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(57, 25);
+            this.startLabel.Size = new System.Drawing.Size(29, 13);
             this.startLabel.TabIndex = 15;
             this.startLabel.Text = "Start";
             // 
             // endLabel
             // 
             this.endLabel.AutoSize = true;
-            this.endLabel.Location = new System.Drawing.Point(156, 512);
+            this.endLabel.Location = new System.Drawing.Point(78, 249);
+            this.endLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.endLabel.Name = "endLabel";
-            this.endLabel.Size = new System.Drawing.Size(50, 25);
+            this.endLabel.Size = new System.Drawing.Size(26, 13);
             this.endLabel.TabIndex = 16;
             this.endLabel.Text = "End";
             // 
@@ -195,9 +191,10 @@
             // 
             this.errorLabel.AutoSize = true;
             this.errorLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorLabel.Location = new System.Drawing.Point(252, 564);
+            this.errorLabel.Location = new System.Drawing.Point(126, 274);
+            this.errorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(199, 25);
+            this.errorLabel.Size = new System.Drawing.Size(99, 13);
             this.errorLabel.TabIndex = 17;
             this.errorLabel.Text = "* An Error Occurred";
             this.errorLabel.Visible = false;
@@ -206,9 +203,10 @@
             // 
             this.submitBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.submitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.submitBtn.Location = new System.Drawing.Point(436, 611);
+            this.submitBtn.Location = new System.Drawing.Point(218, 299);
+            this.submitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(103, 40);
+            this.submitBtn.Size = new System.Drawing.Size(52, 21);
             this.submitBtn.TabIndex = 18;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = false;
@@ -218,9 +216,10 @@
             // 
             this.cancelBtn.BackColor = System.Drawing.Color.Red;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cancelBtn.Location = new System.Drawing.Point(257, 611);
+            this.cancelBtn.Location = new System.Drawing.Point(128, 299);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(103, 40);
+            this.cancelBtn.Size = new System.Drawing.Size(52, 21);
             this.cancelBtn.TabIndex = 19;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
@@ -230,17 +229,19 @@
             // 
             this.pageTitle.AutoSize = true;
             this.pageTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageTitle.Location = new System.Drawing.Point(179, 26);
+            this.pageTitle.Location = new System.Drawing.Point(90, 14);
+            this.pageTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pageTitle.Name = "pageTitle";
-            this.pageTitle.Size = new System.Drawing.Size(378, 37);
+            this.pageTitle.Size = new System.Drawing.Size(187, 20);
             this.pageTitle.TabIndex = 20;
             this.pageTitle.Text = "Appointment for {{name}}";
             // 
             // customerSelect
             // 
-            this.customerSelect.Location = new System.Drawing.Point(257, 90);
+            this.customerSelect.Location = new System.Drawing.Point(128, 47);
+            this.customerSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customerSelect.Name = "customerSelect";
-            this.customerSelect.Size = new System.Drawing.Size(282, 41);
+            this.customerSelect.Size = new System.Drawing.Size(141, 21);
             this.customerSelect.TabIndex = 21;
             this.customerSelect.Text = "Select Customer";
             this.customerSelect.UseVisualStyleBackColor = true;
@@ -248,9 +249,9 @@
             // 
             // ModifyAppointment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 736);
+            this.ClientSize = new System.Drawing.Size(350, 383);
             this.Controls.Add(this.customerSelect);
             this.Controls.Add(this.pageTitle);
             this.Controls.Add(this.cancelBtn);
@@ -258,20 +259,19 @@
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.endLabel);
             this.Controls.Add(this.startLabel);
-            this.Controls.Add(this.urlLabel);
             this.Controls.Add(this.typeLabel);
-            this.Controls.Add(this.contactLabel);
+            this.Controls.Add(this.crewLabel);
             this.Controls.Add(this.locationLabel);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.endInput);
             this.Controls.Add(this.startInput);
-            this.Controls.Add(this.urlInput);
             this.Controls.Add(this.typeInput);
-            this.Controls.Add(this.contactInput);
+            this.Controls.Add(this.crewInput);
             this.Controls.Add(this.locationInput);
             this.Controls.Add(this.descriptionInput);
             this.Controls.Add(this.titleInput);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ModifyAppointment";
             this.Text = "ModifyAppointment";
             this.ResumeLayout(false);
@@ -285,17 +285,15 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox descriptionInput;
         private System.Windows.Forms.TextBox locationInput;
-        private System.Windows.Forms.TextBox contactInput;
+        private System.Windows.Forms.TextBox crewInput;
         private System.Windows.Forms.TextBox typeInput;
-        private System.Windows.Forms.TextBox urlInput;
         private System.Windows.Forms.DateTimePicker startInput;
         private System.Windows.Forms.DateTimePicker endInput;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Label locationLabel;
-        private System.Windows.Forms.Label contactLabel;
+        private System.Windows.Forms.Label crewLabel;
         private System.Windows.Forms.Label typeLabel;
-        private System.Windows.Forms.Label urlLabel;
         private System.Windows.Forms.Label startLabel;
         private System.Windows.Forms.Label endLabel;
         private System.Windows.Forms.Label errorLabel;

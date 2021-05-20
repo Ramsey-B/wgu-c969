@@ -32,11 +32,6 @@ namespace CustomerManagement.Core.Models
 
         public Dictionary<string, string> GetColumns(Func<string, string> translation)
         {
-            if (translation == null)
-            {
-                translation = (string str) => str;
-            }
-
             return new Dictionary<string, string>()
             {
                 { "name", translation.Invoke("name") },

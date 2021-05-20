@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Data.Repositories;
 using CustomerManagement.Data.Util;
+using CustomerManagement.Forms;
 using CustomerManagement.Forms.Customers;
 using CustomerManagement.Logging;
 using CustomerManagement.Translations;
@@ -27,8 +28,8 @@ namespace CustomerManagement
             using(var serviceProvider = services.BuildServiceProvider())
             {
                 // inits the project with the dashboard
-                var dashboard = serviceProvider.GetRequiredService<Dashboard>();
-                Application.Run(dashboard);
+                var form = serviceProvider.GetRequiredService<InitForm>();
+                Application.Run(form);
             }
         }
 
@@ -46,7 +47,7 @@ namespace CustomerManagement
                 .AddScoped<Context>()
                 .AddScoped<Translator>()
                 .AddSingleton<Reminder>() // Must be a singleton to work.
-                .AddScoped<Dashboard>();
+                .AddScoped<InitForm>();
         }
     }
 }

@@ -70,7 +70,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM appointment  INNER JOIN user ON user.id = appointment.userId INNER JOIN customer ON customer.id = appointment.customerId WHERE (start BETWEEN @start AND @end).
+        ///   Looks up a localized string similar to select customerId, appointment.userId, title, description, location, crewName, type, start, end, user.username, customer.name as customerName, address.phone as customerPhone from appointment INNER JOIN user ON user.id = appointment.userId INNER JOIN customer ON customer.id = appointment.customerId INNER JOIN address ON address.id = customer.addressId WHERE (start BETWEEN @start AND @end).
         /// </summary>
         internal static string Appointment {
             get {
@@ -106,6 +106,15 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT crewName, customer.name as customerName, title, type, start, end FROM appointment INNER JOIN customer ON customer.id = appointment.customerId WHERE (start BETWEEN @start AND @end).
+        /// </summary>
+        internal static string CrewSchedule {
+            get {
+                return ResourceManager.GetString("CrewSchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT customer.id, customer.active, customer.createdDate, customer.createdBy, customer.lastUpdatedBy, customer.lastUpdatedDate, customer.name, address1, address2, addressId, phone, city.name as cityName, postalCode, country.Name as countryName, city.id as cityId, country.id as countryId FROM customer INNER JOIN address 
         ///ON customer.addressId = address.id INNER JOIN city ON address.cityId = city.id INNER JOIN country ON city.countryId = country.id.
         /// </summary>
@@ -116,7 +125,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT customer.customerId, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;.
+        ///   Looks up a localized string similar to SELECT customer.id, name, start, end FROM customer INNER JOIN appointment ON appointment.customerId = customer.customerId WHERE appointment.userId = @userId;.
         /// </summary>
         internal static string CustomerReport {
             get {

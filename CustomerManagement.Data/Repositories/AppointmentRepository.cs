@@ -31,10 +31,22 @@ namespace CustomerManagement.Data.Repositories
             }
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                sql += $" AND (userName LIKE '%{searchTerm}%' OR type LIKE '%{searchTerm}%' OR customerName LIKE '%{searchTerm}%')";
+                searchTerm = $"%{searchTerm}%";
+                sql += $" AND (username LIKE @searchTerm OR type LIKE @searchTerm OR customer.name LIKE @searchTerm OR crewName LIKE @searchTerm OR title LIKE @searchTerm OR description LIKE @searchTerm OR location LIKE @searchTerm)";
             }
 
-            return await _sqlOrm.QueryListAsync<Appointment>(sql, new { userId, customerId, Start = start, End = end });
+            return await _sqlOrm.QueryListAsync<Appointment>(sql, new { userId, customerId, start, end, searchTerm });
+        }
+
+        public async Task<List<ConsultantSchedule>> GetConsultantSchedules(DateTime start, DateTime end, string crewName = "")
+        {
+            var sql = SelectSql.CrewSchedule;
+            if (!string.IsNullOrWhiteSpace(crewName))
+            {
+                sql += "AND crewName = @crewName";
+            }
+
+            return await _sqlOrm.QueryListAsync<ConsultantSchedule>(sql, new { start, end, crewName });
         }
 
         public async Task<int> CreateAsync(Appointment appointment)

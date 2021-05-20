@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.Core.Interfaces;
+using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
@@ -31,15 +32,7 @@ namespace CustomerManagement.Forms
         private void Init()
         {
             var report = _customerRepository.GetCustomerReportsAsync(_context.CurrentUser.Id).Result;
-
-            report.ForEach(r =>
-            {
-                r.LastAppointment = r.LastAppointment?.ToLocalTime();
-                r.NextAppointment = r.NextAppointment?.ToLocalTime();
-            });
-            var appointmentBinding = new BindingSource();
-            appointmentBinding.DataSource = report;
-            reportTable.DataSource = appointmentBinding;
+            TableService.SetData(ref reportTable, report);
         }
 
         private void Translate()

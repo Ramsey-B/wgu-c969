@@ -1,5 +1,7 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.Forms.Customers;
+using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
@@ -17,19 +19,43 @@ namespace CustomerManagement.Forms
         private readonly Customer _customer;
         private List<Appointment> _appointments;
 
-        public Appointments(Context context, Translator translator, IAppointmentRepository appointmentRepository, Customer customer = null)
+        public Appointments(Context context, Customer customer = null)
         {
             InitializeComponent();
             _context = context;
-            _appointmentRepository = appointmentRepository;
-            _translator = translator;
+            _appointmentRepository = _context.GetService<IAppointmentRepository>();
+            _translator = _context.GetService<Translator>();
             _customer = customer;
 
-            GetAppointments().Wait();
+            _ = GetAppointments();
             TranslatePage();
+
+            monthRadio.Click += async (object sender, EventArgs e) =>
+            {
+                dayRadio.Checked = false;
+                weekRadio.Checked = false;
+                monthRadio.Checked = true;
+                await GetAppointments(searchInput.Text);
+            };
+
+            weekRadio.Click += async (object sender, EventArgs e) =>
+            {
+                dayRadio.Checked = false;
+                weekRadio.Checked = true;
+                monthRadio.Checked = false;
+                await GetAppointments(searchInput.Text);
+            };
+
+            dayRadio.Click += async (object sender, EventArgs e) =>
+            {
+                dayRadio.Checked = true;
+                weekRadio.Checked = false;
+                monthRadio.Checked = false;
+                await GetAppointments(searchInput.Text);
+            };
         }
 
-        private async Task GetAppointments()
+        private async Task GetAppointments(string searchTerm = "")
         {
             var now = DateTime.UtcNow;
             DateTime start;
@@ -44,12 +70,17 @@ namespace CustomerManagement.Forms
                 start = new DateTime(now.Year, now.Month, 1); // first day of the month
                 end = start.AddMonths(1).AddDays(-1); // last day of month
             }
-            else
+            else if (weekRadio.Checked)
             {
                 start = now.AddDays(-(int)now.DayOfWeek); // first day of the week
                 end = start.AddDays(7); // last day of the week
             }
-            _appointments = await _appointmentRepository.GetAllAsync(start, end, _context.CurrentUser.Id, _customer?.Id);
+            else
+            {
+                start = new DateTime(now.Year, now.Month, now.Day); // start of day
+                end = new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddSeconds(-1); // end of day
+            }
+            _appointments = await _appointmentRepository.GetAllAsync(start, end, _context.CurrentUser.Id, _customer?.Id, searchTerm);
 
             SetTable(_appointments);
         }
@@ -62,27 +93,10 @@ namespace CustomerManagement.Forms
             {
                 monthRadio.Visible = false;
                 weekRadio.Visible = false;
+                dayRadio.Visible = false;
             }
 
-            // Map appointments to the table
-            var displayAppt = new BindingList<object>();
-            // Foreach is used to iterate over the entire appointments list
-            appointments.ForEach(appt =>
-            {
-                displayAppt.Add(new
-                {
-                    appt.Id,
-                    appt.Title,
-                    appt.CustomerName,
-                    appt.Type,
-                    appt.Description,
-                    Start = appt.Start.ToLocalTime(),
-                    End = appt.End.ToLocalTime()
-                });
-            });
-            var appointmentBinding = new BindingSource();
-            appointmentBinding.DataSource = displayAppt;
-            appointmentTable.DataSource = appointmentBinding;
+            TableService.SetData<Appointment>(ref appointmentTable, appointments);
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -98,9 +112,9 @@ namespace CustomerManagement.Forms
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            var appointmentId = (int)appointmentTable.CurrentRow.Cells["Id"].Value;
+            var index = appointmentTable.CurrentRow.Index;
             // find is used to get the appointment by id from the appointments list. If its not found it returns null
-            var appointment = _appointments.Find(appt => appt.Id == appointmentId);
+            var appointment = _appointments[index];
             if (appointment == null)
             {
                 MessageBox.Show(_translator.Translate("appointment.noneSelected"));
@@ -121,25 +135,20 @@ namespace CustomerManagement.Forms
 
         private async void deleteBtn_Click(object sender, EventArgs e)
         {
-            var appointmentId = (int)appointmentTable.CurrentRow.Cells["Id"].Value;
-            var title = appointmentTable.CurrentRow.Cells["Title"].Value.ToString();
+            var index = appointmentTable.CurrentRow.Index;
+            var appointment = _appointments[index];
 
-            var dialogResult = MessageBox.Show(_translator.Translate("appointment.confirmDelete", new { title }), "", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(_translator.Translate("appointment.confirmDelete", new { appointment.Title }), "", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) return;
             try
             {
-                await _appointmentRepository.DeleteAsync(appointmentId);
+                await _appointmentRepository.DeleteAsync(appointment.Id);
                 await GetAppointments();
             }
             catch (Exception)
             {
                 MessageBox.Show(_translator.Translate("unexpectedError"));
             }
-        }
-
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void TranslatePage()
@@ -161,21 +170,28 @@ namespace CustomerManagement.Forms
             addBtn.Text = _translator.Translate("add");
             editBtn.Text = _translator.Translate("edit");
             deleteBtn.Text = _translator.Translate("delete");
-            closeBtn.Text = _translator.Translate("close");
         }
 
-        private async void monthRadio_CheckedChanged(object sender, EventArgs e)
+        private void customersBtn_Click(object sender, EventArgs e)
         {
-            weekRadio.Checked = false;
-            monthRadio.Checked = true;
-            await GetAppointments();
+            var dashboard = new Dashboard(_context);
+            _context.Navigate(dashboard);
         }
 
-        private async void weekRadio_CheckedChanged(object sender, EventArgs e)
+        private async void searchBtn_Click(object sender, EventArgs e)
         {
-            weekRadio.Checked = true;
-            monthRadio.Checked = false;
-            await GetAppointments();
+            await GetAppointments(searchInput.Text);
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void reportsBtn_Click(object sender, EventArgs e)
+        {
+            var reports = new Reports(_context);
+            _context.Navigate(reports);
         }
     }
 }
