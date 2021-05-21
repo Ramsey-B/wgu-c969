@@ -22,6 +22,23 @@ namespace CustomerManagement.Forms
             _translator = context.GetService<Translator>();
             _userRepository = context.GetService<IUserRepository>();
             TranslatePage();
+
+            langSelect.Items.Add("English");
+            langSelect.Items.Add("Ingles");
+            langSelect.SelectedItem = "English";
+            langSelect.SelectedValueChanged += (object sender, EventArgs e) =>
+            {
+                switch (langSelect.SelectedItem)
+                {
+                    case "English":
+                        _translator.SetLanguage(Languages.English);
+                        break;
+                    case "Ingles":
+                        _translator.SetLanguage(Languages.Spanish);
+                        break;
+                }
+                TranslatePage();
+            };
         }
 
 

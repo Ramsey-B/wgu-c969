@@ -53,7 +53,7 @@
             this.appointmentTable.AllowUserToAddRows = false;
             this.appointmentTable.AllowUserToDeleteRows = false;
             this.appointmentTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointmentTable.Location = new System.Drawing.Point(78, 149);
+            this.appointmentTable.Location = new System.Drawing.Point(27, 149);
             this.appointmentTable.Margin = new System.Windows.Forms.Padding(2);
             this.appointmentTable.Name = "appointmentTable";
             this.appointmentTable.ReadOnly = true;
@@ -61,14 +61,14 @@
             this.appointmentTable.RowHeadersWidth = 82;
             this.appointmentTable.RowTemplate.Height = 33;
             this.appointmentTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.appointmentTable.Size = new System.Drawing.Size(451, 138);
+            this.appointmentTable.Size = new System.Drawing.Size(539, 138);
             this.appointmentTable.TabIndex = 0;
             // 
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.addBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addBtn.Location = new System.Drawing.Point(482, 291);
+            this.addBtn.Location = new System.Drawing.Point(517, 291);
             this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(48, 24);
@@ -81,7 +81,7 @@
             // 
             this.editBtn.BackColor = System.Drawing.Color.Green;
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(413, 291);
+            this.editBtn.Location = new System.Drawing.Point(448, 291);
             this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(48, 24);
@@ -94,7 +94,7 @@
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Red;
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(341, 291);
+            this.deleteBtn.Location = new System.Drawing.Point(376, 291);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(48, 24);
@@ -107,7 +107,7 @@
             // 
             this.pageHeader.AutoSize = true;
             this.pageHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageHeader.Location = new System.Drawing.Point(74, 85);
+            this.pageHeader.Location = new System.Drawing.Point(27, 85);
             this.pageHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pageHeader.Name = "pageHeader";
             this.pageHeader.Size = new System.Drawing.Size(248, 20);
@@ -118,7 +118,7 @@
             // 
             this.monthRadio.AutoSize = true;
             this.monthRadio.Checked = true;
-            this.monthRadio.Location = new System.Drawing.Point(78, 125);
+            this.monthRadio.Location = new System.Drawing.Point(31, 125);
             this.monthRadio.Margin = new System.Windows.Forms.Padding(2);
             this.monthRadio.Name = "monthRadio";
             this.monthRadio.Size = new System.Drawing.Size(55, 17);
@@ -130,7 +130,7 @@
             // weekRadio
             // 
             this.weekRadio.AutoSize = true;
-            this.weekRadio.Location = new System.Drawing.Point(146, 125);
+            this.weekRadio.Location = new System.Drawing.Point(99, 125);
             this.weekRadio.Margin = new System.Windows.Forms.Padding(2);
             this.weekRadio.Name = "weekRadio";
             this.weekRadio.Size = new System.Drawing.Size(54, 17);
@@ -225,7 +225,7 @@
             // dayRadio
             // 
             this.dayRadio.AutoSize = true;
-            this.dayRadio.Location = new System.Drawing.Point(209, 125);
+            this.dayRadio.Location = new System.Drawing.Point(162, 125);
             this.dayRadio.Margin = new System.Windows.Forms.Padding(2);
             this.dayRadio.Name = "dayRadio";
             this.dayRadio.Size = new System.Drawing.Size(44, 17);
@@ -237,7 +237,7 @@
             // 
             this.searchBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.searchBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchBtn.Location = new System.Drawing.Point(467, 122);
+            this.searchBtn.Location = new System.Drawing.Point(500, 122);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(64, 22);
@@ -248,7 +248,7 @@
             // 
             // searchInput
             // 
-            this.searchInput.Location = new System.Drawing.Point(317, 124);
+            this.searchInput.Location = new System.Drawing.Point(350, 124);
             this.searchInput.Margin = new System.Windows.Forms.Padding(2);
             this.searchInput.Name = "searchInput";
             this.searchInput.Size = new System.Drawing.Size(144, 20);
@@ -258,7 +258,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 522);
+            this.ClientSize = new System.Drawing.Size(590, 324);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.searchInput);
             this.Controls.Add(this.dayRadio);

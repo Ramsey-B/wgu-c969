@@ -2,10 +2,11 @@
   "active": "Active",
   "add": "Add",
   "all": "All",
-  "count": "Count",
   "appointment": {
     "addAppointment": "Add Appointment",
     "confirmDelete": "Are you sure you want to delete appointment for '{Title}'?",
+    "crew": "Crew",
+    "customer": "Customer",
     "description": "Description",
     "editAppointment": "Edit Appointment",
     "end": "End",
@@ -15,13 +16,11 @@
     "noneSelected": "No appointment selected.",
     "outOfHoursError": "* Appointment time must be between {Open} and {Close}",
     "overlappingAppointmentError": "* An appointment already exists from {Start} to {End}",
+    "phone": "Phone",
     "requiredFieldError": "Field '{PropertyName}' is required.",
     "start": "Start",
     "title": "Title",
-    "type": "Type",
-    "customer": "Customer",
-    "phone": "Phone",
-    "crew": "Crew"
+    "type": "Type"
   },
   "appointments": {
     "noCustomerSelected": "* Must select a customer.",
@@ -32,31 +31,32 @@
     "pageHeader": "Appointments Report",
     "pageTitle": "Appointments Report"
   },
+  "calendar": "Calendar",
   "calendarPage": {
     "pageHeader": "Calendar for {Name}",
     "pageTitle": "Calendar"
   },
-  "calendar": "Calendar",
   "cancel": "Cancel",
   "close": "Close",
   "consultantSchedules": {
-    "pageTitle": "Crew Schedules",
-    "pageHeader": "Crew Schedules",
     "crew": "Crew",
     "customer": "Customer",
-    "title": "Title",
-    "start": "Start",
     "end": "End",
+    "pageHeader": "Crew Schedules",
+    "pageTitle": "Crew Schedules",
+    "start": "Start",
+    "title": "Title",
     "type": "Type"
   },
-  "createDate": "Fecha de creación",
-  "createdBy": "Creado por",
+  "count": "Count",
+  "createDate": "Created Date",
+  "createdBy": "Created By",
   "customer": {
+    "active": "Active",
     "addCustomer": "Add Customer",
     "address1": "Address 1",
     "address1Error": "* Address 1 is required.",
     "address2": "Address 2",
-    "active": "Active",
     "city": "City",
     "cityError": "* City is required and must only contain letters, dashes, spaces, or apostrophes.",
     "confirmDelete": "Are you sure you want to delete '{Name}'.",
@@ -72,26 +72,26 @@
     "postalCodeError": "* Postal Code is required and must only contain numbers."
   },
   "customers": "Customers",
-  "day": "Day",
   "customerSelect": {
+    "name": "Name",
     "pageHeader": "Please Select a Customer",
-    "pageTitle": "Customer Select",
-    "name": "Name"
+    "pageTitle": "Customer Select"
   },
   "customersReport": {
-    "pageTitle": "Customers Report",
-    "pageHeader": "Customers Report",
+    "appointmentCount": "Appointment Count",
     "customer": "Customer",
     "lastAppointment": "Last Appointment",
     "nextAppointment": "Next Appointment",
-    "appointmentCount": "Appointment Count"
+    "pageHeader": "Customers Report",
+    "pageTitle": "Customers Report"
   },
   "dashboard": {
     "pageHeader": "Welcome {Username}!",
     "pageTitle": "Dashboard",
-    "viewAppointments": "View Appointments",
-    "tableHeader": "Customers"
+    "tableHeader": "Customers",
+    "viewAppointments": "View Appointments"
   },
+  "day": "Day",
   "delete": "Delete",
   "edit": "Edit",
   "exit": "Exit",
@@ -104,28 +104,9 @@
     "pageTitle": "Login",
     "password": "Password",
     "passwordError": "* Please enter a Password",
+    "register": "Register",
     "username": "Username",
-    "usernameError": "* Please enter a Username",
-    "register": "Register"
-  },
-  "register": {
-    "pageTitle": "Register",
-    "pageHeader": "Welcome! Create your account",
-    "username": "Username",
-    "password": "Password",
-    "passwordError": "* Password must have at least 8 characters, 1 upper case, 1 lower case, 1 number, and 1 special character",
-    "usernameError": "* Username must be at least {charCount} characters",
-    "usernameTakenError": "* Username '{username}' is unavailable",
-    "confirmPassword": "Confirm Password",
-    "confirmPasswordError": "* Passwords must match",
-    "create": "Create"
-  },
-  "reports": "Reports",
-  "reportsPage": {
-    "pageTitle": "Reports",
-    "numberOfAppointments": "Number of Appointments",
-    "consultantSchedules": "Crew Schedules",
-    "customerReport": "Customer Report"
+    "usernameError": "* Please enter a Username"
   },
   "month": "Month",
   "months": {
@@ -143,7 +124,26 @@
     "12": "December"
   },
   "name": "Name",
+  "register": {
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordError": "* Passwords must match",
+    "create": "Create",
+    "pageHeader": "Welcome! Create your account",
+    "pageTitle": "Register",
+    "password": "Password",
+    "passwordError": "* Password must have at least 8 characters, 1 upper case, 1 lower case, 1 number, and 1 special character",
+    "username": "Username",
+    "usernameError": "* Username must be at least {charCount} characters",
+    "usernameTakenError": "* Username '{username}' is unavailable"
+  },
   "reminderMessage": "Alert: You have an appointment in {Minutes} minutes with {CustomerName} at {Time}!",
+  "reports": "Reports",
+  "reportsPage": {
+    "consultantSchedules": "Crew Schedules",
+    "customerReport": "Customer Report",
+    "numberOfAppointments": "Number of Appointments",
+    "pageTitle": "Reports"
+  },
   "search": "Search",
   "select": "Select",
   "submit": "Submit",

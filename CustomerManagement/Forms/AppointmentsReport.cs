@@ -41,7 +41,7 @@ namespace CustomerManagement.Forms
             Translate();
             yearSelect.Items.AddRange(reportYears);
             yearSelect.SelectedItem = currentDate.Year;
-            _ = GetAppointments();
+            GetAppointments().Wait();
 
             // this is a event hook that gets the appointments after the user selects a year
             yearSelect.SelectedValueChanged += async (object sender, EventArgs e) =>
@@ -86,7 +86,7 @@ namespace CustomerManagement.Forms
             var report = new List<AppointmentReport>();
             foreach (var month in monthCount)
             {
-                report.Add(new AppointmentReport() { Month = _translator.Translate($"month.{month.Key}"), Count = month.Value });
+                report.Add(new AppointmentReport() { Month = _translator.Translate($"months.{month.Key}"), Count = month.Value });
             }
 
             TableService.SetData(ref reportTable, report, key => _translator.Translate(key));

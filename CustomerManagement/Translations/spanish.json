@@ -1,10 +1,12 @@
 {
   "active": "Activa",
   "add": "agregar",
+  "all": "Todas",
   "appointment": {
     "addAppointment": "Agregar cita",
     "confirmDelete": "Esta seguro de que desea eliminar la cita para '{Title}'?",
-    "contact": "Contacto",
+    "crew": "tripulacion",
+    "customer": "cliente",
     "description": "Descripcion",
     "editAppointment": "Editar cita",
     "end": "Fin",
@@ -14,28 +16,43 @@
     "noneSelected": "No se selecciono ninguna cita.",
     "outOfHoursError": "* La hora de la cita debe estar entre {Open} y {Close}",
     "overlappingAppointmentError": "* Ya existe una cita de {Start} a {End}",
+    "phone": "telefono",
     "requiredFieldError": "El campo '{PropertyName}' es obligatorio.",
     "start": "Comienzo",
     "title": "Titulo",
-    "type": "Escribe",
-    "url": "Url"
+    "type": "Escribe"
   },
   "appointments": {
     "noCustomerSelected": "* Debe seleccionar una cliente.",
     "pageHeader": "Citas para {Name}",
     "pageTitle": "Equipo"
   },
-  "calendar": {
+  "appointmentsReport": {
+    "pageHeader": "Informe de citas",
+    "pageTitle": "Informe de citas"
+  },
+  "calendar": "Calendario",
+  "calendarPage": {
     "pageHeader": "Calendario de {Name}",
     "pageTitle": "Calendario"
   },
   "cancel": "Cancelar",
   "close": "Cerrar",
-  "consultantSchedules": "Consultant Schedules",
-  "createDate": "Created Date",
-  "createdBy": "Created By",
+  "consultantSchedules": {
+    "crew": "Tripulacion",
+    "customer": "Cliente",
+    "end": "Final",
+    "pageHeader": "Horarios de la tripulacion",
+    "pageTitle": "Horarios de la tripulacion",
+    "start": "Comienzo",
+    "title": "titulo",
+    "type": "tipo"
+  },
+  "count": "contar",
+  "createDate": "Fecha de creación",
+  "createdBy": "Creado por",
   "customer": {
-    "active": "Active",
+    "active": "Activa",
     "addCustomer": "Agregar cliente",
     "address1": "Direccion 1",
     "address1Error": "* Se requiere la direccion 1.",
@@ -46,6 +63,7 @@
     "country": "Pais",
     "countryError": "* El pais es obligatorio y solo debe contener letras, guiones, espacios o apostrofes.",
     "editCustomer": "Editar cliente",
+    "name": "nombre",
     "nameError": "* El nombre es obligatorio y solo debe contener letras, guiones, espacios o apostrofes.",
     "noneSelected": "Ninguna cliente seleccionada.",
     "phone": "Telefono",
@@ -53,20 +71,27 @@
     "postalCode": "Codigo postal",
     "postalCodeError": "* El codigo postal es obligatorio y solo debe contener numeros."
   },
+  "customers": "Clientas",
   "customerSelect": {
+    "name": "nombre",
     "pageHeader": "Por favor seleccione una cliente",
     "pageTitle": "Seleccion de cliente"
   },
-  "customersReport": "Informe de clientes",
+  "customersReport": {
+    "appointmentCount": "Recuento de citas",
+    "customer": "Cliente",
+    "lastAppointment": "Ultima cita",
+    "nextAppointment": "Proxima cita",
+    "pageHeader": "Informe de clientes",
+    "pageTitle": "Informe de clientes"
+  },
   "dashboard": {
-    "appointmentCountReport": "Numero de citas",
-    "calendar": "Ver calendario",
-    "consultantReport": "Horarios de la consultora",
-    "customerReport": "Informe de cliente",
-    "pageHeader": "Bienvenido, {Username}!",
+    "pageHeader": "Bienvenido {Username}!",
     "pageTitle": "Tablero",
+    "tableHeader": "Clientes",
     "viewAppointments": "Ver citas"
   },
+  "day": "dia",
   "delete": "Borrar",
   "edit": "Editar",
   "exit": "Salida",
@@ -75,10 +100,11 @@
   "login": {
     "login": "Acceso",
     "loginError": "* El nombre de usuario o la contrasena no son validos. Intentalo de nuevo.",
-    "pageHeader": "Inicie sesion a continuacion",
+    "pageHeader": "Bienvenidos! Por favor Iniciar sesion",
     "pageTitle": "Acceso",
     "password": "Contrasena",
     "passwordError": "* Porfavor ingrese una contrasena",
+    "register": "Registrarse",
     "username": "Nombre de usuario",
     "usernameError": "* Por favor, ingrese un nombre de usuario"
   },
@@ -98,7 +124,26 @@
     "12": "Diciembre"
   },
   "name": "Nombre",
+  "register": {
+    "confirmPassword": "confirmar Contraseña",
+    "confirmPasswordError": "* Las contrasenas deben coincidir",
+    "create": "Crear",
+    "pageHeader": "Bienvenidos! Crea tu cuenta",
+    "pageTitle": "Registrarse",
+    "password": "Contrasena",
+    "passwordError": "* La contrasena debe tener al menos 8 caracteres, 1 mayuscula, 1 minuscula, 1 numero y 1 caracter especial",
+    "username": "Nombre de usuario",
+    "usernameError": "* El nombre de usuario debe tener al menos {charCount} caracteres",
+    "usernameTakenError": "* El nombre de usuario '{username}' no esta disponible"
+  },
   "reminderMessage": "Alerta: Tiene una cita en {Minutes} minutos con {CustomerName} a las {Time}!",
+  "reports": "Informes",
+  "reportsPage": {
+    "consultantSchedules": "Horarios de la tripulacion",
+    "customerReport": "Informe de cliente",
+    "numberOfAppointments": "Numero de citas",
+    "pageTitle": "Informes"
+  },
   "search": "Buscar",
   "select": "Seleccione",
   "submit": "Enviar",
