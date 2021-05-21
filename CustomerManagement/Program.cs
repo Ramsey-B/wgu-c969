@@ -44,7 +44,7 @@ namespace CustomerManagement
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IAppointmentRepository, AppointmentRepository>()
                 .AddScoped<Logger>()
-                .AddScoped<Context>()
+                .AddScoped<IContext, Context>()
                 .AddScoped<Translator>()
                 .AddSingleton<Reminder>() // Must be a singleton to work.
                 .AddScoped<InitForm>();

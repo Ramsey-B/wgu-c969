@@ -4,7 +4,6 @@ using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,14 +11,14 @@ namespace CustomerManagement.Forms
 {
     public partial class CustomerSelect : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
         private List<Customer> customers;
 
         public Customer Customer { get; set; } // This allows the parent to grab the selected Customer
 
-        public CustomerSelect(Context context)
+        public CustomerSelect(IContext context)
         {
             _context = context;
             _customerRepository = _context.GetService<ICustomerRepository>();

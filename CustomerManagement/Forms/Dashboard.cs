@@ -4,7 +4,6 @@ using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,13 +11,13 @@ namespace CustomerManagement.Forms.Customers
 {
     public partial class Dashboard : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
         private readonly User _currentUser;
         private List<Customer> _customers;
 
-        public Dashboard(Context context)
+        public Dashboard(IContext context)
         {
             InitializeComponent();
      

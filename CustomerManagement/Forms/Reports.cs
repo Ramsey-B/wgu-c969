@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Forms.Customers;
+﻿using CustomerManagement.Core.Interfaces;
+using CustomerManagement.Forms.Customers;
 using CustomerManagement.Translations;
 using System;
 using System.Windows.Forms;
@@ -7,10 +8,10 @@ namespace CustomerManagement.Forms
 {
     public partial class Reports : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly Translator _translator;
 
-        public Reports(Context context)
+        public Reports(IContext context)
         {
             InitializeComponent();
             _context = context;

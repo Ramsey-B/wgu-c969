@@ -11,11 +11,11 @@ namespace CustomerManagement.Forms
     public partial class ModifyAppointment : Form
     {
         private readonly Translator _translator;
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
         private Customer _customer;
         private readonly Appointment _appointment;
-        public ModifyAppointment(Context context, Appointment appointment = null, Customer customer = null)
+        public ModifyAppointment(IContext context, Appointment appointment = null, Customer customer = null)
         {
             _translator = context.GetService<Translator>();
             _context = context;

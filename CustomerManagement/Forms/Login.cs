@@ -10,12 +10,12 @@ namespace CustomerManagement.Forms
 {
     public partial class Login : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly Logger _logger;
         private readonly Translator _translator;
         private readonly IUserRepository _userRepository;
 
-        public Login(Context context)
+        public Login(IContext context)
         {
             InitializeComponent();
             _context = context;

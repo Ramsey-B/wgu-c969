@@ -8,9 +8,9 @@ namespace CustomerManagement.Forms
 {
     public partial class InitForm : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
 
-        public InitForm(Context context)
+        public InitForm(IContext context)
         {
             InitializeComponent();
             _context = context;

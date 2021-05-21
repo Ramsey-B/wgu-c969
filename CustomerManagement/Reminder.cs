@@ -1,9 +1,7 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Translations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,15 +9,15 @@ namespace CustomerManagement
 {
     public class Reminder
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly Translator _translator;
 
-        public Reminder(Context context, IAppointmentRepository appointmentRepository, Translator translator)
+        public Reminder(IContext context)
         {
             _context = context;
-            _appointmentRepository = appointmentRepository;
-            _translator = translator;
+            _appointmentRepository = _context.GetService<IAppointmentRepository>(); ;
+            _translator = _context.GetService<Translator>();
         }
 
         /// <summary>

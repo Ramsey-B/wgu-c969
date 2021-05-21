@@ -5,7 +5,6 @@ using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,13 +12,13 @@ namespace CustomerManagement.Forms
 {
     public partial class Appointments : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly Translator _translator;
         private readonly Customer _customer;
         private List<Appointment> _appointments;
 
-        public Appointments(Context context, Customer customer = null)
+        public Appointments(IContext context, Customer customer = null)
         {
             InitializeComponent();
             _context = context;

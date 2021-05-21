@@ -2,24 +2,17 @@
 using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
 {
     public partial class CustomersReport : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
         private readonly Translator _translator;
 
-        public CustomersReport(Context context)
+        public CustomersReport(IContext context)
         {
             _context = context;
             _customerRepository = context.GetService<ICustomerRepository>();

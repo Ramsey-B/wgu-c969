@@ -4,7 +4,6 @@ using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +13,11 @@ namespace CustomerManagement.Forms
 {
     public partial class ConsultantSchedules : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly Translator _translator;
 
-        public ConsultantSchedules(Context context)
+        public ConsultantSchedules(IContext context)
         {
             _context = context;
             _appointmentRepository = _context.GetService<IAppointmentRepository>();

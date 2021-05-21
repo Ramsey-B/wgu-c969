@@ -9,12 +9,12 @@ namespace CustomerManagement.Forms
 {
     public partial class Register : Form
     {
-        private readonly Context _context;
+        private readonly IContext _context;
         private readonly Logger _logger;
         private readonly Translator _translator;
         private readonly IUserRepository _userRepository;
 
-        public Register(Context context)
+        public Register(IContext context)
         {
             InitializeComponent();
             _context = context;

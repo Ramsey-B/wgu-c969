@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Core.Models;
+﻿using CustomerManagement.Core.Interfaces;
+using CustomerManagement.Core.Models;
 using CustomerManagement.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CustomerManagement
 {
-    public class Context
+    public class Context : IContext
     {
         private readonly IServiceProvider _servicePorvider;
         private User _currentUser;
