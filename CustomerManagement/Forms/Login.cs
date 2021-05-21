@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.FormViewModels;
 using CustomerManagement.Logging;
 using CustomerManagement.Translations;
 using System;
@@ -11,17 +12,15 @@ namespace CustomerManagement.Forms
     public partial class Login : Form
     {
         private readonly IContext _context;
-        private readonly Logger _logger;
-        private readonly Translator _translator;
-        private readonly IUserRepository _userRepository;
+        private readonly ITranslator _translator;
+        private readonly LoginViewModel _viewModel;
 
         public Login(IContext context)
         {
             InitializeComponent();
             _context = context;
-            _logger = context.GetService<Logger>();
-            _translator = context.GetService<Translator>();
-            _userRepository = context.GetService<IUserRepository>();
+            _translator = context.GetService<ITranslator>();
+            _viewModel = new LoginViewModel(context);
             TranslatePage();
 
             langSelect.Items.Add("English");
@@ -45,36 +44,32 @@ namespace CustomerManagement.Forms
         private async void loginBtn_Click(object sender, EventArgs e)
         {
             hideErrors(); // resets the error messages
-            var isValid = true;
-            if (string.IsNullOrWhiteSpace(username.Text))
-            {
-                usernameError.Visible = true;
-                usernameError.Text = _translator.Translate("login.usernameError");
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(password.Text))
-            {
-                passwordError.Visible = true;
-                passwordError.Text = _translator.Translate("login.passwordError");
-                isValid = false;
-            }
-
-            if (!isValid) return; // stop execution is inputs are invalid
-
             try
             {
-                var user = await _userRepository.LoginAsync(new User() { Username = username.Text, Password = password.Text });
-
-                _logger.LogMessage($"User with username ({user.Username}) and id ({user.Id}) successfully logged in.");
-                _context.CurrentUser = user;
+                await _viewModel.Login(new User() { Username = username.Text, Password = password.Text });
                 Close();
             }
-            catch (InvalidLoginException ex)
+            catch (PublicException ex)
             {
-                _logger.LogMessage($"Failed login attempt with Username {ex.Username}");
-                loginError.Visible = true;
-                loginError.Text = _translator.Translate("login.loginError");
+                switch (ex.Id)
+                {
+                    case "invalid-username":
+                        usernameError.Visible = true;
+                        usernameError.Text = _translator.Translate("login.usernameError");
+                        break;
+                    case "invalid-password":
+                        passwordError.Visible = true;
+                        passwordError.Text = _translator.Translate("login.passwordError");
+                        break;
+                    case "invalid-login":
+                        loginError.Visible = true;
+                        loginError.Text = _translator.Translate("login.loginError");
+                        break;
+                    case "unexpected-login":
+                        loginError.Visible = true;
+                        loginError.Text = _translator.Translate("unexpectedError");
+                        break;
+                }
             }
             catch (Exception)
             {

@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.FormViewModels;
 using CustomerManagement.Translations;
 using System;
 using System.Threading.Tasks;
@@ -10,18 +11,20 @@ namespace CustomerManagement.Forms
 {
     public partial class ModifyAppointment : Form
     {
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
         private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
         private Customer _customer;
+        private readonly ModifyAppointmentViewModel _viewModel;
         private readonly Appointment _appointment;
         public ModifyAppointment(IContext context, Appointment appointment = null, Customer customer = null)
         {
-            _translator = context.GetService<Translator>();
+            _translator = context.GetService<ITranslator>();
             _context = context;
             _appointmentRepository = context.GetService<IAppointmentRepository>();
             _appointment = appointment;
             _customer = customer;
+            _viewModel = new ModifyAppointmentViewModel(context);
             InitializeComponent();
             TranslatePage();
             Init();
@@ -70,63 +73,16 @@ namespace CustomerManagement.Forms
                 startInput.Value = _appointment.Start.ToLocalTime();
                 endInput.Value = _appointment.End.ToLocalTime();
             }
-        }
 
-        private void ValidateBusinessHours()
-        {
-            var businessStart = DateTime.Today.ToLocalTime().AddHours(8);
-            var businessEnd = DateTime.Today.ToLocalTime().AddHours(17);
+            startInput.MinDate = DateTime.Today.ToLocalTime().AddHours(8);
+            endInput.MinDate = DateTime.Today.ToLocalTime().AddMinutes(1);
 
-            if (
-                    startInput.Value.Hour < businessStart.Hour || // before open
-                    endInput.Value.Hour > businessEnd.Hour || // after close
-                    startInput.Value < DateTime.Now.ToLocalTime() || // Date is in the past
-                    startInput.Value.Year != endInput.Value.Year || // different years
-                    startInput.Value.Day != endInput.Value.Day || // different days
-                    startInput.Value >= endInput.Value // start is after end
-                )
+            startInput.ValueChanged += (object sender, EventArgs e) =>
             {
-                throw new OutOfHoursException(businessStart, businessEnd);
-            }
-        }
-
-        /// <summary>
-        /// Validates the business hours of the new appointment,
-        /// handles callback/validation errors, calls the callback 
-        /// func with the new appointment.
-        /// </summary>
-        private async Task SubmitAsync(Appointment appointment, Func<Appointment, Task<int>> callback)
-        {
-            try
-            {
-                ValidateBusinessHours();
-                await callback(appointment);
-                Close(); // close the popup if the callback is successful
-            }
-            // catch specific errors
-            catch (OutOfHoursException ex)
-            {
-                errorLabel.Visible = true;
-                errorLabel.Text = _translator.Translate("appointment.outOfHoursError", new { ex.Open, ex.Close });
-            }
-            catch (InvalidEntityException ex)
-            {
-                errorLabel.Visible = true;
-                errorLabel.Text = _translator.Translate("appointment.requiredFieldError", new { ex.PropertyName });
-            }
-            catch (OverlappingAppointmentException ex)
-            {
-                errorLabel.Visible = true;
-                var start = ex.Start.ToLocalTime();
-                var end = ex.End.ToLocalTime();
-                errorLabel.Text = _translator.Translate("appointment.overlappingAppointmentError", new { Start = start, End = end });
-            }
-            // catch all unexpected exceptions
-            catch (Exception)
-            {
-                errorLabel.Visible = true;
-                errorLabel.Text = _translator.Translate("unexpectedError");
-            }
+                var start = startInput.Value;
+                endInput.MinDate = new DateTime(start.Year, start.Month, start.Day, start.Hour, start.Minute + 1, start.Second);
+                endInput.MinDate = new DateTime(start.Year, start.Month, start.Day).AddHours(17);
+            };
         }
 
         private async void submitBtn_Click(object sender, EventArgs e)
@@ -138,9 +94,11 @@ namespace CustomerManagement.Forms
                 errorLabel.Visible = true;
                 return;
             }
+            Func<Appointment, Task<int>> callback;
+            Appointment newAppt;
             if (_appointment == null) // create a new appointment
             {
-                var newAppt = new Appointment
+                newAppt = new Appointment
                 {
                     CustomerId = _customer.Id,
                     UserId = _context.CurrentUser.Id,
@@ -149,17 +107,17 @@ namespace CustomerManagement.Forms
                     Location = locationInput.Text,
                     Crew = crewInput.Text,
                     Type = typeInput.Text,
-                    Start = startInput.Value.ToUniversalTime(),
-                    End = endInput.Value.ToUniversalTime(),
+                    Start = startInput.Value,
+                    End = endInput.Value,
                     CreatedBy = _context.CurrentUser.Username,
                     LastUpdatedBy = _context.CurrentUser.Username
                 };
 
-                await SubmitAsync(newAppt, _appointmentRepository.CreateAsync); // pass the create as the callback
+                callback = _appointmentRepository.CreateAsync;
             }
             else // edit an existing appointment
             {
-                var newAppt = new Appointment
+                newAppt = new Appointment
                 {
                     Id = _appointment.Id,
                     CustomerId = _customer.Id,
@@ -169,12 +127,22 @@ namespace CustomerManagement.Forms
                     Location = locationInput.Text,
                     Crew = crewInput.Text,
                     Type = typeInput.Text,
-                    Start = startInput.Value.ToUniversalTime(),
-                    End = endInput.Value.ToUniversalTime(),
+                    Start = startInput.Value.ToLocalTime(),
+                    End = endInput.Value.ToLocalTime(),
                     LastUpdatedBy = _context.CurrentUser.Username
                 };
 
-                await SubmitAsync(newAppt, _appointmentRepository.UpdateAsync); // pass the update as the callback
+                callback = _appointmentRepository.UpdateAsync;
+            }
+
+            try
+            {
+                await _viewModel.SubmitAsync(newAppt, callback);
+            }
+            catch (Exception ex)
+            {
+                errorLabel.Text = ex.Message;
+                errorLabel.Visible = true;
             }
         }
 

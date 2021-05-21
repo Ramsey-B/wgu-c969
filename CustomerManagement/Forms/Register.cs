@@ -1,26 +1,22 @@
-﻿using CustomerManagement.Core.Interfaces;
-using CustomerManagement.Logging;
+﻿using CustomerManagement.Core.Exceptions;
+using CustomerManagement.Core.Interfaces;
+using CustomerManagement.FormViewModels;
 using CustomerManagement.Translations;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
 {
     public partial class Register : Form
     {
-        private readonly IContext _context;
-        private readonly Logger _logger;
-        private readonly Translator _translator;
-        private readonly IUserRepository _userRepository;
+        private readonly ITranslator _translator;
+        private readonly RegisterViewModel _viewModel;
 
         public Register(IContext context)
         {
             InitializeComponent();
-            _context = context;
-            _logger = context.GetService<Logger>();
-            _translator = context.GetService<Translator>();
-            _userRepository = context.GetService<IUserRepository>();
+            _translator = context.GetService<ITranslator>();
+            _viewModel = new RegisterViewModel(context);
             TranslatePage();
 
             langSelect.Items.Add("English");
@@ -66,55 +62,35 @@ namespace CustomerManagement.Forms
         private async void createBtn_Click(object sender, EventArgs e)
         {
             hideErrors();
-            var isValid = true;
-
-            if (username.Text.Length < 4)
-            {
-                usernameError.Text = _translator.Translate("register.usernameError", new { charCount = 4 });
-                usernameError.Visible = true;
-                isValid = false;
-            }
-
-            if (isValid && await _userRepository.CheckUsernameExists(username.Text))
-            {
-                usernameError.Text = _translator.Translate("register.usernameTakenError", new { username = username.Text });
-                usernameError.Visible = true;
-                isValid = false;
-            }
-
-            if (password.Text.Length < 8 ||
-                !password.Text.Any(char.IsNumber) ||
-                !password.Text.Any(char.IsUpper) ||
-                !password.Text.Any(char.IsLower) ||
-                !password.Text.Any(c => !char.IsLetterOrDigit(c)))
-            {
-                passwordError.Text = _translator.Translate("register.passwordError");
-                passwordError.Visible = true;
-                isValid = false;
-            }
-
-            if (!isValid) return;
-
-            if (password.Text != confirmPasswordInput.Text)
-            {
-                confirmError.Text = _translator.Translate("register.confirmPasswordError");
-                confirmError.Visible = true;
-                return;
-            }
-
             try
             {
-                var user = await _userRepository.CreateAsync(new Core.Models.User
+                await _viewModel.Register(new Core.Models.User
                 {
                     Username = username.Text,
                     Password = password.Text,
                     Active = true,
                     CreatedBy = username.Text,
                     LastUpdatedBy = username.Text
-                });
-                _logger.LogMessage($"Created user ({user.Username}) with id ({user.Id}) successfully.");
-                _context.CurrentUser = user;
+                }, confirmPasswordInput.Text);
                 Close();
+            }
+            catch (PublicException ex)
+            {
+                switch (ex.Id)
+                {
+                    case "invalid-username":
+                        usernameError.Visible = true;
+                        usernameError.Text = ex.Message;
+                        break;
+                    case "invalid-password":
+                        passwordError.Visible = true;
+                        passwordError.Text = ex.Message;
+                        break;
+                    case "unexpected-error":
+                        loginError.Visible = true;
+                        loginError.Text = ex.Message;
+                        break;
+                }
             }
             catch (Exception)
             {

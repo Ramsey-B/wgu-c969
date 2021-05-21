@@ -13,7 +13,7 @@ namespace CustomerManagement.Forms
     {
         private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
         private List<Customer> customers;
 
         public Customer Customer { get; set; } // This allows the parent to grab the selected Customer
@@ -22,7 +22,7 @@ namespace CustomerManagement.Forms
         {
             _context = context;
             _customerRepository = _context.GetService<ICustomerRepository>();
-            _translator = _context.GetService<Translator>();
+            _translator = _context.GetService<ITranslator>();
             InitializeComponent();
             Translate();
 

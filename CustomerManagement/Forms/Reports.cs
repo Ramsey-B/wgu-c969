@@ -9,13 +9,13 @@ namespace CustomerManagement.Forms
     public partial class Reports : Form
     {
         private readonly IContext _context;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
 
         public Reports(IContext context)
         {
             InitializeComponent();
             _context = context;
-            _translator = _context.GetService<Translator>();
+            _translator = _context.GetService<ITranslator>();
         }
 
         private void Translate()

@@ -13,7 +13,7 @@ namespace CustomerManagement.Forms.Customers
     {
         private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
         private readonly User _currentUser;
         private List<Customer> _customers;
 
@@ -23,7 +23,7 @@ namespace CustomerManagement.Forms.Customers
      
             _context = context;
             _customerRepository = _context.GetService<ICustomerRepository>();
-            _translator = _context.GetService<Translator>();
+            _translator = _context.GetService<ITranslator>();
             _currentUser = context.CurrentUser; // Triggers auth
             if (_currentUser == null) Application.Exit(); // exit if the user wont log in
 

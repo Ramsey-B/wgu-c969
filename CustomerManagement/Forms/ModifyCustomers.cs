@@ -15,9 +15,9 @@ namespace CustomerManagement.Forms.Customers
         private readonly ICustomerRepository _customerRepository;
         private Customer _customer;
         private readonly User _currentUser;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
 
-        public ModifyCustomer(User currentUser, Translator translator, ICustomerRepository customerRepository, int? customerId = null)
+        public ModifyCustomer(User currentUser, ITranslator translator, ICustomerRepository customerRepository, int? customerId = null)
         {
             InitializeComponent();
             _currentUser = currentUser;
@@ -136,7 +136,7 @@ namespace CustomerManagement.Forms.Customers
                 errorText.Visible = true;
                 errorText.Text = _translator.Translate($"customer.{ex.PropertyName}Error");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(_translator.Translate("unexpectedError"));
             }

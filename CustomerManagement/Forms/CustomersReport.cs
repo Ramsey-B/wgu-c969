@@ -10,13 +10,13 @@ namespace CustomerManagement.Forms
     {
         private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
 
         public CustomersReport(IContext context)
         {
             _context = context;
             _customerRepository = context.GetService<ICustomerRepository>();
-            _translator = context.GetService<Translator>();
+            _translator = context.GetService<ITranslator>();
             InitializeComponent();
             Translate();
             Init();

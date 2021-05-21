@@ -1,11 +1,10 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
+using CustomerManagement.FormViewModels;
 using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,18 +13,18 @@ namespace CustomerManagement.Forms
     public partial class ConsultantSchedules : Form
     {
         private readonly IContext _context;
-        private readonly IAppointmentRepository _appointmentRepository;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
+        private readonly ConsultantSchedulesViewModel _viewModel;
 
         public ConsultantSchedules(IContext context)
         {
             _context = context;
-            _appointmentRepository = _context.GetService<IAppointmentRepository>();
-            _translator = _context.GetService<Translator>();
+            _translator = _context.GetService<ITranslator>();
+            _viewModel = new ConsultantSchedulesViewModel(context);
             InitializeComponent();
             Translate();
-            _ = AddCrewNames();
-            _ = GetReport();
+            AddCrewNames().Wait();
+            GetReport().Wait();
 
             monthRadio.Click += async (object sender, EventArgs e) =>
             {
@@ -54,11 +53,7 @@ namespace CustomerManagement.Forms
 
         private async Task AddCrewNames()
         {
-            var now = DateTime.UtcNow;
-            var start = new DateTime(now.Year, now.Month, 1);
-            var end = start.AddMonths(1).AddDays(-1);
-            var appointments = await _appointmentRepository.GetAllAsync(start, end);
-            var crewNames = appointments.Select(a => a.Crew).OrderBy(c => c).ToList();
+            var crewNames = await _viewModel.GetCrewNames();
 
             var all = _translator.Translate("all");
             crewSelect.Items.Add(all);
@@ -69,26 +64,7 @@ namespace CustomerManagement.Forms
 
         private async Task GetReport()
         {
-            var now = DateTime.UtcNow;
-            DateTime start;
-            DateTime end;
-            if (monthRadio.Checked)
-            {
-                start = new DateTime(now.Year, now.Month, 1); // first day of the month
-                end = start.AddMonths(1).AddDays(-1); // last day of month
-            }
-            else if (weekRadio.Checked)
-            {
-                start = now.AddDays(-(int)now.DayOfWeek); // first day of the week
-                end = start.AddDays(7); // last day of the week
-            }
-            else
-            {
-                start = new DateTime(now.Year, now.Month, now.Day); // start of day
-                end = new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddSeconds(-1); // end of day
-            }
-            var crew = crewSelect.SelectedItem == null || crewSelect.SelectedItem.ToString() == _translator.Translate("all") ? null : crewSelect.SelectedItem.ToString();
-            var results = await _appointmentRepository.GetConsultantSchedules(start, end, crew) ?? new List<ConsultantSchedule>();
+            var results = await _viewModel.GetReport(crewSelect.SelectedItem?.ToString(), dayRadio.Checked, weekRadio.Checked) ?? new List<ConsultantSchedule>();
 
             TableService.SetData(ref reportTable, results, (key) => _translator.Translate($"consultantSchedules.{key}"));
         }

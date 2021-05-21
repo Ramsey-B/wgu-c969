@@ -43,7 +43,7 @@ namespace CustomerManagement.Data.Repositories
             var sql = SelectSql.CrewSchedule;
             if (!string.IsNullOrWhiteSpace(crewName))
             {
-                sql += "AND crewName = @crewName";
+                sql += " AND crewName = @crewName";
             }
 
             return await _sqlOrm.QueryListAsync<ConsultantSchedule>(sql, new { start, end, crewName });
@@ -83,7 +83,7 @@ namespace CustomerManagement.Data.Repositories
         /// </summary>
         private async Task AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end)
         {
-            var result = await _sqlOrm.QueryAsync<Appointment>(SelectSql.AppointmentTimeCheck, new { UserId = userId, Start = start, End = end });
+            var result = await _sqlOrm.QueryAsync<Appointment>(SelectSql.AppointmentTimeCheck, new { userId, start, end });
             if (result != null)
             {
                 throw new OverlappingAppointmentException(result.Start, result.End);

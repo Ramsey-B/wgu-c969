@@ -11,13 +11,13 @@ namespace CustomerManagement
     {
         private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
 
         public Reminder(IContext context)
         {
             _context = context;
             _appointmentRepository = _context.GetService<IAppointmentRepository>(); ;
-            _translator = _context.GetService<Translator>();
+            _translator = _context.GetService<ITranslator>();
         }
 
         /// <summary>

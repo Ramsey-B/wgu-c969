@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CustomerManagement.Core.Interfaces;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -8,7 +9,7 @@ namespace CustomerManagement.Translations
     /// <summary>
     /// Custom translator inspired by the i18n npm library.
     /// </summary>
-    public class Translator
+    public class Translator : ITranslator
     {
         public Translator()
         {
@@ -84,11 +85,5 @@ namespace CustomerManagement.Translations
 
             return translation;
         }
-    }
-
-    public enum Languages // translatable languages
-    {
-        English,
-        Spanish
     }
 }

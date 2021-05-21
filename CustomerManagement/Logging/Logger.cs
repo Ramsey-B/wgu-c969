@@ -10,16 +10,8 @@ namespace CustomerManagement.Logging
 
         public void LogMessage(string message)
         {
-            try
-            {
-                message = $"{DateTime.UtcNow} :: " + message + Environment.NewLine; // appends the datetime and new line char to the message
-                File.AppendAllText(logPath, message); // append the line to the file
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            message = $"{DateTime.UtcNow} :: " + message + Environment.NewLine; // appends the datetime and new line char to the message
+            File.AppendAllText(logPath, message); // append the line to the file
         }
     }
 }

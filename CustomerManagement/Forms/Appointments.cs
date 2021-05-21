@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Forms.Customers;
+using CustomerManagement.FormViewModels;
 using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
@@ -14,8 +15,9 @@ namespace CustomerManagement.Forms
     {
         private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
-        private readonly Translator _translator;
+        private readonly ITranslator _translator;
         private readonly Customer _customer;
+        private readonly AppointmentsViewModel _viewModel;
         private List<Appointment> _appointments;
 
         public Appointments(IContext context, Customer customer = null)
@@ -23,8 +25,9 @@ namespace CustomerManagement.Forms
             InitializeComponent();
             _context = context;
             _appointmentRepository = _context.GetService<IAppointmentRepository>();
-            _translator = _context.GetService<Translator>();
+            _translator = _context.GetService<ITranslator>();
             _customer = customer;
+            _viewModel = new AppointmentsViewModel(context);
 
             _ = GetAppointments();
             TranslatePage();
@@ -56,30 +59,7 @@ namespace CustomerManagement.Forms
 
         private async Task GetAppointments(string searchTerm = "")
         {
-            var now = DateTime.UtcNow;
-            DateTime start;
-            DateTime end;
-            if (_customer != null) // If this is for viewing customers appointments then show all the upcoming appointments
-            {
-                start = DateTime.UtcNow;
-                end = DateTime.MaxValue;
-            }
-            else if (monthRadio.Checked)
-            {
-                start = new DateTime(now.Year, now.Month, 1); // first day of the month
-                end = start.AddMonths(1).AddDays(-1); // last day of month
-            }
-            else if (weekRadio.Checked)
-            {
-                start = now.AddDays(-(int)now.DayOfWeek); // first day of the week
-                end = start.AddDays(7); // last day of the week
-            }
-            else
-            {
-                start = new DateTime(now.Year, now.Month, now.Day); // start of day
-                end = new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddSeconds(-1); // end of day
-            }
-            _appointments = await _appointmentRepository.GetAllAsync(start, end, _context.CurrentUser.Id, _customer?.Id, searchTerm);
+            _appointments = await _viewModel.GetAppointments(searchTerm, _customer, dayRadio.Checked, weekRadio.Checked);
 
             SetTable(_appointments);
         }
