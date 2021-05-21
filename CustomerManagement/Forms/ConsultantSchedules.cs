@@ -61,7 +61,7 @@ namespace CustomerManagement.Forms
             var appointments = await _appointmentRepository.GetAllAsync(start, end);
             var crewNames = appointments.Select(a => a.Crew).OrderBy(c => c).ToList();
 
-            var all = "all";
+            var all = _translator.Translate("all");
             crewSelect.Items.Add(all);
             crewNames.ForEach(n => crewSelect.Items.Add(n));
             crewSelect.SelectedItem = all;
@@ -88,10 +88,10 @@ namespace CustomerManagement.Forms
                 start = new DateTime(now.Year, now.Month, now.Day); // start of day
                 end = new DateTime(now.Year, now.Month, now.Day).AddDays(1).AddSeconds(-1); // end of day
             }
-            var crew = crewSelect.SelectedItem == null || crewSelect.SelectedItem.ToString() == "all" ? null : crewSelect.SelectedItem.ToString();
+            var crew = crewSelect.SelectedItem == null || crewSelect.SelectedItem.ToString() == _translator.Translate("all") ? null : crewSelect.SelectedItem.ToString();
             var results = await _appointmentRepository.GetConsultantSchedules(start, end, crew) ?? new List<ConsultantSchedule>();
 
-            TableService.SetData(ref reportTable, results);
+            TableService.SetData(ref reportTable, results, (key) => _translator.Translate($"consultantSchedules.{key}"));
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
@@ -106,9 +106,9 @@ namespace CustomerManagement.Forms
 
         private void Translate()
         {
-            Name = _translator.Translate("consultantSchedules");
-            Text = _translator.Translate("consultantSchedules");
-            pageHeader.Text = _translator.Translate("consultantSchedules");
+            Name = _translator.Translate("consultantSchedules.pageTitle");
+            Text = _translator.Translate("consultantSchedules.pageTitle");
+            pageHeader.Text = _translator.Translate("consultantSchedules.pageHeader");
             monthRadio.Text = _translator.Translate("month");
             weekRadio.Text = _translator.Translate("week");
             closeBtn.Text = _translator.Translate("close");

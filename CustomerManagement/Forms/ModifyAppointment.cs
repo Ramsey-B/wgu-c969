@@ -50,7 +50,7 @@ namespace CustomerManagement.Forms
             }
             descriptionLabel.Text = _translator.Translate("appointment.description");
             locationLabel.Text = _translator.Translate("appointment.location");
-            crewLabel.Text = _translator.Translate("appointment.contact");
+            crewLabel.Text = _translator.Translate("appointment.crew");
             typeLabel.Text = _translator.Translate("appointment.type");
             startLabel.Text = _translator.Translate("appointment.start");
             endLabel.Text = _translator.Translate("appointment.end");

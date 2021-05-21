@@ -96,7 +96,7 @@ namespace CustomerManagement.Forms
                 dayRadio.Visible = false;
             }
 
-            TableService.SetData<Appointment>(ref appointmentTable, appointments);
+            TableService.SetData<Appointment>(ref appointmentTable, appointments, (string key) => _translator.Translate($"appointment.{key}"));
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -161,12 +161,18 @@ namespace CustomerManagement.Forms
             }
             else
             {
-                pageHeader.Text = _translator.Translate("calendar.pageHeader", new { _context.CurrentUser.Username });
-                Name = _translator.Translate("calendar.pageTitle");
-                Text = _translator.Translate("calendar.pageTitle");
+                pageHeader.Text = _translator.Translate("calendarPage.pageHeader", new { _context.CurrentUser.Username });
+                Name = _translator.Translate("calendarPage.pageTitle");
+                Text = _translator.Translate("calendarPage.pageTitle");
             }
+            customersBtn.Text = _translator.Translate("customers");
+            calendarBtn.Text = _translator.Translate("calendar");
+            reportsBtn.Text = _translator.Translate("reports");
+            exitBtn.Text = _translator.Translate("exit");
             monthRadio.Text = _translator.Translate("month");
             weekRadio.Text = _translator.Translate("week");
+            dayRadio.Text = _translator.Translate("day");
+            searchBtn.Text = _translator.Translate("search");
             addBtn.Text = _translator.Translate("add");
             editBtn.Text = _translator.Translate("edit");
             deleteBtn.Text = _translator.Translate("delete");

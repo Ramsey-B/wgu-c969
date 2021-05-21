@@ -38,15 +38,24 @@ namespace CustomerManagement.Forms
                 currentDate.Year - 4
             };
 
+            Translate();
             yearSelect.Items.AddRange(reportYears);
             yearSelect.SelectedItem = currentDate.Year;
-            GetAppointments().Wait();
+            _ = GetAppointments();
 
             // this is a event hook that gets the appointments after the user selects a year
             yearSelect.SelectedValueChanged += async (object sender, EventArgs e) =>
             {
                 await GetAppointments();
             };
+        }
+
+        private void Translate()
+        {
+            Name = _translator.Translate("appointmentsReport.pageTitle");
+            Text = _translator.Translate("appointmentsReport.pageTitle");
+            pageHeader.Text = _translator.Translate("appointmentsReport.pageHeader");
+            closeBtn.Text = _translator.Translate("close");
         }
 
         private async Task GetAppointments()
@@ -77,10 +86,10 @@ namespace CustomerManagement.Forms
             var report = new List<AppointmentReport>();
             foreach (var month in monthCount)
             {
-                report.Add(new AppointmentReport() { Month = month.Key, Count = month.Value });
+                report.Add(new AppointmentReport() { Month = _translator.Translate($"month.{month.Key}"), Count = month.Value });
             }
 
-            TableService.SetData(ref reportTable, report);
+            TableService.SetData(ref reportTable, report, key => _translator.Translate(key));
         }
 
         private void closeBtn_Click(object sender, EventArgs e)

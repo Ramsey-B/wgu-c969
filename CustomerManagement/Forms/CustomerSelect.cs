@@ -35,7 +35,7 @@ namespace CustomerManagement.Forms
             customers = _customerRepository.GetAllAsync().Result;
             customers.FindAll(c => c.Active);
             var items = customers.Select(c => new Core.Models.CustomerSelect() { Name = c.Name });
-            TableService.SetData(ref customersTable, items.ToList());
+            TableService.SetData(ref customersTable, items.ToList(), key => _translator.Translate($"customerSelect.{key}"));
         }
 
         private void selectBtn_Click(object sender, EventArgs e)

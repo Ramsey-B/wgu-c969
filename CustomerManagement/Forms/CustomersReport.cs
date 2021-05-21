@@ -32,14 +32,14 @@ namespace CustomerManagement.Forms
         private void Init()
         {
             var report = _customerRepository.GetCustomerReportsAsync(_context.CurrentUser.Id).Result;
-            TableService.SetData(ref reportTable, report);
+            TableService.SetData(ref reportTable, report, key => _translator.Translate($"customersReport.{key}"));
         }
 
         private void Translate()
         {
-            Name = _translator.Translate("customersReport");
-            Text = _translator.Translate("customersReport");
-            pageHeader.Text = _translator.Translate("customersReport");
+            Name = _translator.Translate("customersReport.pageTitle");
+            Text = _translator.Translate("customersReport.pageTitle");
+            pageHeader.Text = _translator.Translate("customersReport.pageHeader");
             closeBtn.Text = _translator.Translate("close");
         }
 

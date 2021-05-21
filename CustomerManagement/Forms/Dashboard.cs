@@ -38,7 +38,7 @@ namespace CustomerManagement.Forms.Customers
         private async Task getCustomers(string searchTerm = "")
         {
             _customers = await _customerRepository.GetAllAsync(searchTerm);
-            TableService.SetData<Customer>(ref customersTable, _customers);
+            TableService.SetData<Customer>(ref customersTable, _customers, key => _translator.Translate($"customer.{key}"));
         }
 
         private void addBtn_Click(object s, EventArgs e)
@@ -113,7 +113,11 @@ namespace CustomerManagement.Forms.Customers
             Name = _translator.Translate("dashboard.pageTitle");
             Text = _translator.Translate("dashboard.pageTitle");
             pageHeader.Text = _translator.Translate("dashboard.pageHeader", new { Username = _context.CurrentUser.Username });
-            calendarBtn.Text = _translator.Translate("dashboard.calendar");
+            customersBtn.Text = _translator.Translate("customers");
+            calendarBtn.Text = _translator.Translate("calendar");
+            reportsBtn.Text = _translator.Translate("reports");
+            tableHeader.Text = _translator.Translate("dashboard.tableHeader");
+            searchBtn.Text = _translator.Translate("search");
             appointmentsBtn.Text = _translator.Translate("dashboard.viewAppointments");
             deleteBtn.Text = _translator.Translate("delete");
             editBtn.Text = _translator.Translate("edit");

@@ -1,12 +1,6 @@
 ﻿using CustomerManagement.Forms.Customers;
+using CustomerManagement.Translations;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
@@ -14,11 +8,26 @@ namespace CustomerManagement.Forms
     public partial class Reports : Form
     {
         private readonly Context _context;
+        private readonly Translator _translator;
 
         public Reports(Context context)
         {
             InitializeComponent();
             _context = context;
+            _translator = _context.GetService<Translator>();
+        }
+
+        private void Translate()
+        {
+            customersBtn.Text = _translator.Translate("customers");
+            calendarBtn.Text = _translator.Translate("calendar");
+            reportsBtn.Text = _translator.Translate("reports");
+            exitBtn.Text = _translator.Translate("exit");
+            Name = _translator.Translate("reportsPage.pageTitle");
+            Text = _translator.Translate("reportsPage.pageTitle");
+            apptNumReportBtn.Text = _translator.Translate("reportsPage.numberOfApppiontments");
+            consultantReportBtn.Text = _translator.Translate("reportsPage.consultantSchedules");
+            customerReportBtn.Text = _translator.Translate("reportsPage.customerReport");
         }
 
         private void customersBtn_Click(object sender, EventArgs e)

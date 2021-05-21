@@ -103,7 +103,7 @@ namespace CustomerManagement.Forms
             this.calendarBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calendarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.calendarBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.calendarBtn.Location = new System.Drawing.Point(337, 2);
+            this.calendarBtn.Location = new System.Drawing.Point(337, 1);
             this.calendarBtn.Margin = new System.Windows.Forms.Padding(2);
             this.calendarBtn.Name = "calendarBtn";
             this.calendarBtn.Size = new System.Drawing.Size(81, 39);
@@ -127,7 +127,7 @@ namespace CustomerManagement.Forms
             // 
             // customerReportBtn
             // 
-            this.customerReportBtn.Location = new System.Drawing.Point(31, 161);
+            this.customerReportBtn.Location = new System.Drawing.Point(31, 172);
             this.customerReportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.customerReportBtn.Name = "customerReportBtn";
             this.customerReportBtn.Size = new System.Drawing.Size(150, 23);
@@ -138,7 +138,7 @@ namespace CustomerManagement.Forms
             // 
             // consultantReportBtn
             // 
-            this.consultantReportBtn.Location = new System.Drawing.Point(31, 110);
+            this.consultantReportBtn.Location = new System.Drawing.Point(31, 121);
             this.consultantReportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.consultantReportBtn.Name = "consultantReportBtn";
             this.consultantReportBtn.Size = new System.Drawing.Size(151, 23);
@@ -149,7 +149,7 @@ namespace CustomerManagement.Forms
             // 
             // apptNumReportBtn
             // 
-            this.apptNumReportBtn.Location = new System.Drawing.Point(31, 59);
+            this.apptNumReportBtn.Location = new System.Drawing.Point(31, 70);
             this.apptNumReportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.apptNumReportBtn.Name = "apptNumReportBtn";
             this.apptNumReportBtn.Size = new System.Drawing.Size(151, 23);

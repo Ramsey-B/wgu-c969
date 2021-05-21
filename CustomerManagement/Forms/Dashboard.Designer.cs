@@ -71,7 +71,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.customersTable.DefaultCellStyle = dataGridViewCellStyle2;
-            this.customersTable.Location = new System.Drawing.Point(41, 159);
+            this.customersTable.Location = new System.Drawing.Point(41, 133);
             this.customersTable.Margin = new System.Windows.Forms.Padding(2);
             this.customersTable.Name = "customersTable";
             this.customersTable.ReadOnly = true;
@@ -96,7 +96,7 @@
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Red;
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deleteBtn.Location = new System.Drawing.Point(314, 353);
+            this.deleteBtn.Location = new System.Drawing.Point(314, 327);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(54, 25);
@@ -109,7 +109,7 @@
             // 
             this.editBtn.BackColor = System.Drawing.Color.Green;
             this.editBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editBtn.Location = new System.Drawing.Point(388, 353);
+            this.editBtn.Location = new System.Drawing.Point(388, 327);
             this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(54, 25);
@@ -122,7 +122,7 @@
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.addBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addBtn.Location = new System.Drawing.Point(460, 352);
+            this.addBtn.Location = new System.Drawing.Point(460, 326);
             this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(54, 26);
@@ -135,7 +135,7 @@
             // 
             this.appointmentsBtn.BackColor = System.Drawing.Color.Green;
             this.appointmentsBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.appointmentsBtn.Location = new System.Drawing.Point(41, 353);
+            this.appointmentsBtn.Location = new System.Drawing.Point(41, 327);
             this.appointmentsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.appointmentsBtn.Name = "appointmentsBtn";
             this.appointmentsBtn.Size = new System.Drawing.Size(108, 25);
@@ -241,7 +241,7 @@
             // 
             this.tableHeader.AutoSize = true;
             this.tableHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableHeader.Location = new System.Drawing.Point(38, 133);
+            this.tableHeader.Location = new System.Drawing.Point(38, 107);
             this.tableHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.tableHeader.Name = "tableHeader";
             this.tableHeader.Size = new System.Drawing.Size(97, 20);
@@ -250,7 +250,7 @@
             // 
             // searchInput
             // 
-            this.searchInput.Location = new System.Drawing.Point(300, 135);
+            this.searchInput.Location = new System.Drawing.Point(300, 109);
             this.searchInput.Margin = new System.Windows.Forms.Padding(2);
             this.searchInput.Name = "searchInput";
             this.searchInput.Size = new System.Drawing.Size(144, 20);
@@ -260,7 +260,7 @@
             // 
             this.searchBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.searchBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchBtn.Location = new System.Drawing.Point(450, 133);
+            this.searchBtn.Location = new System.Drawing.Point(450, 107);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(64, 22);

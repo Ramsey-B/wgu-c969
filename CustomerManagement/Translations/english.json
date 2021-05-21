@@ -1,10 +1,11 @@
 {
   "active": "Active",
   "add": "Add",
+  "all": "All",
+  "count": "Count",
   "appointment": {
     "addAppointment": "Add Appointment",
     "confirmDelete": "Are you sure you want to delete appointment for '{Title}'?",
-    "contact": "Contact",
     "description": "Description",
     "editAppointment": "Edit Appointment",
     "end": "End",
@@ -18,20 +19,36 @@
     "start": "Start",
     "title": "Title",
     "type": "Type",
-    "url": "Url"
+    "customer": "Customer",
+    "phone": "Phone",
+    "crew": "Crew"
   },
   "appointments": {
     "noCustomerSelected": "* Must select a customer.",
     "pageHeader": "Appointments for {Name}",
     "pageTitle": "Appointments"
   },
-  "calendar": {
+  "appointmentsReport": {
+    "pageHeader": "Appointments Report",
+    "pageTitle": "Appointments Report"
+  },
+  "calendarPage": {
     "pageHeader": "Calendar for {Name}",
     "pageTitle": "Calendar"
   },
+  "calendar": "Calendar",
   "cancel": "Cancel",
   "close": "Close",
-  "consultantSchedules": "Horarios de la consultora",
+  "consultantSchedules": {
+    "pageTitle": "Crew Schedules",
+    "pageHeader": "Crew Schedules",
+    "crew": "Crew",
+    "customer": "Customer",
+    "title": "Title",
+    "start": "Start",
+    "end": "End",
+    "type": "Type"
+  },
   "createDate": "Fecha de creación",
   "createdBy": "Creado por",
   "customer": {
@@ -39,6 +56,7 @@
     "address1": "Address 1",
     "address1Error": "* Address 1 is required.",
     "address2": "Address 2",
+    "active": "Active",
     "city": "City",
     "cityError": "* City is required and must only contain letters, dashes, spaces, or apostrophes.",
     "confirmDelete": "Are you sure you want to delete '{Name}'.",
@@ -53,19 +71,26 @@
     "postalCode": "Postal Code",
     "postalCodeError": "* Postal Code is required and must only contain numbers."
   },
+  "customers": "Customers",
+  "day": "Day",
   "customerSelect": {
     "pageHeader": "Please Select a Customer",
-    "pageTitle": "Customer Select"
+    "pageTitle": "Customer Select",
+    "name": "Name"
   },
-  "customersReport": "Customers Report",
+  "customersReport": {
+    "pageTitle": "Customers Report",
+    "pageHeader": "Customers Report",
+    "customer": "Customer",
+    "lastAppointment": "Last Appointment",
+    "nextAppointment": "Next Appointment",
+    "appointmentCount": "Appointment Count"
+  },
   "dashboard": {
-    "appointmentCountReport": "Number of Appointments",
-    "calendar": "View Calendar",
-    "consultantReport": "Consultant Schedules",
-    "customerReport": "Customer Report",
     "pageHeader": "Welcome {Username}!",
     "pageTitle": "Dashboard",
-    "viewAppointments": "View Appointments"
+    "viewAppointments": "View Appointments",
+    "tableHeader": "Customers"
   },
   "delete": "Delete",
   "edit": "Edit",
@@ -94,6 +119,13 @@
     "confirmPassword": "Confirm Password",
     "confirmPasswordError": "* Passwords must match",
     "create": "Create"
+  },
+  "reports": "Reports",
+  "reportsPage": {
+    "pageTitle": "Reports",
+    "numberOfAppointments": "Number of Appointments",
+    "consultantSchedules": "Crew Schedules",
+    "customerReport": "Customer Report"
   },
   "month": "Month",
   "months": {
