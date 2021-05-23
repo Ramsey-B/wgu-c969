@@ -49,6 +49,7 @@ namespace CustomerManagement.Forms
             confirmPasswordLabel.Text = _translator.Translate("register.confirmPassword");
             cancelBtn.Text = _translator.Translate("cancel");
             createBtn.Text = _translator.Translate("register.create");
+            exitBtn.Text = _translator.Translate("exit");
         }
 
         private void hideErrors()
@@ -102,6 +103,11 @@ namespace CustomerManagement.Forms
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
