@@ -11,6 +11,5 @@ namespace CustomerManagement.Core.Interfaces
         Task<int> CreateAsync(Address newAddress);
 
         Task<int> UpdateAsync(Address address);
-        Task<Address> GetAsync(int id);
     }
 }

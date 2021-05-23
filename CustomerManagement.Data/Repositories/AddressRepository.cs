@@ -13,23 +13,6 @@ namespace CustomerManagement.Data.Repositories
         {
             _sqlOrm = sqlOrm;
         }
-
-        public async Task<Address> GetAsync(int id)
-        {
-            var address = await _sqlOrm.QueryAsync<Address>(SelectSql.Address, id);
-
-            if (address != null)
-            { 
-                address.City = await _sqlOrm.QueryAsync<City>(SelectSql.City, address.CityId);
-            }
-
-            if (address?.City != null)
-            {
-                address.City.Country = await _sqlOrm.QueryAsync<Country>(SelectSql.Country, address.City.CountryId);
-            }
-            return address;
-        }
-
         public async Task<int> CreateAsync(Address newAddress)
         {
             newAddress.City.Country.CreatedDate = DateTime.UtcNow;
