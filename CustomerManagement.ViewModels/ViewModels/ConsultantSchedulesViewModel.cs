@@ -2,32 +2,39 @@
 using CustomerManagement.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace CustomerManagement.FormViewModels
+namespace CustomerManagement.ViewModels
 {
-    public class AppointmentsViewModel
+    public class ConsultantSchedulesViewModel
     {
         private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
+        private readonly ITranslator _translator;
 
-        public AppointmentsViewModel(IContext context)
+        public ConsultantSchedulesViewModel(IContext context)
         {
             _context = context;
             _appointmentRepository = _context.GetService<IAppointmentRepository>();
+            _translator = _context.GetService<ITranslator>();
         }
 
-        public async Task<List<Appointment>> GetAppointments(string searchTerm, Customer customer, bool day, bool week)
+        public async Task<List<string>> GetCrewNames()
+        {
+            var now = DateTime.UtcNow;
+            var start = new DateTime(now.Year, now.Month, 1);
+            var end = start.AddMonths(1).AddDays(-1);
+            var appointments = await _appointmentRepository.GetAllAsync(start, end);
+            return appointments.Select(a => a.Crew).OrderBy(c => c).ToList();
+        }
+
+        public async Task<List<ConsultantSchedule>> GetReport(string selectedCrew, bool day, bool week)
         {
             var now = DateTime.Today;
             DateTime start;
             DateTime end;
-            if (customer != null) // If this is for viewing customers appointments then show all the upcoming appointments
-            {
-                start = now;
-                end = DateTime.MaxValue;
-            }
-            else if (day)
+            if (day)
             {
                 start = now; // start of day
                 end = now.AddDays(1).AddSeconds(-1); // end of day
@@ -42,7 +49,8 @@ namespace CustomerManagement.FormViewModels
                 start = new DateTime(now.Year, now.Month, 1); // first day of the month
                 end = start.AddMonths(1).AddDays(-1); // last day of month
             }
-            return await _appointmentRepository.GetAllAsync(start, end, _context.CurrentUser.Id, customer?.Id, searchTerm);
+            var crew = string.IsNullOrWhiteSpace(selectedCrew) || selectedCrew == _translator.Translate("all") ? null : selectedCrew;
+            return await _appointmentRepository.GetConsultantSchedules(start, end, crew) ?? new List<ConsultantSchedule>();
         }
     }
 }

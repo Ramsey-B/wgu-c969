@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CustomerManagement.FormViewModels
+namespace CustomerManagement.ViewModels
 {
     public class AppointmentsReportViewModel
     {

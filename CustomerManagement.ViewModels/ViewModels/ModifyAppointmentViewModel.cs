@@ -1,11 +1,10 @@
 ﻿using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.Translations;
 using System;
 using System.Threading.Tasks;
 
-namespace CustomerManagement.FormViewModels
+namespace CustomerManagement.ViewModels
 {
     public class ModifyAppointmentViewModel
     {

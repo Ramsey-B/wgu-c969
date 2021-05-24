@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CustomerManagement.Core\CustomerManagement.Core.csproj" />
     <ProjectReference Include="..\CustomerManagement.Data\CustomerManagement.Data.csproj" />
+    <ProjectReference Include="..\CustomerManagement.ViewModels\CustomerManagement.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

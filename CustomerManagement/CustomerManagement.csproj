@@ -249,12 +249,6 @@
     <Compile Include="Forms\Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormViewModels\AppointmentsReportViewModel.cs" />
-    <Compile Include="FormViewModels\AppointmentsViewModel.cs" />
-    <Compile Include="FormViewModels\ConsultantSchedulesViewModel.cs" />
-    <Compile Include="FormViewModels\LoginViewModel.cs" />
-    <Compile Include="FormViewModels\ModifyAppointmentViewModel.cs" />
-    <Compile Include="FormViewModels\RegisterViewModel.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -343,6 +337,10 @@
     <ProjectReference Include="..\CustomerManagement.Data\CustomerManagement.Data.csproj">
       <Project>{d057d21c-9bb6-428e-9b49-152cfd95c4ac}</Project>
       <Name>CustomerManagement.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.ViewModels\CustomerManagement.ViewModels.csproj">
+      <Project>{9f02975f-9a6a-4378-8fa1-a34a4d9f557f}</Project>
+      <Name>CustomerManagement.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

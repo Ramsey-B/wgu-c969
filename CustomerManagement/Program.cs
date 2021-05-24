@@ -43,7 +43,7 @@ namespace CustomerManagement
                 .AddScoped<ICustomerRepository, CustomerRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IAppointmentRepository, AppointmentRepository>()
-                .AddScoped<Logger>()
+                .AddScoped<ILogger, Logger>()
                 .AddScoped<IContext, Context>()
                 .AddScoped<ITranslator, Translator>()
                 .AddSingleton<Reminder>() // Must be a singleton to work.
