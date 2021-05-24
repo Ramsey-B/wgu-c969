@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace CustomerManagement.Tests.FormViewModelsTests
+namespace CustomerManagement.Tests.ViewModelsTests
 {
     public class AppointmentsReportViewModelTests
     {

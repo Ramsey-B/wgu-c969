@@ -3,7 +3,6 @@ using CustomerManagement.Core.Models;
 using CustomerManagement.Forms.Customers;
 using CustomerManagement.ViewModels;
 using CustomerManagement.Tables;
-using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
 {
-    public partial class Appointments : Form
+    public partial class Appointments : Form, INavigationPage
     {
         private readonly IContext _context;
         private readonly IAppointmentRepository _appointmentRepository;

@@ -1,7 +1,6 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
 using CustomerManagement.Tables;
-using CustomerManagement.Translations;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CustomerManagement.Forms.Customers
 {
-    public partial class Dashboard : Form
+    public partial class Dashboard : Form, INavigationPage
     {
         private readonly IContext _context;
         private readonly ICustomerRepository _customerRepository;
