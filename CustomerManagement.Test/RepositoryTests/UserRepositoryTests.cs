@@ -79,7 +79,7 @@ namespace CustomerManagement.Test.RepositoryTests
 
             var repo = new UserRepository(sqlMock.Object);
 
-            var result = repo.LoginAsync(user).Result;
+            var result = repo.CreateAsync(user).Result;
             Assert.Equal(expectedUser, result);
         }
     }
