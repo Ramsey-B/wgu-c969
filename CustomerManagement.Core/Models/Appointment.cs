@@ -52,8 +52,8 @@ namespace CustomerManagement.Core.Models
             return new object[]
             {
                 Title,
-                Start,
-                End,
+                Start.ToLocalTime(),
+                End.ToLocalTime(),
                 CustomerName,
                 CustomerPhone,
                 Type,
