@@ -7,5 +7,7 @@ namespace CustomerManagement.Core.Interfaces
         User CurrentUser { get; set; }
         T GetService<T>();
         void Navigate(INavigationPage page);
+        void Exit();
+        User Authenticate();
     }
 }

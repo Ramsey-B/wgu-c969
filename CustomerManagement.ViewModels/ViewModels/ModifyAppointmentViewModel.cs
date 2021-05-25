@@ -43,7 +43,7 @@ namespace CustomerManagement.ViewModels
                 throw;
             }
             // catch all unexpected exceptions
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new PublicException("unexpected-error", _translator.Translate("unexpectedError"));
             }

@@ -29,6 +29,7 @@ namespace CustomerManagement
             {
                 // inits the project with the dashboard
                 var form = serviceProvider.GetRequiredService<InitForm>();
+                Context.InitForm = form;
                 Application.Run(form);
             }
         }

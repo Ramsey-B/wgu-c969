@@ -110,7 +110,7 @@ namespace CustomerManagement.Forms
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            _context.Exit();
         }
     }
 }

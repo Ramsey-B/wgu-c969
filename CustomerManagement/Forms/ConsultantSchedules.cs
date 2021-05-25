@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace CustomerManagement.Forms
 {
@@ -54,6 +55,7 @@ namespace CustomerManagement.Forms
         private async Task AddCrewNames()
         {
             var crewNames = await _viewModel.GetCrewNames();
+            crewNames = crewNames.Distinct().ToList();
 
             var all = _translator.Translate("all");
             crewSelect.Items.Add(all);

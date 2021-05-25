@@ -11,6 +11,7 @@ namespace CustomerManagement
     {
         private readonly IServiceProvider _servicePorvider;
         private User _currentUser;
+        public static Form InitForm;
 
         public Context(IServiceProvider serviceProvider)
         {
@@ -19,7 +20,7 @@ namespace CustomerManagement
 
         public User CurrentUser
         {
-            get { return Authenticate(); }
+            get { return _currentUser; }
             set { _currentUser = value; }
         }
 
@@ -41,12 +42,27 @@ namespace CustomerManagement
             currentPage = page;
         }
 
-        private User Authenticate()
+        private bool exited = false;
+        public void Exit()
+        {
+            Application.Exit();
+            exited = true;
+        }
+
+        private int loginCount = 0;
+        public User Authenticate()
         {
             while (_currentUser == null) // keep forcing the login till the user is set.
             {
+                if (exited) return null;
+                if (loginCount > 5)
+                {
+                    Exit();
+                    break;
+                }
                 var login = new Login(this);
                 login.ShowDialog();
+                loginCount++;
             }
             return _currentUser;
         }

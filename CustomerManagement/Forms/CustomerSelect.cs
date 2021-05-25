@@ -32,7 +32,7 @@ namespace CustomerManagement.Forms
         private void Init()
         {
             customers = _customerRepository.GetAllAsync().Result;
-            var items = customers.Select(c => new Core.Models.CustomerSelect() { Name = c.Name, Active = c.Active });
+            var items = customers.Select(c => new Core.Models.CustomerSelect() { Name = c.Name, Active = c.Active }).Distinct();
             TableService.SetData(ref customersTable, items.ToList(), key => _translator.Translate($"customerSelect.{key}"));
         }
 

@@ -14,9 +14,22 @@ namespace CustomerManagement.Forms
         {
             InitializeComponent();
             _context = context;
-            var dashboard = new Dashboard(_context);
-            _context.Navigate(dashboard);
-            dashboard.Shown += (object sender, EventArgs e) => Hide();
+        }
+
+        private void InitForm_Load(object s, EventArgs ev)
+        {
+            _context.Authenticate();
+
+            if (_context.CurrentUser != null)
+            {
+                var dashboard = new Dashboard(_context);
+                _context.Navigate(dashboard);
+                dashboard.Shown += (object sender, EventArgs e) => Hide();
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

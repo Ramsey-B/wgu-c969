@@ -38,6 +38,7 @@ namespace CustomerManagement.Forms
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "InitForm";
             this.Text = "InitForm";
+            this.Load += new System.EventHandler(this.InitForm_Load);
             this.ResumeLayout(false);
 
         }
