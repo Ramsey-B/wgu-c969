@@ -53,9 +53,10 @@
             // 
             // nameInput
             // 
-            this.nameInput.Location = new System.Drawing.Point(263, 97);
+            this.nameInput.Location = new System.Drawing.Point(132, 50);
+            this.nameInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(239, 31);
+            this.nameInput.Size = new System.Drawing.Size(122, 20);
             this.nameInput.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -66,106 +67,121 @@
             // 
             // postalCodeInput
             // 
-            this.postalCodeInput.Location = new System.Drawing.Point(263, 259);
+            this.postalCodeInput.Location = new System.Drawing.Point(132, 135);
+            this.postalCodeInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.postalCodeInput.MaxLength = 5;
             this.postalCodeInput.Name = "postalCodeInput";
-            this.postalCodeInput.Size = new System.Drawing.Size(239, 31);
+            this.postalCodeInput.Size = new System.Drawing.Size(122, 20);
             this.postalCodeInput.TabIndex = 2;
             // 
             // phoneInput
             // 
-            this.phoneInput.Location = new System.Drawing.Point(263, 312);
+            this.phoneInput.Location = new System.Drawing.Point(132, 162);
+            this.phoneInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.phoneInput.MaxLength = 10;
             this.phoneInput.Name = "phoneInput";
-            this.phoneInput.Size = new System.Drawing.Size(239, 31);
+            this.phoneInput.Size = new System.Drawing.Size(122, 20);
             this.phoneInput.TabIndex = 3;
             // 
             // cityInput
             // 
-            this.cityInput.Location = new System.Drawing.Point(263, 366);
+            this.cityInput.Location = new System.Drawing.Point(132, 190);
+            this.cityInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cityInput.Name = "cityInput";
-            this.cityInput.Size = new System.Drawing.Size(239, 31);
+            this.cityInput.Size = new System.Drawing.Size(122, 20);
             this.cityInput.TabIndex = 4;
             // 
             // countryInput
             // 
-            this.countryInput.Location = new System.Drawing.Point(263, 418);
+            this.countryInput.Location = new System.Drawing.Point(132, 217);
+            this.countryInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.countryInput.Name = "countryInput";
-            this.countryInput.Size = new System.Drawing.Size(239, 31);
+            this.countryInput.Size = new System.Drawing.Size(122, 20);
             this.countryInput.TabIndex = 5;
             // 
             // address2Input
             // 
-            this.address2Input.Location = new System.Drawing.Point(263, 204);
+            this.address2Input.Location = new System.Drawing.Point(132, 106);
+            this.address2Input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.address2Input.Name = "address2Input";
-            this.address2Input.Size = new System.Drawing.Size(239, 31);
+            this.address2Input.Size = new System.Drawing.Size(122, 20);
             this.address2Input.TabIndex = 6;
             // 
             // address1Input
             // 
-            this.address1Input.Location = new System.Drawing.Point(263, 151);
+            this.address1Input.Location = new System.Drawing.Point(132, 79);
+            this.address1Input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.address1Input.Name = "address1Input";
-            this.address1Input.Size = new System.Drawing.Size(239, 31);
+            this.address1Input.Size = new System.Drawing.Size(122, 20);
             this.address1Input.TabIndex = 7;
             // 
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(154, 97);
+            this.nameLabel.Location = new System.Drawing.Point(77, 50);
+            this.nameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(68, 25);
+            this.nameLabel.Size = new System.Drawing.Size(35, 13);
             this.nameLabel.TabIndex = 8;
             this.nameLabel.Text = "Name";
             // 
             // address1Label
             // 
             this.address1Label.AutoSize = true;
-            this.address1Label.Location = new System.Drawing.Point(113, 151);
+            this.address1Label.Location = new System.Drawing.Point(56, 79);
+            this.address1Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.address1Label.Name = "address1Label";
-            this.address1Label.Size = new System.Drawing.Size(109, 25);
+            this.address1Label.Size = new System.Drawing.Size(54, 13);
             this.address1Label.TabIndex = 9;
             this.address1Label.Text = "Address 1";
             // 
             // address2Label
             // 
             this.address2Label.AutoSize = true;
-            this.address2Label.Location = new System.Drawing.Point(113, 204);
+            this.address2Label.Location = new System.Drawing.Point(56, 106);
+            this.address2Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.address2Label.Name = "address2Label";
-            this.address2Label.Size = new System.Drawing.Size(109, 25);
+            this.address2Label.Size = new System.Drawing.Size(54, 13);
             this.address2Label.TabIndex = 10;
             this.address2Label.Text = "Address 2";
             // 
             // postalCodeLabel
             // 
             this.postalCodeLabel.AutoSize = true;
-            this.postalCodeLabel.Location = new System.Drawing.Point(93, 259);
+            this.postalCodeLabel.Location = new System.Drawing.Point(46, 135);
+            this.postalCodeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.postalCodeLabel.Name = "postalCodeLabel";
-            this.postalCodeLabel.Size = new System.Drawing.Size(129, 25);
+            this.postalCodeLabel.Size = new System.Drawing.Size(64, 13);
             this.postalCodeLabel.TabIndex = 11;
             this.postalCodeLabel.Text = "Postal Code";
             // 
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(148, 312);
+            this.phoneLabel.Location = new System.Drawing.Point(74, 162);
+            this.phoneLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(74, 25);
+            this.phoneLabel.Size = new System.Drawing.Size(38, 13);
             this.phoneLabel.TabIndex = 12;
             this.phoneLabel.Text = "Phone";
             // 
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(173, 366);
+            this.cityLabel.Location = new System.Drawing.Point(86, 190);
+            this.cityLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(49, 25);
+            this.cityLabel.Size = new System.Drawing.Size(24, 13);
             this.cityLabel.TabIndex = 13;
             this.cityLabel.Text = "City";
             // 
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(135, 418);
+            this.countryLabel.Location = new System.Drawing.Point(68, 217);
+            this.countryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Size = new System.Drawing.Size(87, 25);
+            this.countryLabel.Size = new System.Drawing.Size(43, 13);
             this.countryLabel.TabIndex = 14;
             this.countryLabel.Text = "Country";
             // 
@@ -174,9 +190,10 @@
             this.activeCheckbox.AutoSize = true;
             this.activeCheckbox.Checked = true;
             this.activeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.activeCheckbox.Location = new System.Drawing.Point(263, 481);
+            this.activeCheckbox.Location = new System.Drawing.Point(132, 250);
+            this.activeCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.activeCheckbox.Name = "activeCheckbox";
-            this.activeCheckbox.Size = new System.Drawing.Size(103, 29);
+            this.activeCheckbox.Size = new System.Drawing.Size(56, 17);
             this.activeCheckbox.TabIndex = 16;
             this.activeCheckbox.Text = "Active";
             this.activeCheckbox.UseVisualStyleBackColor = true;
@@ -185,9 +202,10 @@
             // 
             this.submitBtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.submitBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.submitBtn.Location = new System.Drawing.Point(407, 562);
+            this.submitBtn.Location = new System.Drawing.Point(204, 292);
+            this.submitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(95, 46);
+            this.submitBtn.Size = new System.Drawing.Size(48, 24);
             this.submitBtn.TabIndex = 17;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = false;
@@ -197,9 +215,10 @@
             // 
             this.cancelBtn.BackColor = System.Drawing.Color.Red;
             this.cancelBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cancelBtn.Location = new System.Drawing.Point(263, 562);
+            this.cancelBtn.Location = new System.Drawing.Point(132, 292);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(95, 46);
+            this.cancelBtn.Size = new System.Drawing.Size(48, 24);
             this.cancelBtn.TabIndex = 18;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
@@ -209,9 +228,10 @@
             // 
             this.errorText.AutoSize = true;
             this.errorText.ForeColor = System.Drawing.Color.Red;
-            this.errorText.Location = new System.Drawing.Point(252, 523);
+            this.errorText.Location = new System.Drawing.Point(126, 272);
+            this.errorText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorText.Name = "errorText";
-            this.errorText.Size = new System.Drawing.Size(186, 25);
+            this.errorText.Size = new System.Drawing.Size(93, 13);
             this.errorText.TabIndex = 19;
             this.errorText.Text = "* An error occured";
             this.errorText.Visible = false;
@@ -220,17 +240,18 @@
             // 
             this.pageTitle.AutoSize = true;
             this.pageTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageTitle.Location = new System.Drawing.Point(266, 27);
+            this.pageTitle.Location = new System.Drawing.Point(133, 14);
+            this.pageTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pageTitle.Name = "pageTitle";
-            this.pageTitle.Size = new System.Drawing.Size(260, 37);
+            this.pageTitle.Size = new System.Drawing.Size(130, 20);
             this.pageTitle.TabIndex = 20;
             this.pageTitle.Text = "Create Customer";
             // 
             // ModifyCustomer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 636);
+            this.ClientSize = new System.Drawing.Size(378, 331);
             this.Controls.Add(this.pageTitle);
             this.Controls.Add(this.errorText);
             this.Controls.Add(this.cancelBtn);
@@ -250,6 +271,7 @@
             this.Controls.Add(this.phoneInput);
             this.Controls.Add(this.postalCodeInput);
             this.Controls.Add(this.nameInput);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ModifyCustomer";
             this.Text = "ModifyCustomer";
             this.ResumeLayout(false);

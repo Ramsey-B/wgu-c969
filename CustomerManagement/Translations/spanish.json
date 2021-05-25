@@ -73,7 +73,8 @@
   },
   "customers": "Clientas",
   "customerSelect": {
-    "name": "nombre",
+    "active": "Activa",
+    "name": "Nombre",
     "pageHeader": "Por favor seleccione una cliente",
     "pageTitle": "Seleccion de cliente"
   },

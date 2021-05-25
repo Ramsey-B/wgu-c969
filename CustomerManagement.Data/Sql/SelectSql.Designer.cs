@@ -79,7 +79,7 @@ namespace CustomerManagement.Data.Sql {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @userId AND ((start BETWEEN @start AND @end) OR (end BETWEEN @start AND @end));.
+        ///   Looks up a localized string similar to SELECT start, end FROM appointment WHERE userId = @userId AND ((start BETWEEN @start AND @end) OR (end BETWEEN @start AND @end)) AND crewName @name;.
         /// </summary>
         internal static string AppointmentTimeCheck {
             get {

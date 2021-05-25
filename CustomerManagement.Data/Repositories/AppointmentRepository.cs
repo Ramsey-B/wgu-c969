@@ -81,9 +81,9 @@ namespace CustomerManagement.Data.Repositories
         /// <summary>
         /// Validates the appointment timeslot
         /// </summary>
-        private async Task AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end)
+        private async Task AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end, string crew)
         {
-            var result = await _sqlOrm.QueryAsync<Appointment>(SelectSql.AppointmentTimeCheck, new { userId, start, end });
+            var result = await _sqlOrm.QueryAsync<Appointment>(SelectSql.AppointmentTimeCheck, new { userId, start, end, crew });
             if (result != null)
             {
                 throw new OverlappingAppointmentException(result.Start, result.End);
@@ -97,12 +97,17 @@ namespace CustomerManagement.Data.Repositories
                 throw new InvalidEntityException("title");
             }
 
+            if (string.IsNullOrWhiteSpace(appointment.Crew))
+            {
+                throw new InvalidEntityException("crew");
+            }
+
             if (string.IsNullOrWhiteSpace(appointment.Type))
             {
                 throw new InvalidEntityException("type");
             }
 
-            await AppointmentTimeCheckAsync(appointment.UserId, appointment.Start, appointment.End);
+            await AppointmentTimeCheckAsync(appointment.UserId, appointment.Start, appointment.End, appointment.Crew);
         }
     }
 }

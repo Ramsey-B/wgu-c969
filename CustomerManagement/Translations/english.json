@@ -74,6 +74,7 @@
   "customers": "Customers",
   "customerSelect": {
     "name": "Name",
+    "active": "Active",
     "pageHeader": "Please Select a Customer",
     "pageTitle": "Customer Select"
   },

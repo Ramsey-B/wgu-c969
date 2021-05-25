@@ -74,14 +74,41 @@ namespace CustomerManagement.Forms
                 endInput.Value = _appointment.End.ToLocalTime();
             }
 
-            startInput.MinDate = DateTime.Today.ToLocalTime().AddHours(8);
-            endInput.MinDate = DateTime.Today.ToLocalTime().AddMinutes(1);
+            if (DateTime.Now.ToLocalTime().Hour < 8)
+            {
+                startInput.MinDate = DateTime.Today.AddHours(8);
+                endInput.MinDate = DateTime.Today.AddMinutes(1);
+                endInput.MaxDate = DateTime.Today.AddHours(17);
+            }
+            else if (DateTime.Now.ToLocalTime().Hour >= 17)
+            {
+                startInput.MinDate = DateTime.Today.AddDays(1).AddHours(8);
+                endInput.MinDate = DateTime.Today.AddDays(1).AddHours(8).AddMinutes(1);
+                endInput.MaxDate = DateTime.Today.AddDays(1).AddHours(17);
+            }
+            else
+            {
+                startInput.MinDate = DateTime.Now.ToLocalTime();
+                endInput.MinDate = DateTime.Now.ToLocalTime().AddMinutes(1);
+                endInput.MaxDate = DateTime.Today.AddHours(17);
+            }
 
             startInput.ValueChanged += (object sender, EventArgs e) =>
             {
                 var start = startInput.Value;
+                if (start.Hour < 8)
+                {
+                    startInput.Value = new DateTime(start.Year, start.Month, start.Day, 8, 0, 0);
+                }
+                if (start.Hour >= 17)
+                {
+                    startInput.Value = new DateTime(start.Year, start.Month, start.Day, 16, 59, 0);
+                }
+                startInput.Value = start;
+
+                // set end min/max
+                endInput.MaxDate = new DateTime(start.Year, start.Month, start.Day).AddHours(17);
                 endInput.MinDate = new DateTime(start.Year, start.Month, start.Day, start.Hour, start.Minute + 1, start.Second);
-                endInput.MinDate = new DateTime(start.Year, start.Month, start.Day).AddHours(17);
             };
         }
 

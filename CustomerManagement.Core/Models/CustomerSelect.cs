@@ -8,12 +8,14 @@ namespace CustomerManagement.Core.Models
     public class CustomerSelect : ITableItem
     {
         public string Name { get; set; }
+        public bool Active { get; set; }
 
         public Dictionary<string, string> GetColumns(Func<string, string> translation)
         {
             return new Dictionary<string, string>()
             {
-                { "name", translation.Invoke("name") }
+                { "name", translation.Invoke("name") },
+                { "active", translation.Invoke("active") }
             };
         }
 
@@ -21,7 +23,8 @@ namespace CustomerManagement.Core.Models
         {
             return new object[]
             {
-                Name
+                Name,
+                Active
             };
         }
     }
