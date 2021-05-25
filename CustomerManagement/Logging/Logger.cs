@@ -1,9 +1,10 @@
-﻿using System;
+﻿using CustomerManagement.Core.Interfaces;
+using System;
 using System.IO;
 
 namespace CustomerManagement.Logging
 {
-    public class Logger
+    public class Logger : ILogger
     {
         // path to /bin/Debug/logs.txt or /bin/Release/logs.txt 
         private readonly string logPath = Directory.GetCurrentDirectory() + "\\logs.txt";

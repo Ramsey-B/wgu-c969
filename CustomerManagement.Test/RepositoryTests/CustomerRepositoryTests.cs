@@ -5,6 +5,7 @@ using CustomerManagement.Core.Models;
 using CustomerManagement.Data.Repositories;
 using Moq;
 using Newtonsoft.Json;
+using System.Linq;
 using Xunit;
 
 namespace CustomerManagement.Test.RepositoryTests
@@ -118,6 +119,64 @@ namespace CustomerManagement.Test.RepositoryTests
 
             var result = repo.CreateAsync(customer).Result;
             Assert.Equal(32, result);
+        }
+
+        [Fact]
+        public void ShouldUpdateCustomer()
+        {
+            var customer = new Customer { Name = "John-James'", PostalCode = "12345", Address1 = "some street", Phone = "1231231234", City = "city-town", Country = "country'" };
+
+            var sqlMock = new Mock<ISqlOrm>();
+            sqlMock.Setup(m => m.ExecuteAsync(It.IsAny<string>(), It.Is<object>(o => MatchCustomer(o, customer)))).ReturnsAsync(32);
+
+            var repo = new CustomerRepository(sqlMock.Object);
+
+            var result = repo.UpdateAsync(customer).Result;
+            Assert.Equal(4, result);
+        }
+
+        [Fact]
+        public void ShouldDeleteCustomer()
+        {
+            var customerId = 2;
+
+            var sqlMock = new Mock<ISqlOrm>();
+            sqlMock.Setup(m => m.DeleteAsync(customerId, "customer")).ReturnsAsync(32);
+
+            var repo = new CustomerRepository(sqlMock.Object);
+
+            var result = repo.DeleteAsync(customerId).Result;
+            Assert.Equal(32, result);
+        }
+
+        [Fact]
+        public void ShouldGetCustomer()
+        {
+            var customerId = 2;
+            var customer = fixture.Create<Customer>();
+
+            var sqlMock = new Mock<ISqlOrm>();
+            sqlMock.Setup(m => m.QueryAsync<Customer>(It.Is<string>(s => s.Contains(" WHERE customer.id = @id")), It.Is<object>(o => JsonConvert.SerializeObject(o).Contains(customerId.ToString())))).ReturnsAsync(customer);
+
+            var repo = new CustomerRepository(sqlMock.Object);
+
+            var result = repo.GetAsync(customerId).Result;
+            Assert.Equal(customer, result);
+        }
+
+        [Fact]
+        public void ShouldGetAllCustomers()
+        {
+            var searchTerm = "test search";
+            var customers = fixture.CreateMany<Customer>().ToList();
+
+            var sqlMock = new Mock<ISqlOrm>();
+            sqlMock.Setup(m => m.QueryListAsync<Customer>(It.Is<string>(s => s.Contains(" WHERE customer.name LIKE @searchTerm OR address.phone LIKE @searchTerm OR address.address1 LIKE @searchTerm OR address.address2 LIKE @searchTerm OR city.name LIKE @searchTerm OR country.name LIKE @searchTerm")), It.Is<object>(o => JsonConvert.SerializeObject(o).Contains($"%{searchTerm}%")))).ReturnsAsync(customers);
+
+            var repo = new CustomerRepository(sqlMock.Object);
+
+            var result = repo.GetAllAsync(searchTerm).Result;
+            Assert.Equal(customers, result);
         }
 
         private bool MatchCustomer(object o, Customer c)

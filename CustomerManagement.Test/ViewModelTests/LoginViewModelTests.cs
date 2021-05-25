@@ -2,13 +2,12 @@
 using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.FormViewModels;
-using CustomerManagement.Logging;
+using CustomerManagement.ViewModels;
 using Moq;
 using System;
 using Xunit;
 
-namespace CustomerManagement.Tests.FormViewModelsTests
+namespace CustomerManagement.Tests.ViewModelsTests
 {
     public class LoginViewModelTests
     {
@@ -44,7 +43,7 @@ namespace CustomerManagement.Tests.FormViewModelsTests
 
             var contextMock = new Mock<IContext>();
             contextMock.Setup(m => m.GetService<IUserRepository>()).Returns(userRepoMock.Object);
-            contextMock.Setup(m => m.GetService<Logger>()).Returns(new Logger());
+            contextMock.Setup(m => m.GetService<ILogger>()).Returns(new Mock<ILogger>().Object);
 
             var model = new LoginViewModel(contextMock.Object);
 
@@ -62,7 +61,7 @@ namespace CustomerManagement.Tests.FormViewModelsTests
 
             var contextMock = new Mock<IContext>();
             contextMock.Setup(m => m.GetService<IUserRepository>()).Returns(userRepoMock.Object);
-            contextMock.Setup(m => m.GetService<Logger>()).Returns(new Logger());
+            contextMock.Setup(m => m.GetService<ILogger>()).Returns(new Mock<ILogger>().Object);
 
             var model = new LoginViewModel(contextMock.Object);
 
@@ -84,7 +83,7 @@ namespace CustomerManagement.Tests.FormViewModelsTests
 
             var contextMock = new Mock<IContext>();
             contextMock.Setup(m => m.GetService<IUserRepository>()).Returns(userRepoMock.Object);
-            contextMock.Setup(m => m.GetService<Logger>()).Returns(new Logger());
+            contextMock.Setup(m => m.GetService<ILogger>()).Returns(new Mock<ILogger>().Object);
             contextMock.SetupSet(p => p.CurrentUser = It.IsAny<User>()).Callback<User>(v => actualUser = v);
 
             var model = new LoginViewModel(contextMock.Object);

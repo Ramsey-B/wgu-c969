@@ -2,12 +2,11 @@
 using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.FormViewModels;
-using CustomerManagement.Logging;
+using CustomerManagement.ViewModels;
 using Moq;
 using Xunit;
 
-namespace CustomerManagement.Tests.FormViewModelsTests
+namespace CustomerManagement.Tests.ViewModelsTests
 {
     public class RegisterViewModelTests
     {
@@ -141,7 +140,7 @@ namespace CustomerManagement.Tests.FormViewModelsTests
             userRepoMock.Setup(m => m.CreateAsync(It.Is<User>(r => r.Username == newUser.Username && r.Password == newUser.Password && r.Active == true && r.CreatedBy == newUser.Username && r.LastUpdatedBy == newUser.Username))).ReturnsAsync(expectedUser).Verifiable();
 
             var contextMock = new Mock<IContext>();
-            contextMock.Setup(m => m.GetService<Logger>()).Returns(new Logger());
+            contextMock.Setup(m => m.GetService<ILogger>()).Returns(new Mock<ILogger>().Object);
             contextMock.Setup(m => m.GetService<ITranslator>()).Returns(translatorMock.Object);
             contextMock.Setup(m => m.GetService<IUserRepository>()).Returns(userRepoMock.Object);
             contextMock.SetupSet(p => p.CurrentUser = It.IsAny<User>()).Callback<User>(v => actualUser = v);

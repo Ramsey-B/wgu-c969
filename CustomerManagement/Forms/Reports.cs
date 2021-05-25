@@ -1,12 +1,11 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Forms.Customers;
-using CustomerManagement.Translations;
 using System;
 using System.Windows.Forms;
 
 namespace CustomerManagement.Forms
 {
-    public partial class Reports : Form
+    public partial class Reports : Form, INavigationPage
     {
         private readonly IContext _context;
         private readonly ITranslator _translator;

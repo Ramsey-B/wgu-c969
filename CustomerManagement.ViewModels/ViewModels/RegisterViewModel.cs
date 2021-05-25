@@ -1,25 +1,23 @@
 ﻿using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.Logging;
-using CustomerManagement.Translations;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CustomerManagement.FormViewModels
+namespace CustomerManagement.ViewModels
 {
     public class RegisterViewModel
     {
         private readonly IContext _context;
-        private readonly Logger _logger;
+        private readonly ILogger _logger;
         private readonly ITranslator _translator;
         private readonly IUserRepository _userRepository;
 
         public RegisterViewModel(IContext context)
         {
             _context = context;
-            _logger = context.GetService<Logger>();
+            _logger = context.GetService<ILogger>();
             _translator = context.GetService<ITranslator>();
             _userRepository = context.GetService<IUserRepository>();
         }

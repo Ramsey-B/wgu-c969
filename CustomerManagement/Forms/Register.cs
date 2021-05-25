@@ -1,6 +1,6 @@
 ﻿using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
-using CustomerManagement.FormViewModels;
+using CustomerManagement.ViewModels;
 using CustomerManagement.Translations;
 using System;
 using System.Windows.Forms;

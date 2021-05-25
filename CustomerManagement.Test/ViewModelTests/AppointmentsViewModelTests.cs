@@ -1,7 +1,7 @@
 ﻿using AutoFixture;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.FormViewModels;
+using CustomerManagement.ViewModels;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CustomerManagement.Tests.FormViewModelsTests
+namespace CustomerManagement.Tests.ViewModelsTests
 {
     public class AppointmentsViewModelTests
     {

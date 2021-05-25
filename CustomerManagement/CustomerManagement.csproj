@@ -15,6 +15,22 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\ramse\source\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +50,27 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>7B9C166574951CFC62809F16A8D34A5544C60C3C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>CustomerManagement_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoFixture, Version=4.17.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
@@ -212,23 +249,11 @@
     <Compile Include="Forms\Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormViewModels\AppointmentsReportViewModel.cs" />
-    <Compile Include="FormViewModels\AppointmentsViewModel.cs" />
-    <Compile Include="FormViewModels\ConsultantSchedulesViewModel.cs" />
-    <Compile Include="FormViewModels\LoginViewModel.cs" />
-    <Compile Include="FormViewModels\ModifyAppointmentViewModel.cs" />
-    <Compile Include="FormViewModels\RegisterViewModel.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reminder.cs" />
     <Compile Include="Tables\TableService.cs" />
-    <Compile Include="Tests\FormViewModelsTests\AppointmentsReportViewModelTests.cs" />
-    <Compile Include="Tests\FormViewModelsTests\AppointmentsViewModelTests.cs" />
-    <Compile Include="Tests\FormViewModelsTests\ConsultantSchedulesViewModelTests.cs" />
-    <Compile Include="Tests\FormViewModelsTests\LoginViewModelTests.cs" />
-    <Compile Include="Tests\FormViewModelsTests\ModifyAppointmentViewModelTests.cs" />
-    <Compile Include="Tests\FormViewModelsTests\RegisterViewModelTests.cs" />
     <Compile Include="Translations\Translator.cs" />
     <Compile Include="Context.cs" />
     <EmbeddedResource Include="Forms\Appointments.resx">
@@ -276,7 +301,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="CustomerManagement_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -305,9 +332,25 @@
       <Project>{d057d21c-9bb6-428e-9b49-152cfd95c4ac}</Project>
       <Name>CustomerManagement.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomerManagement.ViewModels\CustomerManagement.ViewModels.csproj">
+      <Project>{9f02975f-9a6a-4378-8fa1-a34a4d9f557f}</Project>
+      <Name>CustomerManagement.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

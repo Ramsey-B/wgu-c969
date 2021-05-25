@@ -1,5 +1,4 @@
 ﻿using CustomerManagement.Core.Models;
-using System.Windows.Forms;
 
 namespace CustomerManagement.Core.Interfaces
 {
@@ -7,6 +6,6 @@ namespace CustomerManagement.Core.Interfaces
     {
         User CurrentUser { get; set; }
         T GetService<T>();
-        void Navigate(Form form);
+        void Navigate(INavigationPage page);
     }
 }

@@ -33,12 +33,12 @@ namespace CustomerManagement
             return _servicePorvider.GetRequiredService<T>();
         }
 
-        private static Form currentForm;
-        public void Navigate(Form form)
+        private static INavigationPage currentPage;
+        public void Navigate(INavigationPage page)
         {
-            form.Show();
-            if (currentForm != null) currentForm.Close();
-            currentForm = form;
+            page.Show();
+            if (currentPage != null) currentPage.Close();
+            currentPage = page;
         }
 
         private User Authenticate()

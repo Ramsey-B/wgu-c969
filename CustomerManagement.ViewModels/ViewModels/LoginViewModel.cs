@@ -1,22 +1,21 @@
 ﻿using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace CustomerManagement.FormViewModels
+namespace CustomerManagement.ViewModels
 {
     public class LoginViewModel
     {
         private readonly IContext _context;
-        private readonly Logger _logger;
+        private readonly ILogger _logger;
         private readonly IUserRepository _userRepository;
 
         public LoginViewModel(IContext context)
         {
             _context = context;
-            _logger = context.GetService<Logger>();
+            _logger = context.GetService<ILogger>();
             _userRepository = context.GetService<IUserRepository>();
         }
 

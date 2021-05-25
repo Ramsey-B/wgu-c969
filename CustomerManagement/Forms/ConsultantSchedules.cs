@@ -1,6 +1,6 @@
 ﻿using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Models;
-using CustomerManagement.FormViewModels;
+using CustomerManagement.ViewModels;
 using CustomerManagement.Tables;
 using CustomerManagement.Translations;
 using System;
