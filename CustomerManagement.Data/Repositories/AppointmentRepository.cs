@@ -84,7 +84,7 @@ namespace CustomerManagement.Data.Repositories
         private async Task AppointmentTimeCheckAsync(int userId, DateTime start, DateTime end, string crew, int? id = null)
         {
             var sql = SelectSql.AppointmentTimeCheck;
-            if (id != null || id != 0)
+            if (id != null && id != 0)
             {
                 sql += " AND id != @id";
             }

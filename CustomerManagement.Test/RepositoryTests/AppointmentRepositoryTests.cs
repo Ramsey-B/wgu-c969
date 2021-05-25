@@ -73,7 +73,7 @@ namespace CustomerManagement.Test.RepositoryTests
         [Fact]
         public void ShouldPreventCreateWithType()
         {
-            var appointment = new Appointment() { Title = "test", Type = "" };
+            var appointment = new Appointment() { Title = "test", Type = "", Crew = "Test" };
 
             var sqlMock = new Mock<ISqlOrm>();
 
@@ -86,10 +86,10 @@ namespace CustomerManagement.Test.RepositoryTests
         [Fact]
         public void ShouldPreventOverlappingAppointments()
         {
-            var appointment = new Appointment() { Title = "test", Type = "type", UserId = 23, Start = DateTime.UtcNow, End = DateTime.UtcNow.AddDays(1) };
+            var appointment = new Appointment() { Title = "test", Type = "type", Crew = "test", UserId = 23, Start = DateTime.UtcNow, End = DateTime.UtcNow.AddDays(1) };
 
             var sqlMock = new Mock<ISqlOrm>();
-            sqlMock.Setup(m => m.QueryAsync<Appointment>(It.IsAny<string>(), It.Is<object>(o => JsonConvert.SerializeObject(o) == JsonConvert.SerializeObject(new { userId = appointment.UserId, start = appointment.Start, end = appointment.End })))).ReturnsAsync(new Appointment());
+            sqlMock.Setup(m => m.QueryAsync<Appointment>(It.IsAny<string>(), It.Is<object>(o => JsonConvert.SerializeObject(o) == JsonConvert.SerializeObject(new { userId = appointment.UserId, start = appointment.Start, end = appointment.End, crew = appointment.Crew, id = 0 })))).ReturnsAsync(new Appointment());
 
             var repo = new AppointmentRepository(sqlMock.Object);
 
@@ -99,10 +99,10 @@ namespace CustomerManagement.Test.RepositoryTests
         [Fact]
         public void ShouldCreateAppointment()
         {
-            var appointment = new Appointment() { Title = "test", Type = "type", UserId = 23, Start = DateTime.UtcNow, End = DateTime.UtcNow.AddDays(1) };
+            var appointment = new Appointment() { Title = "test", Type = "type", Crew = "test", UserId = 23, Start = DateTime.UtcNow, End = DateTime.UtcNow.AddDays(1) };
 
             var sqlMock = new Mock<ISqlOrm>();
-            sqlMock.Setup(m => m.QueryAsync<Appointment>(It.IsAny<string>(), It.Is<object>(o => JsonConvert.SerializeObject(o) == JsonConvert.SerializeObject(new { userId = appointment.UserId, start = appointment.Start, end = appointment.End })))).ReturnsAsync((Appointment)null);
+            sqlMock.Setup(m => m.QueryAsync<Appointment>(It.IsAny<string>(), It.Is<object>(o => JsonConvert.SerializeObject(o) == JsonConvert.SerializeObject(new { userId = appointment.UserId, start = appointment.Start, end = appointment.End, crew = appointment.Crew, id = 0 })))).ReturnsAsync((Appointment)null);
             sqlMock.Setup(m => m.CreateEntityAsync(It.IsAny<string>(), appointment)).ReturnsAsync(1).Verifiable();
 
             var repo = new AppointmentRepository(sqlMock.Object);
@@ -116,10 +116,10 @@ namespace CustomerManagement.Test.RepositoryTests
         [Fact]
         public void ShouldUpdateAppointment()
         {
-            var appointment = new Appointment() { Title = "test", Type = "type", UserId = 23, Start = DateTime.UtcNow, End = DateTime.UtcNow.AddDays(1) };
+            var appointment = new Appointment() { Title = "test", Type = "type", Crew = "Test", UserId = 23, Start = DateTime.UtcNow, End = DateTime.UtcNow.AddDays(1) };
 
             var sqlMock = new Mock<ISqlOrm>();
-            sqlMock.Setup(m => m.QueryAsync<Appointment>(It.IsAny<string>(), It.Is<object>(o => JsonConvert.SerializeObject(o) == JsonConvert.SerializeObject(new { userId = appointment.UserId, start = appointment.Start, end = appointment.End })))).ReturnsAsync((Appointment)null);
+            sqlMock.Setup(m => m.QueryAsync<Appointment>(It.IsAny<string>(), It.Is<object>(o => JsonConvert.SerializeObject(o) == JsonConvert.SerializeObject(new { userId = appointment.UserId, start = appointment.Start, end = appointment.End, crew = appointment.Crew, id = 0 })))).ReturnsAsync((Appointment)null);
             sqlMock.Setup(m => m.ExecuteAsync(It.IsAny<string>(), appointment)).ReturnsAsync(1).Verifiable();
 
             var repo = new AppointmentRepository(sqlMock.Object);
