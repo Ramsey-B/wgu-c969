@@ -150,8 +150,8 @@ namespace CustomerManagement.Forms
                     Location = locationInput.Text,
                     Crew = crewInput.Text,
                     Type = typeInput.Text,
-                    Start = startInput.Value.ToLocalTime(),
-                    End = endInput.Value.ToLocalTime(),
+                    Start = startInput.Value,
+                    End = endInput.Value,
                     CreatedBy = _context.CurrentUser.Username,
                     LastUpdatedBy = _context.CurrentUser.Username
                 };
