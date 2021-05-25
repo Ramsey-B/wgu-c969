@@ -138,6 +138,7 @@ namespace CustomerManagement.Forms
             try
             {
                 await _viewModel.SubmitAsync(newAppt, callback);
+                Close();
             }
             catch (Exception ex)
             {
